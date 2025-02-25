@@ -113,11 +113,11 @@ export const Navigation = ({ categories }: navigationProp ) => {
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <Link href="/" legacyBehavior passHref>
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), 'font-medium', '/' === pathname && "font-extrabold")}>
+                  <NavigationMenuLink asChild>
+                    <Link href="/" className={cn(navigationMenuTriggerStyle(), 'font-medium', '/' === pathname && "font-extrabold")}>
                       {t('homeBtn')}
-                    </NavigationMenuLink>
-                  </Link>
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className={cn('font-medium', '/category' === pathname && "font-extrabold")}>{t('categoryBtn')}</NavigationMenuTrigger>
@@ -177,11 +177,11 @@ export const Navigation = ({ categories }: navigationProp ) => {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/changelog" legacyBehavior passHref>
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), 'font-medium', '/changelog' === pathname && "font-extrabold")}>
+                  <NavigationMenuLink asChild>
+                    <Link href="/changelog" className={cn(navigationMenuTriggerStyle(), 'font-medium', '/changelog' === pathname && "font-extrabold")}>
                       {t('changelogBtn')}
-                    </NavigationMenuLink>
-                  </Link>
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
@@ -197,7 +197,7 @@ export const Navigation = ({ categories }: navigationProp ) => {
             
           </div>
           <Link
-            href={"https://github.com/iAmCorey/devtoolset"}
+            href={"https://github.com/PowerZCY/affiliate"}
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground ml-1"
