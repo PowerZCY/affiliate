@@ -24,10 +24,27 @@ export function Search({ className }: { className?: string }) {
     const [search, setSearch] = useState('');
     const t = useTranslations('search');
 
+    const handleSearch = () => {
+        if (search.trim()) {
+            window.location.href = `/tools/${encodeURIComponent(search.trim())}`;
+        }
+    };
+
     return (
         <div className="flex flex-col justify-center items-center gap-2">
-            <Command className={cn("rounded-lg border shadow-md", className)}>
-                <CommandInput placeholder={t('input_placeholder')} value={search} onValueChange={setSearch} />
+            <Command 
+                className={cn("rounded-lg border shadow-md", className)}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.defaultPrevented) {
+                        handleSearch();
+                    }
+                }}
+            >
+                <CommandInput 
+                    placeholder={t('input_placeholder')} 
+                    value={search} 
+                    onValueChange={setSearch} 
+                />
                 <CommandList>
                     <CommandGroup heading={t('heading')}>
                         <CommandItem onSelect={() => window.location.href = '/tools/ai'}>
@@ -45,10 +62,6 @@ export function Search({ className }: { className?: string }) {
                     </CommandGroup>
                 </CommandList>
             </Command>
-            {search &&
-                <Button variant="outline" className='mt-6' onClick={() => window.location.href = `/tools/${encodeURIComponent(search)}`}>
-                    <SearchIcon size={16} className='mr-2 opacity-80' />{t('button')}
-                </Button>}
         </div>
     )
 }
