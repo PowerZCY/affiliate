@@ -1,8 +1,9 @@
 {
-  "name": "devtoolset",
+  "name": "ai-affiliate-programs",
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "predev": "pnpm run lint",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

@@ -1,6 +1,5 @@
+import { appConfig } from "@/lib/appConfig";
 import type { MetadataRoute } from "next";
-
-const BASE_URL = 'https://DevToolset.net';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${BASE_URL}/sitemap.xml`,
+    sitemap: `${appConfig.baseUrl}/sitemap.xml`,
   };
 }

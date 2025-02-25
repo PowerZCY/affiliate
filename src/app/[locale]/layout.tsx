@@ -26,12 +26,12 @@ export const metadata: Metadata = {
     template: '%s | DevToolset'
   },
   description: 'Explore Every Essential Developer Tools You Need For Your Development Journey',
-  authors: { name: 'DevToolset', url: 'https://DevToolset.net/' },
+  authors: { name: 'DevToolset', url: 'http://localhost:3000/' },
   keywords: 'developer tools, dev tools, develop tool',
   alternates: {
-    canonical: "https://DevToolset.net/", languages: {
-      "en-US": "https://DevToolset.net/en/",
-      "zh-CN": "https://DevToolset.net/zh/",
+    canonical: "http://localhost:3000/", languages: {
+      "en-US": "http://localhost:3000/en/",
+      "zh-CN": "http://localhost:3000/zh/",
     }
   },
   icons: [
@@ -60,10 +60,7 @@ export default async function RootLayout({
         <body className={cn(inter.className, sansFont.variable,
         )}>
           <NextIntlClientProvider messages={messages}>
-            <ThemeProvider
-              attribute="class"
-
-            >
+            <ThemeProvider attribute="class">
               <Layout>{children}</Layout>
               <GoogleAdsenseScript />
               <GoogleAnalyticsScript />
