@@ -3,7 +3,7 @@ import { Link } from "@/lib/i18n";
 import React from 'react'; // 确保导入 React
 import Image from "next/image";
 import IconImage from "../../public/favicon.svg";
-import {useTranslations} from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { Github } from 'lucide-react';
 
 export function Footer() {
@@ -19,21 +19,21 @@ export function Footer() {
                 src={IconImage}
                 width={size}
                 height={size}
-                alt="AI·Affliate"
+                alt="AI·Affiliate"
               />
-              <span className="font-bold text-lg">AI·Affliate</span>
+              <span className="font-bold text-lg">AI·Affiliate</span>
             </Link>
             <p className="text-sm text-muted-foreground">
               {t('description')}
             </p>
             <div className="text-sm text-muted-foreground">
               {t('builtWith')}
-              <Link href="https://github.com/iAmCorey/devtoolset" target="_blank" className="ml-1 underline">
-                Devtoolset
+              <Link href="https://github.com/PowerZCY/affiliate" target="_blank" className="ml-1 underline">
+                AI Affilicate
               </Link>
             </div>
           </div>
-          
+
           <div>
             <h3 className="font-semibold mb-4">{t('quickLinks')}</h3>
             <ul className="space-y-2">
@@ -59,7 +59,7 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="font-semibold mb-4">{t('legal')}</h3>
             <ul className="space-y-2">
@@ -75,13 +75,13 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="font-semibold mb-4">{t('connect')}</h3>
             <ul className="space-y-2">
               <li>
-                <Link 
-                  href="https://github.com/PowerZCY/affiliate" 
+                <Link
+                  href="https://github.com/PowerZCY/affiliate"
                   target="_blank"
                   className="text-sm hover:underline flex items-center gap-2"
                 >
@@ -92,9 +92,9 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        
+
         <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} AI·Affliate. {t('copyright')}
+          Copyright &copy; {new Date().getFullYear()} AI·Affiliate {t('copyright')}
         </div>
       </div>
     </footer>

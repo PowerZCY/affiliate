@@ -12,7 +12,6 @@
 // 1. All data should be sorted alphabetically.
 // 2. Affiliate links are not allowed
 // 3. Do not submit tools that are unrelated to development.
-
 [
   // A
   // B
@@ -26,20 +25,27 @@
     "name": "Coolify",
     "description": "Self-hosted & open-source PaaS to deploy applications and databases",
     "url": "https://coolify.io/",
-    "tags": ["open-source"]
+    "tags": [
+      "open-source"
+    ]
   },
   // D
   {
     "name": "Dokploy",
     "description": "Simple, fast, and secure Docker-based PaaS for deploying your apps",
     "url": "https://dokploy.com/",
-    "tags": ["open-source"]
+    "tags": [
+      "open-source"
+    ]
   },
   {
     "name": "Dokku",
     "description": "Docker-powered mini-Heroku that helps you build and manage applications",
     "url": "https://dokku.com/",
-    "tags": ["open-source", "PaaS"]
+    "tags": [
+      "open-source",
+      "PaaS"
+    ]
   },
   // E
   // F
@@ -85,7 +91,10 @@
     "name": "SST",
     "description": "Serverless Stack (SST) is a framework that makes it easy to build serverless apps",
     "url": "https://sst.dev/",
-    "tags": ["open-source", "Serverless"]
+    "tags": [
+      "open-source",
+      "Serverless"
+    ]
   },
   // T
   // U
@@ -104,5 +113,4 @@
     "description": "Cloud platform for deploying and managing applications effortlessly",
     "url": "https://zeabur.com/"
   },
-  
 ]

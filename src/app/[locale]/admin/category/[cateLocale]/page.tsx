@@ -93,7 +93,7 @@ export default function CategoryLocalePage({ params: { cateLocale } }: CategoryP
   const handleCancel = (index) => {
     setEditingIndex(null);
   };
-// @ts-ignore
+  // @ts-ignore
   const handleSave = async (index) => {
     // @ts-ignore
     let updatedResources = [...resources];

@@ -1,4 +1,3 @@
-// components/ArticleList.tsx
 import React from 'react'; // 确保导入 React
 import { Link } from "@/lib/i18n";
 import {
@@ -27,7 +26,7 @@ const ArticleList = ({ articles, showMoreLink = true }) => {
         {articles.map(({ id, title, description }) => (
           <Card key={id}>
             <CardHeader>
-              <Link 
+              <Link
                 href={`/article/${id}`}
                 className="text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center gap-1"
               >
@@ -52,7 +51,7 @@ const ArticlePage = ({ articles }) => {
         {articles.map(({ id, title, description }) => (
           <Card key={id}>
             <CardHeader>
-              <Link 
+              <Link
                 href={`/article/${id}`}
                 className="text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center gap-1"
               >

@@ -1,4 +1,3 @@
-// components/Layout.tsx
 import React from 'react'; // 确保导入 React
 import { Navigation } from './Navigation'
 import { Footer } from '@/components/Footer'
@@ -13,7 +12,7 @@ export async function Layout({ children }) {
 
   return (
     <div className="min-h-screen bg-background font-sans antialiased">
-      <Navigation categories={categories}/>
+      <Navigation categories={categories} />
       <main className="flex-1">{children}</main>
       <Footer />
     </div>

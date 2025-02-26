@@ -44,7 +44,7 @@ export default async function Tool({ params: { category } }: CategoryPageProps) 
   if (!categoryData) {
     return notFound();
   }
-  
+
   // 获取该分类下的工具列表
   const tools = getDataList(categoryData.src, locale);
 
@@ -52,14 +52,14 @@ export default async function Tool({ params: { category } }: CategoryPageProps) 
     <main className="container py-12">
       {/* 面包屑导航 - JetBrains 风格 */}
       <div className="mb-8">
-        <Link 
-          href="/" 
+        <Link
+          href="/"
           className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1 mb-4"
         >
           <ArrowLeft className="h-4 w-4" />
           {t('homeBtn')}
         </Link>
-        
+
         <Breadcrumb className="mb-6">
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -79,7 +79,7 @@ export default async function Tool({ params: { category } }: CategoryPageProps) 
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        
+
         {/* 页面标题 - JetBrains 风格 */}
         <h1 className="text-3xl md:text-4xl font-bold mb-4 capitalize">
           {categoryData.name}
@@ -88,7 +88,7 @@ export default async function Tool({ params: { category } }: CategoryPageProps) 
           {categoryData.description}
         </p>
       </div>
-      
+
       {/* 工具列表 - JetBrains 风格 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {tools.map((tool: any) => (
@@ -102,13 +102,13 @@ export default async function Tool({ params: { category } }: CategoryPageProps) 
           />
         ))}
       </div>
-      
+
       {/* 底部信息 - JetBrains 风格 */}
       <div className="mt-16 text-center">
         <p className="text-muted-foreground mb-6">{t('h2description')}</p>
         <Link href="/article/add-new-developer-tools">
-          <Button 
-            variant="jetbrains" 
+          <Button
+            variant="jetbrains"
             className="rounded-full px-6"
           >
             {t('submitToolBtn') || '提交工具'}

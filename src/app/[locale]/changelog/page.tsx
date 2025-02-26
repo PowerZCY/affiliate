@@ -10,8 +10,8 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import {getTranslations, getLocale} from 'next-intl/server';
-import {useLocale} from 'next-intl';
+import { getTranslations, getLocale } from 'next-intl/server';
+import { useLocale } from 'next-intl';
 
 export async function generateMetadata() {
     const t = await getTranslations('changelog');
@@ -49,10 +49,10 @@ export default async function ChangelogPage() {
                 <h2 className="mx-auto max-w-[700px] opacity-60  md:text-xl">{t('h2')}</h2>
             </section>
             <div className="flex flex-col items-center justify-center w-full">
-            <ChangelogSection
-                items={changelogs[currentLocale]}
-                className="w-full lg:w-1/2 px-6"
-            />
+                <ChangelogSection
+                    items={changelogs[currentLocale]}
+                    className="w-full lg:w-1/2 px-6"
+                />
             </div>
 
         </div>

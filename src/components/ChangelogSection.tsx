@@ -1,5 +1,5 @@
 import { formatDate, formatDistance, parseISO } from "date-fns";
-import { cn } from "@/lib/utils"; 
+import { cn } from "@/lib/utils";
 import React from 'react'; // 确保导入 React
 
 type ChangelogItem = {

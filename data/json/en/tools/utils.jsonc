@@ -13,8 +13,6 @@
 // 1. All data should be sorted alphabetically.
 // 2. Affiliate links are not allowed
 // 3. Do not submit tools that are unrelated to development.
-
-
 [
   // A
   // B
@@ -24,7 +22,10 @@
     "name": "dns.fish",
     "description": "A tool for performing DNS record lookups, helping you quickly retrieve DNS information for any domain.",
     "url": "https://dns.fish/",
-    "tags": ["DNS", "Lookup"]
+    "tags": [
+      "DNS",
+      "Lookup"
+    ]
   },
   // E
   // F
@@ -32,7 +33,10 @@
     "name": "favicon.im",
     "description": "A tool for easily obtaining the favicon of any website.",
     "url": "https://favicon.im/",
-    "tags": ["Favicon", "Web Development"]
+    "tags": [
+      "Favicon",
+      "Web Development"
+    ]
   },
   // G
   // H
@@ -41,8 +45,11 @@
     "name": "ip.network",
     "description": "A simple tool to view your current IP address and related network information.",
     "url": "https://ip.network/",
-    "tags": ["IP", "Network"]
-},
+    "tags": [
+      "IP",
+      "Network"
+    ]
+  },
   // J
   // K
   // L
@@ -56,7 +63,10 @@
     "name": "Redirect Check",
     "description": "A tool to check and analyze URL redirects, helping you trace the complete redirect path.",
     "url": "https://www.redirectcheck.org/",
-    "tags": ["Redirect", "Analysis"]
+    "tags": [
+      "Redirect",
+      "Analysis"
+    ]
   },
   // S
   // T

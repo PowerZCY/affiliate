@@ -27,10 +27,10 @@ async function getCategoryFromGitHub(locale: string) {
     if (typeof json === 'string') {
       // 如果解析后仍是字符串，可能需要二次解析
       try {
-          return jsonc.parse(json);
+        return jsonc.parse(json);
       } catch (error) {
-          console.error('二次解析失败:', error);
-          return json; // 如果二次解析失败，返回原始解析结果
+        console.error('二次解析失败:', error);
+        return json; // 如果二次解析失败，返回原始解析结果
       }
     }
     return json;
@@ -54,7 +54,7 @@ export async function GET(req: Request) {
     try {
       const resources = await getCategoryFromGitHub(locale);
       return NextResponse.json(resources);
-    // @ts-ignore
+      // @ts-ignore
     } catch (error) {
       return NextResponse.json({ error: 'Failed to fetch resources from GitHub' }, { status: 500 });
     }

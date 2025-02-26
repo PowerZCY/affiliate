@@ -1,6 +1,6 @@
 export const appConfig = {
   // 基础配置
-  baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'https://DevToolset.net',
+  baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
 
   // GitHub 配置
   github: {

@@ -39,8 +39,11 @@
     "name": "Cloudflare R2",
     "description": "Cloudflare's object storage solution, providing scalable and affordable storage without egress fees, ideal for developers and businesses.",
     "url": "https://www.cloudflare.com/products/r2/",
-    "tags": ["Cloud Storage", "Object Storage"]
-},
+    "tags": [
+      "Cloud Storage",
+      "Object Storage"
+    ]
+  },
   // D
   {
     "name": "Dropbox",
@@ -88,7 +91,11 @@
     "name": "Sanity",
     "description": "A flexible headless CMS that enables structured content storage and management, tailored for developers and content creators.",
     "url": "https://www.sanity.io/",
-    "tags": ["Content Storage", "CMS", "Headless CMS"]
+    "tags": [
+      "Content Storage",
+      "CMS",
+      "Headless CMS"
+    ]
   },
   // T
   // U

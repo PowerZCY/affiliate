@@ -21,12 +21,12 @@ const sansFont = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: 'AI Affliate: Open-Source & Hot AI Tools Navigator',
-    template: '%s | AI Affliate'
+    default: 'AI Affiliate: Open-Source & Hot AI Tools Navigator',
+    template: '%s | AI Affiliate'
   },
   description: 'Explore Every Essential AI Tools You Need For Your Development Journey',
-  authors: { name: 'AI·Affliate', url: 'http://localhost:3000/' },
-  keywords: 'AI tools, AI tool, AI toolset',
+  authors: { name: 'AI·Affiliate', url: 'http://localhost:3000/' },
+  keywords: 'AI tools, AI tool',
   alternates: {
     canonical: "http://localhost:3000/", languages: {
       "en-US": "http://localhost:3000/en/",

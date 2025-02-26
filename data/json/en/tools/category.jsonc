@@ -12,7 +12,6 @@
 // 1. All data should be sorted alphabetically.
 // 2. Affiliate links are not allowed
 // 3. Do not submit tools that are unrelated to development.
-
 [
   // A
   {
@@ -64,7 +63,7 @@
     "src": "infrastructure.jsonc",
     "link": "infrastructure",
     "description": "Services and tools that support the underlying architecture of applications, including computing resources, networking, storage solutions, and cloud-based infrastructure for scalable and efficient operations."
-},
+  },
   {
     "name": "Insights",
     "src": "insights.jsonc",
@@ -75,7 +74,7 @@
   // K
   // L
   {
-   "name": "Logo",
+    "name": "Logo",
     "src": "logo.jsonc",
     "link": "logo",
     "description": "Tools for designing, creating, and customizing logos for your brand or project."

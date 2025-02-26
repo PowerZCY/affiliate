@@ -21,16 +21,16 @@ async function getCategoryFromGitHub(locale: string, src: string) {
       repo: repo ?? '',
       path: githubBasePath + locale + srcBashPath + src,
     });
-// @ts-ignore
+    // @ts-ignore
     const content = Buffer.from(data.content, 'base64').toString('utf8');
     const json = jsonc.parse(content);
     if (typeof json === 'string') {
       // 如果解析后仍是字符串，可能需要二次解析
       try {
-          return jsonc.parse(json);
+        return jsonc.parse(json);
       } catch (error) {
-          console.error('二次解析失败:', error);
-          return json; // 如果二次解析失败，返回原始解析结果
+        console.error('二次解析失败:', error);
+        return json; // 如果二次解析失败，返回原始解析结果
       }
     }
     return json;

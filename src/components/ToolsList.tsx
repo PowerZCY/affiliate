@@ -47,7 +47,7 @@ type toolProps = {
   url: string,
   icon_url?: string,
   tags?: string[]
-  
+
 }
 
 
@@ -70,20 +70,20 @@ const ToolsList = ({ category, locale, showMoreLink = true }: toolsListProps) =>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {/* @ts-ignore */}
-        {srcList.slice(0,8).map((resource: toolProps, index) => (
+        {srcList.slice(0, 8).map((resource: toolProps, index) => (
           <Card key={index} className='max-w-sm overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-105 '>
             <CardHeader>
-              <a 
-                href={`${resource.url}?utm_source=devtoolset.net`} 
-                target="_blank" 
+              <a
+                href={`${resource.url}?utm_source=localhost`}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center gap-1"
               >
                 <div className='border border-gray-200 p-1 rounded-md mr-1 bg-white'>
                   {/* <img width="20" height="20" src={`https://favicon.im/${resource.url}?larger=true`} alt={`${resource.name} favicon`} /> */}
-                  { resource.icon_url ?
+                  {resource.icon_url ?
                     // <img width="20" height="20" src={resource.icon_url}  alt={`${resource.name} favicon`} />
-                    <Image width={20} height={20} src={resource.icon_url}  alt={`${resource.name} favicon`} loading='lazy'/>
+                    <Image width={20} height={20} src={resource.icon_url} alt={`${resource.name} favicon`} loading='lazy' />
                     :
                     <Favicon url={resource.url} size={24} lazy={true} />
                     // <img width="20" height="20" src={`https://favicon.im/${resource.url}?larger=true`} alt={`${resource.name} favicon`} loading='lazy'/>
@@ -96,14 +96,14 @@ const ToolsList = ({ category, locale, showMoreLink = true }: toolsListProps) =>
                 <div className='h-[60px] line-clamp-3 mt-1 tracking-tight text-start'>
                   {resource.description}
                 </div>
-                { resource.tags ? 
+                {resource.tags ?
                   <div className='mt-3'>
-                    {resource.tags.slice(0,3).map((tag, i) => (
+                    {resource.tags.slice(0, 3).map((tag, i) => (
                       <Badge key={i} variant="secondary" className='text-xs pb-1 mr-1 mt-2 tracking-tighter'>{tag}</Badge>
                     ))}
                   </div> :
-                 null
-                }     
+                  null
+                }
               </CardDescription>
             </CardHeader>
           </Card>
@@ -123,16 +123,16 @@ const ToolsPage = ({ category, locale }: { category: categoryProps, locale: stri
         {srcList.map((resource: toolProps, index) => (
           <Card key={index} className='max-w-sm overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-105'>
             <CardHeader>
-              <a 
-                href={`${resource.url}?utm_source=devtoolset.net`} 
-                target="_blank" 
+              <a
+                href={`${resource.url}?utm_source=localhost`}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center gap-1"
               >
                 <div className='border border-gray-200 p-1 rounded-md mr-1 bg-white'>
                   {/* <img width="20" height="20" src={`https://favicon.im/${resource.url}?larger=true`} alt={`${resource.name} favicon`} /> */}
-                  { resource.icon_url ?
-                    <Image width={20} height={20} src={resource.icon_url}  alt={`${resource.name} favicon`} loading='lazy'/>
+                  {resource.icon_url ?
+                    <Image width={20} height={20} src={resource.icon_url} alt={`${resource.name} favicon`} loading='lazy' />
                     :
                     <Favicon url={resource.url} size={24} lazy={true} />
                     // <img width="20" height="20" src={`https://favicon.im/${resource.url}?larger=true`} alt={`${resource.name} favicon`} loading='lazy'/>
@@ -145,14 +145,14 @@ const ToolsPage = ({ category, locale }: { category: categoryProps, locale: stri
                 <div className='h-[60px] line-clamp-3 mt-1 tracking-tight text-start'>
                   {resource.description}
                 </div>
-                { resource.tags ? 
+                {resource.tags ?
                   <div className='mt-3'>
-                  {resource.tags.slice(0,3).map((tag, i) => (
-                    <Badge key={i} variant="secondary" className='text-xs pb-1 mr-1 mt-2 tracking-tighter'>{tag}</Badge>
-                  ))}
-                </div> :
-                 null
-                }     
+                    {resource.tags.slice(0, 3).map((tag, i) => (
+                      <Badge key={i} variant="secondary" className='text-xs pb-1 mr-1 mt-2 tracking-tighter'>{tag}</Badge>
+                    ))}
+                  </div> :
+                  null
+                }
               </CardDescription>
             </CardHeader>
           </Card>
@@ -175,16 +175,16 @@ const SearchPage = ({ searchData }: searchPageProps) => {
         {searchData.map((resource: toolProps, index) => (
           <Card key={index} className='max-w-sm overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-105'>
             <CardHeader>
-              <a 
-                href={`${resource.url}?utm_source=devtoolset.net`} 
-                target="_blank" 
+              <a
+                href={`${resource.url}?utm_source=localhost`}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center gap-1"
               >
                 <div className='border border-gray-200 p-1 rounded-md mr-1 bg-white'>
                   {/* <img width="20" height="20" src={`https://favicon.im/${resource.url}?larger=true`} alt={`${resource.name} favicon`} /> */}
-                  { resource.icon_url ?
-                    <Image width={20} height={20} src={resource.icon_url}  alt={`${resource.name} favicon`} loading='lazy'/>
+                  {resource.icon_url ?
+                    <Image width={20} height={20} src={resource.icon_url} alt={`${resource.name} favicon`} loading='lazy' />
                     :
                     <Favicon url={resource.url} size={24} lazy={true} />
                     // <img width="20" height="20" src={`https://favicon.im/${resource.url}?larger=true`} alt={`${resource.name} favicon`} loading='lazy'/>
@@ -197,14 +197,14 @@ const SearchPage = ({ searchData }: searchPageProps) => {
                 <div className='h-[60px] line-clamp-3 mt-1 tracking-tight text-start'>
                   {resource.description}
                 </div>
-                { resource.tags ? 
+                {resource.tags ?
                   <div className='mt-3'>
-                  {resource.tags.slice(0,3).map((tag, i) => (
-                    <Badge key={i} variant="secondary" className='text-xs pb-1 mr-1 mt-2 tracking-tighter'>{tag}</Badge>
-                  ))}
-                </div> :
-                 null
-                }     
+                    {resource.tags.slice(0, 3).map((tag, i) => (
+                      <Badge key={i} variant="secondary" className='text-xs pb-1 mr-1 mt-2 tracking-tighter'>{tag}</Badge>
+                    ))}
+                  </div> :
+                  null
+                }
               </CardDescription>
             </CardHeader>
           </Card>
@@ -224,16 +224,16 @@ const CategoryList = ({ categories }: categoryListProps) => {
         {categories.map((category: categoryProps, index) => (
           <Card key={index} className='max-w-sm overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-105'>
             <CardHeader>
-              <a 
+              <a
                 href={`/category/${category.link}`}
                 className="text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center gap-1"
               >
                 <CardTitle className='capitalize'>{category.name}</CardTitle>
-                <ArrowRightIcon size={16} className='ml-2'/>
+                <ArrowRightIcon size={16} className='ml-2' />
               </a>
               <CardDescription className='flex flex-col justify-between'>
                 <div className='h-[40px] line-clamp-2 mt-4 tracking-tight text-start'>
-                {category.description}
+                  {category.description}
                 </div>
               </CardDescription>
             </CardHeader>

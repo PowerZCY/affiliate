@@ -39,7 +39,10 @@
     "name": "Cloudflare R2",
     "description": "Cloudflare的对象存储解决方案，提供可扩展和经济实惠的存储，无出口费用，非常适合开发者和企业。",
     "url": "https://www.cloudflare.com/products/r2/",
-    "tags": ["云存储", "对象存储"]
+    "tags": [
+      "云存储",
+      "对象存储"
+    ]
   },
   // D
   {
@@ -88,7 +91,11 @@
     "name": "Sanity",
     "description": "一个灵活的无头CMS，支持结构化内容存储和管理，为开发者和内容创作者量身定制。",
     "url": "https://www.sanity.io/",
-    "tags": ["内容存储", "CMS", "无头CMS"]
+    "tags": [
+      "内容存储",
+      "CMS",
+      "无头CMS"
+    ]
   },
   // T
   // U

@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'; // 确保导入 React
 import { useState, useEffect } from 'react'
-import { Link, usePathname }from "@/lib/i18n";
+import { Link, usePathname } from "@/lib/i18n";
 import { Github, MenuIcon } from 'lucide-react'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { ThemeModeButton } from "@/components/ThemeModeButton";
 import { LocaleButton } from "@/components/LocaleButton";
-import {useTranslations} from 'next-intl';
+import { useTranslations } from 'next-intl';
 type categoriesType = {
   name: string,
   src: string,
@@ -32,7 +32,7 @@ type navigationProp = {
 }
 
 
-export const Navigation = ({ categories }: navigationProp ) => {
+export const Navigation = ({ categories }: navigationProp) => {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const t = useTranslations('navigation');
@@ -41,23 +41,23 @@ export const Navigation = ({ categories }: navigationProp ) => {
     label: string;
     href: string;
   }[] = [
-    {
-      label: t('homeBtn'),
-      href: "/",
-    },
-    {
-      label: t('categoryBtn'),
-      href: "/category",
-    },
-    {
-      label: t('articleBtn'),
-      href: "/article",
-    },
-    {
-      label: t('changelogBtn'),
-      href: "/changelog",
-    },
-  ];
+      {
+        label: t('homeBtn'),
+        href: "/",
+      },
+      {
+        label: t('categoryBtn'),
+        href: "/category",
+      },
+      {
+        label: t('articleBtn'),
+        href: "/article",
+      },
+      {
+        label: t('changelogBtn'),
+        href: "/changelog",
+      },
+    ];
   const isMenuItemActive = (href: string) => {
     // console.log(pathname, href);
     return pathname === href;
@@ -67,7 +67,7 @@ export const Navigation = ({ categories }: navigationProp ) => {
     setMobileMenuOpen(false);
   }, [pathname]);
 
-  
+
   const size = 30;
   const ListItem = React.forwardRef<
     React.ElementRef<"a">,
@@ -105,17 +105,17 @@ export const Navigation = ({ categories }: navigationProp ) => {
               className="block"
               width={size}
               height={size}
-              alt="AI·Affliate"
+              alt="DomainScore"
             />
-            <span className="inline-block font-bold text-xl">AI·Affliate</span>
+            <span className="inline-block font-bold text-xl">AI·Affiliate</span>
           </Link>
           <nav className="hidden md:flex gap-6">
             <NavigationMenu>
               <NavigationMenuList className="flex gap-1">
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link 
-                      href="/" 
+                    <Link
+                      href="/"
                       className={cn(
                         "group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50",
                         '/' === pathname && "bg-accent text-accent-foreground font-bold"
@@ -162,7 +162,7 @@ export const Navigation = ({ categories }: navigationProp ) => {
                             href="/"
                           >
                             <div className="mb-2 mt-4 text-lg font-medium">
-                              Dev Toolset
+                              AI·Affilicate
                             </div>
                             <p className="text-xs leading-tight text-muted-foreground">
                               {t('articleDescription')}
@@ -173,7 +173,7 @@ export const Navigation = ({ categories }: navigationProp ) => {
                       <ListItem href="/article/add-new-developer-tools" title="Add Tools">
                         {t('article1Title')}
                       </ListItem>
-                      <ListItem href="/article/deploy-own-devtoolset" title="Deploy DevToolset">
+                      <ListItem href="/article/deploy-own-ai-affilicate" title="Deploy AI Affilicate">
                         {t('article2Title')}
                       </ListItem>
                       <ListItem href="/article" title={t('moreArticleBtn')} className='border border-muted  bg-gradient-to-b  from-muted/50 to-muted/20'>
@@ -195,8 +195,8 @@ export const Navigation = ({ categories }: navigationProp ) => {
         </div>
         <div className="flex items-center gap-3">
           <Link href="/article/add-new-developer-tools" className='hidden md:block'>
-            <Button 
-              variant="default" 
+            <Button
+              variant="default"
               className='text-sm font-medium rounded-full px-4 py-2 h-9'
             >
               {t('submitToolBtn')}
@@ -216,36 +216,36 @@ export const Navigation = ({ categories }: navigationProp ) => {
             <span className="sr-only">GitHub</span>
           </Link>
           <Sheet
-              open={mobileMenuOpen}
-              onOpenChange={(open) => setMobileMenuOpen(open)}
-            >
-              <SheetTrigger asChild>
-                <Button
-                  className="md:hidden"
-                  size="icon"
-                  variant="outline"
-                  aria-label="Menu"
-                >
-                  <MenuIcon className="size-4" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent className="w-[250px]" side="right">
-                <div className="flex flex-col items-start justify-center">
-                  {menuItems.map((menuItem) => (
-                    <Link
-                      key={menuItem.href}
-                      href={menuItem.href}
-                      className={cn(
-                        "block px-3 py-2 text-lg",
-                        isMenuItemActive(menuItem.href) ? "font-bold" : "",
-                      )}
-                    >
-                      {menuItem.label}
-                    </Link>
-                  ))}
-                </div>
-              </SheetContent>
-            </Sheet>
+            open={mobileMenuOpen}
+            onOpenChange={(open) => setMobileMenuOpen(open)}
+          >
+            <SheetTrigger asChild>
+              <Button
+                className="md:hidden"
+                size="icon"
+                variant="outline"
+                aria-label="Menu"
+              >
+                <MenuIcon className="size-4" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent className="w-[250px]" side="right">
+              <div className="flex flex-col items-start justify-center">
+                {menuItems.map((menuItem) => (
+                  <Link
+                    key={menuItem.href}
+                    href={menuItem.href}
+                    className={cn(
+                      "block px-3 py-2 text-lg",
+                      isMenuItemActive(menuItem.href) ? "font-bold" : "",
+                    )}
+                  >
+                    {menuItem.label}
+                  </Link>
+                ))}
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>

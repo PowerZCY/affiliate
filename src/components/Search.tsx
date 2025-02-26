@@ -1,21 +1,18 @@
 'use client';
 
-import React, { useState } from 'react';
-import {
-    LightningBoltIcon,
-    DotsHorizontalIcon,
-    GlobeIcon
-} from "@radix-ui/react-icons"
-import { SearchIcon } from 'lucide-react';
 import {
     Command,
     CommandGroup,
     CommandInput,
     CommandItem,
     CommandList,
-    // CommandSeparator,
-} from "@/components/ui/command"
-import { Button } from "@/components/ui/button"
+} from "@/components/ui/command";
+import {
+    DotsHorizontalIcon,
+    GlobeIcon,
+    LightningBoltIcon
+} from "@radix-ui/react-icons";
+import { useState } from 'react';
 
 import { cn } from "@/lib/utils";
 import { useTranslations } from 'next-intl';
@@ -32,7 +29,7 @@ export function Search({ className }: { className?: string }) {
 
     return (
         <div className="flex flex-col justify-center items-center gap-2">
-            <Command 
+            <Command
                 className={cn("rounded-lg border shadow-md", className)}
                 onKeyDown={(e) => {
                     if (e.key === 'Enter' && !e.defaultPrevented) {
@@ -40,10 +37,10 @@ export function Search({ className }: { className?: string }) {
                     }
                 }}
             >
-                <CommandInput 
-                    placeholder={t('input_placeholder')} 
-                    value={search} 
-                    onValueChange={setSearch} 
+                <CommandInput
+                    placeholder={t('input_placeholder')}
+                    value={search}
+                    onValueChange={setSearch}
                 />
                 <CommandList>
                     <CommandGroup heading={t('heading')}>

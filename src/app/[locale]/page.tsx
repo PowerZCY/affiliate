@@ -7,8 +7,8 @@ import { JetBrainsToolCard } from '@/components/JetBrainsToolCard';
 import { Button } from "@/components/ui/button"
 import { JetBrainsSearch } from '@/components/JetBrainsSearch';
 
-import {getTranslations, getLocale} from 'next-intl/server';
-import {useTranslations} from 'next-intl';
+import { getTranslations, getLocale } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 
 export async function generateMetadata() {
   const t = await getTranslations('home');
@@ -18,11 +18,11 @@ export async function generateMetadata() {
   };
 }
 
-type categoryType = { 
-  name: string; 
-  src: string; 
+type categoryType = {
+  name: string;
+  src: string;
   description: string;
-  link: string; 
+  link: string;
 }
 
 export default async function Home() {
@@ -30,9 +30,9 @@ export default async function Home() {
   const t = await getTranslations('home');
   // categories data
   const categories = getCategories(locale);
-  
+
   const allPostsData = getSortedPostsData().slice(0, 6)
-  
+
   return (
     <main className="flex min-h-screen flex-col">
       {/* 中部区域 */}
@@ -40,7 +40,7 @@ export default async function Home() {
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-              AI·Affliate
+              AI·Affiliate
             </h1>
             <h2 className="text-xl md:text-2xl text-muted-foreground mb-8">
               {t('h2')}
@@ -63,7 +63,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      
+
       {/* 热门工具区域 */}
       <section className="py-16 bg-secondary">
         <div className="container">
@@ -105,8 +105,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      
-      
+
+
     </main>
   )
 }

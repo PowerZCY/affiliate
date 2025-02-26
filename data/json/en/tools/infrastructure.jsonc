@@ -13,8 +13,6 @@
 // 1. All data should be sorted alphabetically.
 // 2. Affiliate links are not allowed
 // 3. Do not submit tools that are unrelated to development.
-
-
 [
   // A
   // B
@@ -30,7 +28,9 @@
     "description": "Large model resource platform: Provides GPU memory calculation, personalized model recommendations, and comprehensive knowledge base, helping you accurately select and efficiently apply AI models.",
     "url": "https://llmgpuhelper.com",
     "tags": [
-      "LLM","GPU","Agent"
+      "LLM",
+      "GPU",
+      "Agent"
     ]
   },
   // J

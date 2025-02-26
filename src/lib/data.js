@@ -48,20 +48,20 @@ export function getDataList(src, locale) {
 // 根据关键词搜索数据
 export function searchDataByKeyword(keyword, locale) {
     let result = []
-    
+
     const categories = getCategories(locale);
 
-    
+
     if (!categories || categories.length === 0) return null;
 
-    
+
     for (const category of categories) {
         if (category.name.toLowerCase() == keyword.toLowerCase()) {
-             const dataList = getDataList(category.src, locale)
-             result = result.concat(dataList);
+            const dataList = getDataList(category.src, locale)
+            result = result.concat(dataList);
         } else {
             const dataList = getDataList(category.src, locale)
-        
+
             for (const item of dataList) {
                 if (item.name.toLowerCase().includes(keyword.toLowerCase())) {
                     // search by name
@@ -73,7 +73,7 @@ export function searchDataByKeyword(keyword, locale) {
                 }
             }
         }
-        
+
         // console.log('result: ', result)
     }
 

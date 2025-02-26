@@ -12,8 +12,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import {getTranslations, getLocale} from 'next-intl/server';
-import {useTranslations} from 'next-intl';
+import { getTranslations, getLocale } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 
 
 export async function generateMetadata() {

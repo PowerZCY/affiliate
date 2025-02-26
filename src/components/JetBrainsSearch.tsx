@@ -9,14 +9,14 @@ import { useTranslations } from 'next-intl'
 export function JetBrainsSearch() {
   const t = useTranslations('search')
   const [query, setQuery] = React.useState('')
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // 处理搜索逻辑
   }
-  
+
   return (
-    <form 
+    <form
       onSubmit={handleSubmit}
       className="relative flex w-full max-w-2xl items-center"
     >
@@ -30,7 +30,7 @@ export function JetBrainsSearch() {
           onChange={(e) => setQuery(e.target.value)}
         />
       </div>
-      <Button 
+      <Button
         type="submit"
         className="absolute right-1 top-1/2 -translate-y-1/2 h-10 rounded-full"
       >

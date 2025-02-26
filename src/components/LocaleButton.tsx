@@ -1,24 +1,22 @@
 "use client"
 
-import * as React from "react"
-// import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
-import { appConfig } from "@/lib/appConfig";
-import { usePathname } from "@/lib/i18n";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuTrigger,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-} from "@/components/ui/dropdown-menu"
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { appConfig } from "@/lib/appConfig";
+import { usePathname } from "@/lib/i18n";
 
 
 import {
   LanguagesIcon
 } from "lucide-react";
 
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
@@ -39,25 +37,25 @@ export function LocaleButton() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="font-sans opacity-90">
-      <DropdownMenuRadioGroup
-                value={locale}
-                onValueChange={(value) => {
-                  setLocale(value);
-                  router.replace(
-                    `/${value}/${pathname}?${searchParams.toString()}`,
-                  );
-                }}
-              >
-                {locales.map((locale) => {
-                  return (
-                    <DropdownMenuRadioItem key={locale} value={locale}>
-                      {locale in localeLabels
-                        ? localeLabels[locale]
-                        : locale}
-                    </DropdownMenuRadioItem>
-                  );
-                })}
-              </DropdownMenuRadioGroup>
+        <DropdownMenuRadioGroup
+          value={locale}
+          onValueChange={(value) => {
+            setLocale(value);
+            router.replace(
+              `/${value}/${pathname}?${searchParams.toString()}`,
+            );
+          }}
+        >
+          {locales.map((locale) => {
+            return (
+              <DropdownMenuRadioItem key={locale} value={locale}>
+                {locale in localeLabels
+                  ? localeLabels[locale]
+                  : locale}
+              </DropdownMenuRadioItem>
+            );
+          })}
+        </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   )

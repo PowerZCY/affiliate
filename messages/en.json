@@ -1,6 +1,6 @@
 {
   "home": {
-    "meta_title": "AI Affliate: Open-Source & Hot AI Tools Navigator",
+    "meta_title": "AI Affiliate: Open-Source & Hot AI Tools Navigator",
     "meta_description": "Embrace AI, explore the infinite possibilities of AI tools",
     "h2": "Embrace AI, explore the infinite possibilities of AI tools",
     "browseToolsBtn": "Browse Tools",
@@ -23,16 +23,16 @@
     "meta_title": "Article",
     "meta_description": "Read our latest articles on newest AI tools and best practices.",
     "h1": "Articles",
-    "h2": "Read More About AI Affliate Programs",
+    "h2": "Read More About AI Affiliate Programs",
     "homeBtn": "Home",
     "articleBtn": "Article",
     "backToArticles": "Back to articles"
   },
   "changelog": {
     "meta_title": "Changelog",
-    "meta_description": "Stay up to date with the latest updates in AI Affliate",
+    "meta_description": "Stay up to date with the latest updates in AI Affiliate",
     "h1": "Changelog",
-    "h2": "Stay up to date with the latest updates in AI Affliate",
+    "h2": "Stay up to date with the latest updates in AI Affiliate",
     "homeBtn": "Home",
     "changelogBtn": "Changelog"
   },
@@ -55,8 +55,8 @@
     "moreCategoryDescription": "More Categories",
     "articleBtn": "Article",
     "articleDescription": "Embrace AI, explore the infinite possibilities of AI tools",
-    "article1Title": "Adding New AI Tools to AI Affliate",
-    "article2Title": "Deploy your own AI Affliate",
+    "article1Title": "Adding New AI Tools to AI Affiliate",
+    "article2Title": "Deploy your own AI Affiliate",
     "moreArticleBtn": "More",
     "moreArticleDescription": "More articles",
     "changelogBtn": "Changelog",

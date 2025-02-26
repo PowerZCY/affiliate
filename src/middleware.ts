@@ -22,7 +22,7 @@ import { appConfig } from "./lib/appConfig";
 const intlMiddleware = createMiddleware({
   // A list of all locales that are supported
   locales: appConfig.i18n.locales,
- 
+
   // Used when no locale matches
   defaultLocale: appConfig.i18n.defaultLocale,
   localePrefix: "as-needed",
@@ -50,6 +50,6 @@ export const config = {
     // '/', 
     // '/:locale?/:path*',
     '/admin/:path*',  // Match all paths starting with /admin
-    
+
   ],
 };

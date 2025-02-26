@@ -3,7 +3,7 @@ import { createToken } from '@/lib/auth';
 
 export async function POST(request) {
   const { password } = await request.json();
-  
+
   if (password === process.env.ACCESS_PASSWORD) {
     const token = createToken();
     const response = NextResponse.json({ message: 'Login successful' }, { status: 200 });

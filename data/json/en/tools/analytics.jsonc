@@ -12,8 +12,6 @@
 // 1. All data should be sorted alphabetically.
 // 2. Affiliate links are not allowed
 // 3. Do not submit tools that are unrelated to development.
-
-
 [
   // A
   // B
@@ -26,7 +24,11 @@
     "name": "Google Analytics",
     "description": "A powerful web analytics service by Google that tracks and reports website traffic, user behavior, and conversions.",
     "url": "https://analytics.google.com/",
-    "tags": ["analytics", "web", "tracking"]
+    "tags": [
+      "analytics",
+      "web",
+      "tracking"
+    ]
   },
   // H
   // I
@@ -41,13 +43,21 @@
     "name": "PostHog",
     "description": "An open-source product analytics platform that allows you to track and analyze user behavior across your website and apps.",
     "url": "https://posthog.com/",
-    "tags": ["analytics", "open-source", "product"]
+    "tags": [
+      "analytics",
+      "open-source",
+      "product"
+    ]
   },
   {
     "name": "Plausible",
     "description": "A simple, privacy-friendly, and open-source web analytics tool designed to track essential website metrics without invading user privacy.",
     "url": "https://plausible.io/",
-    "tags": ["analytics", "privacy", "open-source"]
+    "tags": [
+      "analytics",
+      "privacy",
+      "open-source"
+    ]
   },
   // Q
   // R
@@ -58,7 +68,11 @@
     "name": "Umami",
     "description": "A self-hosted, privacy-focused, and open-source web analytics solution that provides detailed insights into your website's performance.",
     "url": "https://umami.is/",
-    "tags": ["analytics", "open-source", "privacy"]
+    "tags": [
+      "analytics",
+      "open-source",
+      "privacy"
+    ]
   },
   // V
   // W

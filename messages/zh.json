@@ -1,6 +1,6 @@
 {
   "home": {
-    "meta_title": "AI Affliate: 开源的热门AI工具导航平台",
+    "meta_title": "AI Affiliate: 开源的热门AI工具导航平台",
     "meta_description": "积极拥抱AI，探索AI工具的无限可能",
     "browseToolsBtn": "浏览工具",
     "submitToolBtn": "提交工具",
@@ -30,9 +30,9 @@
   },
   "changelog": {
     "meta_title": "更新日志",
-    "meta_description": "查看AI Affliate的更新日志",
+    "meta_description": "查看AI Affiliate的更新日志",
     "h1": "更新日志",
-    "h2": "查看AI Affliate的更新日志",
+    "h2": "查看AI Affiliate的更新日志",
     "homeBtn": "首页",
     "changelogBtn": "更新日志"
   },
@@ -48,21 +48,21 @@
     "more": "更多",
     "button": "搜索"
   },
-  "navigation": { 
+  "navigation": {
     "homeBtn": "首页",
     "categoryBtn": "分类",
     "moreCategoryBtn": "更多",
     "moreCategoryDescription": "更多分类",
     "articleBtn": "文章",
     "articleDescription": "积极拥抱AI，探索AI工具的无限可能",
-    "article1Title": "添加新的AI工具到AI Affliate",
-    "article2Title": "部署你自己的AI Affliate",
+    "article1Title": "添加新的AI工具到AI Affiliate",
+    "article2Title": "部署你自己的AI Affiliate",
     "moreArticleBtn": "更多",
     "moreArticleDescription": "更多文章",
     "changelogBtn": "更新日志",
     "submitToolBtn": "提交工具"
   },
-  "footer": { 
+  "footer": {
     "description": "开源的热门AI工具导航平台",
     "builtWith": "基于",
     "quickLinks": "快速链接",
