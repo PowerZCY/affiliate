@@ -1,79 +1,136 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 47.4% 11.2%;
+    /* #ffffff */
+    --foreground: 220 4% 16%;
+    /* #27282c */
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 47.4% 11.2%;
- 
+    /* #ffffff */
+    --card-foreground: 220 4% 16%;
+
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
+    /* #ffffff */
+    --popover-foreground: 220 4% 16%;
 
- 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
- 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
- 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
- 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
- 
-    --destructive: 0 100% 50%;
-    --destructive-foreground: 210 40% 98%;
+    --primary: 213 100% 54%;
+    /* #167dff */
+    --primary-foreground: 0 0% 100%;
 
+    --secondary: 220 30% 98%;
+    /* #f7f8fa */
+    --secondary-foreground: 220 4% 16%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 215 20.2% 65.1%;
- 
+    --muted: 220 30% 98%;
+    /* #f7f8fa */
+    --muted-foreground: 220 7% 45%;
+    /* #6c737c */
+
+    --accent: 220 30% 98%;
+    /* #f7f8fa */
+    --accent-foreground: 220 4% 16%;
+
+    --destructive: 0 100% 60%;
+    /* #ff3633 */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 6% 90%;
+    /* #dfe1e5 */
+    --input: 0 0% 96%;
+    /* #f4f4f4 */
+    --ring: 213 100% 54%;
+    /* #167dff */
+
     --radius: 0.5rem;
   }
- 
+
   .dark {
-   
-    --background: 220 10% 15%; /* Dark, desaturated grayish background */
-    --foreground: 0 0% 90%; /* Light gray foreground */
+    --background: 220 7% 13%;
+    /* #1e1f22 */
+    --foreground: 220 6% 90%;
+    /* #dfe1e5 */
 
-    --card: 220 10% 18%; /* Slightly lighter dark card */
-    --card-foreground: 0 0% 90%; /* Light gray card foreground */
- 
-    --popover: 220 10% 18%; /* Slightly lighter dark popover */
-    --popover-foreground: 0 0% 90%; /* Light gray popover foreground */
+    --card: 220 7% 13%;
+    /* #1e1f22 */
+    --card-foreground: 220 6% 90%;
 
-    --primary: 220 5% 40%; /* Desaturated dark gray primary */
-    --primary-foreground: 0 0% 95%; /* Lighter gray primary foreground */
- 
-    --secondary: 220 5% 30%; /* Muted, desaturated gray secondary */
-    --secondary-foreground: 0 0% 85%; /* Slightly darker light gray secondary foreground */
- 
-    --muted: 220 5% 25%; /* Darker muted background */
-    --muted-foreground: 0 0% 80%; /* Muted foreground in lighter gray */
- 
-    --accent: 220 5% 35%; /* Desaturated, dark gray accent */
-    --accent-foreground: 0 0% 90%; /* Light gray accent foreground */
- 
-    --destructive: 0 100% 40%; /* Darker, more muted red for destructive */
-    --destructive-foreground: 0 0% 95%; /* Lighter gray foreground for destructive */
+    --popover: 220 7% 13%;
+    /* #1e1f22 */
+    --popover-foreground: 220 6% 90%;
 
-    --border: 220 10% 25%; /* Darker gray border */
-    --input: 220 10% 25%; /* Darker gray input background */
-    --ring: 220 5% 40%; /* Darker, more muted gray ring */
+    --primary: 213 100% 60%;
+    /* #3592ff */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 6% 18%;
+    /* #2b2d30 */
+    --secondary-foreground: 220 6% 90%;
+
+    --muted: 220 6% 18%;
+    /* #2b2d30 */
+    --muted-foreground: 220 4% 63%;
+    /* #9da0a5 */
+
+    --accent: 220 6% 18%;
+    /* #2b2d30 */
+    --accent-foreground: 220 6% 90%;
+
+    --destructive: 0 85% 64%;
+    /* #ff5647 */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 6% 18%;
+    /* #2b2d30 */
+    --input: 220 6% 18%;
+    /* #2b2d30 */
+    --ring: 213 100% 60%;
+    /* #3592ff */
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer base {
+  .hero-gradient {
+    background: linear-gradient(45deg, #000000, #1a1a1a, #2b0b3a);
+  }
+
+  .content-gradient {
+    background: radial-gradient(circle at 50% 50%, rgba(103, 58, 183, 0.1), transparent);
+  }
+}
+@layer utilities {
+  .animate-transition {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .hover-lift {
+    @apply transform transition-transform hover:-translate-y-1;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-card rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6;
+  }
+  
+  .button {
+    @apply px-4 py-2 rounded-md font-medium transition-colors;
+  }
+  
+  .input {
+    @apply w-full px-4 py-2 rounded-md border border-input focus:ring-2 focus:ring-primary;
   }
 }

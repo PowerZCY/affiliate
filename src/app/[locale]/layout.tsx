@@ -1,15 +1,14 @@
-import './globals.css';
-import '@radix-ui/themes/styles.css';
-import React from 'react';
-import { Inter } from 'next/font/google'
-import { Layout } from '@/components/Layout';
-import { Metadata } from 'next'
+import GoogleAdsenseScript from "@/components/ads/GoogleAdsenseScript";
 import { GoogleAnalyticsScript } from "@/components/analytics/GoogleAnalyticsScript";
 import { PlausibleAnalyticsScript } from "@/components/analytics/PlausibleAnalyticsScript";
-import GoogleAdsenseScript from "@/components/ads/GoogleAdsenseScript";
-import { ThemeProvider } from "next-themes"
-import { DM_Sans } from "next/font/google";
+import { Layout } from '@/components/Layout';
 import { cn } from "@/lib/utils";
+import '@radix-ui/themes/styles.css';
+import { Metadata } from 'next';
+import { ThemeProvider } from "next-themes";
+import { DM_Sans, Inter } from "next/font/google";
+import React from 'react';
+import './globals.css';
 
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
