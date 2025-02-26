@@ -4,94 +4,97 @@ import React from 'react'; // 确保导入 React
 import Image from "next/image";
 import IconImage from "../../public/favicon.svg";
 import {useTranslations} from 'next-intl';
+import { Github } from 'lucide-react';
 
 export function Footer() {
   const t = useTranslations('footer');
   const size = 30;
   return (
-    <footer className="bg-gray-100 dark:bg-gray-900 text-muted-foreground border-t">
-      <div className="flex flex-col justify-center items-center max-w-7xl text-center mx-auto py-12 px-4 sm:px-6 lg:px-8 lg:text-start">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
-          <div className='flex flex-col justify-center items-center lg:items-start lg:justify-start'>
-            <h3 className="text-sm font-bold tracking-normal">
-              <Link href="/" className="flex items-center space-x-2">
-                <Image
-                  src={IconImage}
-                  className="block opacity-80"
-                  width={size}
-                  height={size}
-                  alt="DomainScore"
-                />
-                <span className="inline-block font-bold">Dev Toolset</span>
-              </Link>
-            </h3>
-            <p className="mt-4 text-xs ">
+    <footer className="bg-secondary text-secondary-foreground border-t">
+      <div className="container py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
+          <div className="space-y-4">
+            <Link href="/" className="flex items-center space-x-2">
+              <Image
+                src={IconImage}
+                width={size}
+                height={size}
+                alt="AI·Affliate"
+              />
+              <span className="font-bold text-lg">AI·Affliate</span>
+            </Link>
+            <p className="text-sm text-muted-foreground">
               {t('description')}
-              
             </p>
-            <div className='mt-4 text-xs '>
+            <div className="text-sm text-muted-foreground">
               {t('builtWith')}
-              <Link href="https://gitbase.app/" target='_black' className="ml-1 text-xs underline">
-                GitBase
+              <Link href="https://github.com/iAmCorey/devtoolset" target="_blank" className="ml-1 underline">
+                Devtoolset
               </Link>
             </div>
           </div>
-          <div className=''>
-            <h3 className="text-sm font-semibold  tracking-wider uppercase">{t('quickLinks')}</h3>
-            <ul className="mt-4 space-y-4">
+          
+          <div>
+            <h3 className="font-semibold mb-4">{t('quickLinks')}</h3>
+            <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-base ">
+                <Link href="/" className="text-sm hover:underline">
                   {t('home')}
                 </Link>
               </li>
               <li>
-                <Link href="/category" className="text-base">
+                <Link href="/category" className="text-sm hover:underline">
                   {t('category')}
                 </Link>
               </li>
               <li>
-                <Link href="/article" className="text-base">
+                <Link href="/article" className="text-sm hover:underline">
                   {t('article')}
                 </Link>
               </li>
               <li>
-                <Link href="/changelog" className="text-base">
+                <Link href="/changelog" className="text-sm hover:underline">
                   {t('changelog')}
                 </Link>
               </li>
             </ul>
           </div>
+          
           <div>
-            <h3 className="text-sm font-semibold tracking-wider uppercase">{t('legal')}</h3>
-            <ul className="mt-4 space-y-4">
-            <li>
-                <Link href="/" className="text-base">
+            <h3 className="font-semibold mb-4">{t('legal')}</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/privacy" className="text-sm hover:underline">
                   {t('privacy')}
                 </Link>
               </li>
               <li>
-                <Link href="/" className="text-base">
+                <Link href="/terms" className="text-sm hover:underline">
                   {t('termsOfService')}
                 </Link>
               </li>
             </ul>
           </div>
+          
           <div>
-            <h3 className="text-sm font-semibold tracking-wider uppercase">{t('connect')}</h3>
-            <ul className="mt-4 space-y-4">
+            <h3 className="font-semibold mb-4">{t('connect')}</h3>
+            <ul className="space-y-2">
               <li>
-                <Link href={"mailto:iamcoreychiu+devtoolsetsupport@gmail.com"} className="text-base">
-                  {t('support')}
+                <Link 
+                  href="https://github.com/PowerZCY/affiliate" 
+                  target="_blank"
+                  className="text-sm hover:underline flex items-center gap-2"
+                >
+                  <Github className="h-4 w-4" />
+                  GitHub
                 </Link>
               </li>
-             
             </ul>
           </div>
         </div>
-        <div className="mt-8 border-t pt-8">
-          <p className="text-base text-center">
-            &copy; {new Date().getFullYear()} DevToolset. {t('copyright')}
-          </p>
+        
+        <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
+          &copy; {new Date().getFullYear()} AI·Affliate. {t('copyright')}
         </div>
       </div>
     </footer>

@@ -1,39 +1,44 @@
 {
   "home": {
-    "meta_title": "DevToolset: Open-Source Database-free Developer Tools Navigator",
-    "meta_description": "Find Every Essential Developer Tools You Need For Your Development Journey",
-    "h2": "Open-Source & Database-Free Developer Tools Navigator",
-    "description": "Find Every Essential Developer Tools You Need for Your Development Journey"
+    "meta_title": "AI Affliate: Open-Source & Hot AI Tools Navigator",
+    "meta_description": "Embrace AI, explore the infinite possibilities of AI tools",
+    "h2": "Embrace AI, explore the infinite possibilities of AI tools",
+    "browseToolsBtn": "Browse Tools",
+    "submitToolBtn": "Submit Tool",
+    "popularToolsTitle": "Popular AI Tools",
+    "categoriesTitle": "AI Tools Categories",
+    "description": "Embrace AI, explore the infinite possibilities of AI tools"
   },
   "category": {
     "meta_title": "Category",
-    "meta_description": "Find Every Essential Developer Tools You Need For Your Development Journey",
+    "meta_description": "Embrace AI, explore the infinite possibilities of AI tools",
     "homeBtn": "Home",
     "categoryBtn": "Category",
-    "h1": "Develop Tools Category",
-    "h2": "Find Every Developer Tools You Need Here",
-    "h2description": "All developer tools are sorted alphabetically"
+    "submitToolBtn": "Submit Tool",
+    "h1": "AI Tools Category",
+    "h2": "Embrace AI, explore the infinite possibilities of AI tools",
+    "h2description": "All AI tools are sorted alphabetically"
   },
   "article": {
     "meta_title": "Article",
-    "meta_description": "Read our latest articles on newest developer tools and best practices.",
+    "meta_description": "Read our latest articles on newest AI tools and best practices.",
     "h1": "Articles",
-    "h2": "Read More About DevToolset",
+    "h2": "Read More About AI Affliate Programs",
     "homeBtn": "Home",
     "articleBtn": "Article",
     "backToArticles": "Back to articles"
   },
   "changelog": {
     "meta_title": "Changelog",
-    "meta_description": "Stay up to date with the latest updates in DevToolset.net",
+    "meta_description": "Stay up to date with the latest updates in AI Affliate",
     "h1": "Changelog",
-    "h2": "Stay up to date with the latest updates in DevToolset.net",
+    "h2": "Stay up to date with the latest updates in AI Affliate",
     "homeBtn": "Home",
     "changelogBtn": "Changelog"
   },
   "tools": {
-    "meta_description": "Find Every Essential Developer Tools You Need For Your Development Journey",
-    "h2_1": "All developer tools related to",
+    "meta_description": "Embrace AI, explore the infinite possibilities of AI tools",
+    "h2_1": "All AI tools related to",
     "h2_2": "",
     "homeBtn": "Home"
   },
@@ -49,16 +54,16 @@
     "moreCategoryBtn": "More",
     "moreCategoryDescription": "More Categories",
     "articleBtn": "Article",
-    "articleDescription": "Open-Source Database-free Developer Tools Navigator",
-    "article1Title": "Adding New Developer Tools to DevToolset",
-    "article2Title": "Deploy your own DevToolset",
+    "articleDescription": "Embrace AI, explore the infinite possibilities of AI tools",
+    "article1Title": "Adding New AI Tools to AI Affliate",
+    "article2Title": "Deploy your own AI Affliate",
     "moreArticleBtn": "More",
     "moreArticleDescription": "More articles",
     "changelogBtn": "Changelog",
     "submitToolBtn": "Submit Tool"
   },
   "footer": {
-    "description": "OpenSource & Database-free Developer Tools Navigator",
+    "description": "Open-Source & Hot AI Tools Navigator",
     "builtWith": "Built with",
     "quickLinks": "Quick Links",
     "home": "Home",

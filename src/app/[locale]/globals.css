@@ -4,91 +4,69 @@
 
 @layer base {
   :root {
+    /* JetBrains 浅色主题 */
     --background: 0 0% 100%;
-    /* #ffffff */
-    --foreground: 220 4% 16%;
-    /* #27282c */
-
+    --foreground: 222 14% 18%;
+    
     --card: 0 0% 100%;
-    /* #ffffff */
-    --card-foreground: 220 4% 16%;
-
+    --card-foreground: 222 14% 18%;
+    
     --popover: 0 0% 100%;
-    /* #ffffff */
-    --popover-foreground: 220 4% 16%;
-
-    --primary: 213 100% 54%;
-    /* #167dff */
+    --popover-foreground: 222 14% 18%;
+    
+    /* JetBrains 蓝色 */
+    --primary: 215 100% 50%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 220 30% 98%;
-    /* #f7f8fa */
-    --secondary-foreground: 220 4% 16%;
-
-    --muted: 220 30% 98%;
-    /* #f7f8fa */
-    --muted-foreground: 220 7% 45%;
-    /* #6c737c */
-
-    --accent: 220 30% 98%;
-    /* #f7f8fa */
-    --accent-foreground: 220 4% 16%;
-
-    --destructive: 0 100% 60%;
-    /* #ff3633 */
+    
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 222 14% 18%;
+    
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 14% 45%;
+    
+    --accent: 210 20% 96%;
+    --accent-foreground: 222 14% 18%;
+    
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
-    --border: 220 6% 90%;
-    /* #dfe1e5 */
-    --input: 0 0% 96%;
-    /* #f4f4f4 */
-    --ring: 213 100% 54%;
-    /* #167dff */
-
-    --radius: 0.5rem;
+    
+    --border: 214 10% 90%;
+    --input: 214 10% 90%;
+    --ring: 215 100% 50%;
+    
+    --radius: 0.375rem;
   }
-
+  
   .dark {
-    --background: 220 7% 13%;
-    /* #1e1f22 */
-    --foreground: 220 6% 90%;
-    /* #dfe1e5 */
-
-    --card: 220 7% 13%;
-    /* #1e1f22 */
-    --card-foreground: 220 6% 90%;
-
-    --popover: 220 7% 13%;
-    /* #1e1f22 */
-    --popover-foreground: 220 6% 90%;
-
-    --primary: 213 100% 60%;
-    /* #3592ff */
+    /* JetBrains 深色主题 */
+    --background: 222 14% 18%;
+    --foreground: 210 20% 98%;
+    
+    --card: 222 14% 18%;
+    --card-foreground: 210 20% 98%;
+    
+    --popover: 222 14% 18%;
+    --popover-foreground: 210 20% 98%;
+    
+    /* JetBrains 亮蓝色 */
+    --primary: 215 100% 60%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 220 6% 18%;
-    /* #2b2d30 */
-    --secondary-foreground: 220 6% 90%;
-
-    --muted: 220 6% 18%;
-    /* #2b2d30 */
-    --muted-foreground: 220 4% 63%;
-    /* #9da0a5 */
-
-    --accent: 220 6% 18%;
-    /* #2b2d30 */
-    --accent-foreground: 220 6% 90%;
-
-    --destructive: 0 85% 64%;
-    /* #ff5647 */
+    
+    --secondary: 217 14% 22%;
+    --secondary-foreground: 210 20% 98%;
+    
+    --muted: 217 14% 22%;
+    --muted-foreground: 215 14% 65%;
+    
+    --accent: 217 14% 22%;
+    --accent-foreground: 210 20% 98%;
+    
+    --destructive: 0 84% 65%;
     --destructive-foreground: 0 0% 100%;
-
-    --border: 220 6% 18%;
-    /* #2b2d30 */
-    --input: 220 6% 18%;
-    /* #2b2d30 */
-    --ring: 213 100% 60%;
-    /* #3592ff */
+    
+    --border: 217 14% 22%;
+    --input: 217 14% 22%;
+    --ring: 215 100% 60%;
   }
 }
 
@@ -96,10 +74,47 @@
   * {
     @apply border-border;
   }
-
+  
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* JetBrains 字体样式 */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+  
+  h1 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h2 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  /* JetBrains 链接样式 */
+  a:not(.btn) {
+    @apply text-primary hover:text-primary/80 transition-colors;
+  }
+}
+
+/* JetBrains 卡片样式 */
+.jetbrains-card {
+  @apply rounded-lg border bg-card p-6 shadow-sm transition-all hover:shadow-md;
+}
+
+/* JetBrains 按钮样式 */
+.jetbrains-button {
+  @apply inline-flex items-center justify-center rounded-md font-medium transition-colors 
+  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50;
+}
+
+.jetbrains-button-primary {
+  @apply bg-primary text-primary-foreground hover:bg-primary/90;
+}
+
+.jetbrains-button-secondary {
+  @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
 }
 
 @layer base {

@@ -96,7 +96,7 @@ export const Navigation = ({ categories }: navigationProp ) => {
   ListItem.displayName = "ListItem"
   return (
 
-    <header className="sticky top-0 z-40 w-full border-b bg-background">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex gap-6 md:gap-10">
           <Link href="/" className="flex items-center space-x-2">
@@ -105,16 +105,22 @@ export const Navigation = ({ categories }: navigationProp ) => {
               className="block"
               width={size}
               height={size}
-              alt="DomainScore"
+              alt="AI·Affliate"
             />
-            <span className="inline-block font-bold">Dev Toolset</span>
+            <span className="inline-block font-bold text-xl">AI·Affliate</span>
           </Link>
           <nav className="hidden md:flex gap-6">
             <NavigationMenu>
-              <NavigationMenuList>
+              <NavigationMenuList className="flex gap-1">
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link href="/" className={cn(navigationMenuTriggerStyle(), 'font-medium', '/' === pathname && "font-extrabold")}>
+                    <Link 
+                      href="/" 
+                      className={cn(
+                        "group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50",
+                        '/' === pathname && "bg-accent text-accent-foreground font-bold"
+                      )}
+                    >
                       {t('homeBtn')}
                     </Link>
                   </NavigationMenuLink>
@@ -189,20 +195,24 @@ export const Navigation = ({ categories }: navigationProp ) => {
         </div>
         <div className="flex items-center gap-3">
           <Link href="/article/add-new-developer-tools" className='hidden md:block'>
-            <Button variant="outline" className='text-sm tracking-tight'>{t('submitToolBtn')}</Button>
+            <Button 
+              variant="default" 
+              className='text-sm font-medium rounded-full px-4 py-2 h-9'
+            >
+              {t('submitToolBtn')}
+            </Button>
           </Link>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
             <ThemeModeButton />
             <LocaleButton />
-            
           </div>
           <Link
             href={"https://github.com/PowerZCY/affiliate"}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground ml-1"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Github className="h-4 w-4" />
+            <Github className="h-5 w-5" />
             <span className="sr-only">GitHub</span>
           </Link>
           <Sheet
