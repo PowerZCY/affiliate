@@ -6,7 +6,7 @@ export const lightVariables = {
     input: "#f4f4f4",
     ring: "#167dff",
     background: "#ffffff",
-    foreground: "#27282c",
+    foreground: "#1a1f36",     // 加深文本颜色
     primary: "#167dff",
     "primary-foreground": "#ffffff",
     secondary: "#f7f8fa",
@@ -16,7 +16,7 @@ export const lightVariables = {
     success: "#3eaf7c",
     "success-foreground": "#ffffff",
     muted: "#f7f8fa",
-    "muted-foreground": "#6c737c",
+    "muted-foreground": "#424867", // 加深次要文本
     accent: "#f7f8fa",
     "accent-foreground": "#27282c",
     popover: "#ffffff",
@@ -32,7 +32,7 @@ export const darkVariables = {
     input: "#2b2d30",
     ring: "#3592ff",
     background: "#1e1f22",
-    foreground: "#dfe1e5",
+    foreground: "#e8eaed",     // 提高亮度
     primary: "#3592ff",
     "primary-foreground": "#ffffff",
     secondary: "#2b2d30",
@@ -42,7 +42,7 @@ export const darkVariables = {
     success: "#3eaf7c",
     "success-foreground": "#ffffff",
     muted: "#2b2d30",
-    "muted-foreground": "#9da0a5",
+    "muted-foreground": "#9ba1b0", // 提高对比度
     accent: "#2b2d30",
     "accent-foreground": "#dfe1e5",
     popover: "#1e1f22",
@@ -112,6 +112,10 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        nav: {
+          DEFAULT: "hsl(var(--nav-background))",
+          foreground: "hsl(var(--nav-foreground))",
+        },
       },
       fontFamily: {
         sans: ["var(--font-sans)", "sans-serif"],
@@ -134,6 +138,15 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      fontSize: {
+        '7xl': ['4.5rem', { lineHeight: '1.1' }],
+        '8xl': ['6rem', { lineHeight: '1' }],
+        '9xl': ['8rem', { lineHeight: '1' }],
+      },
+      spacing: {
+        '18': '4.5rem',
+        '22': '5.5rem',
       },
     },
     variables: {

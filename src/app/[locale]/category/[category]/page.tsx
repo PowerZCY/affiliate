@@ -103,18 +103,6 @@ export default async function Tool({ params: { category } }: CategoryPageProps) 
         ))}
       </div>
 
-      {/* 底部信息 - JetBrains 风格 */}
-      <div className="mt-16 text-center">
-        <p className="text-muted-foreground mb-6">{t('h2description')}</p>
-        <Link href="/article/add-new-developer-tools">
-          <Button
-            variant="jetbrains"
-            className="rounded-full px-6"
-          >
-            {t('submitToolBtn') || '提交工具'}
-          </Button>
-        </Link>
-      </div>
     </main>
   )
 }

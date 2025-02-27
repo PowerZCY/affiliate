@@ -1,6 +1,7 @@
 # AI Affiliate Programs
 
-开源的热门AI工具导航平台，积极拥抱AI，探索AI工具的无限可能
+开源的热门AI工具导航平台
+积极拥抱AI，探索AI工具的无限可能
 
 ## 功能特点
 
@@ -153,6 +154,3 @@ GITHUB_REPO=仓库名称
 ## 许可证
 
 [MIT](LICENSE) - Copyright (c) 2025 D8ger
-
-## 致谢
-本网站代码基于[devtoolset](https://github.com/iAmCorey/devtoolset)进行二次开发，感谢原作者的开源贡献！

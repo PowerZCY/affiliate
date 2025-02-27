@@ -23,15 +23,6 @@ export function Footer() {
               />
               <span className="font-bold text-lg">AI·Affiliate</span>
             </Link>
-            <p className="text-sm text-muted-foreground">
-              {t('description')}
-            </p>
-            <div className="text-sm text-muted-foreground">
-              {t('builtWith')}
-              <Link href="https://github.com/PowerZCY/affiliate" target="_blank" className="ml-1 underline">
-                AI Affilicate
-              </Link>
-            </div>
           </div>
 
           <div>

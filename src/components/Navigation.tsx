@@ -120,7 +120,7 @@ export const Navigation = ({ categories }: navigationProp) => {
   */
   return (
 
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-background">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex gap-6 md:gap-10">
           {/* 显示Logo */}

@@ -33,24 +33,31 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col">
       {/* Hero Section，俏标题·引人入胜 */}
-      <section className="bg-gradient-to-b from-primary/10 to-background py-16 md:py-24">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-              AI·Affiliate
-            </h1>
-            <h2 className="text-xl md:text-2xl text-muted-foreground mb-8">
-              {t('h2')}
-            </h2>
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        <div className="hero-gradient">
+          <div className="container relative z-10 py-8 md:py-16">
+            <div className="max-w-4xl mx-auto text-center space-y-4">
+              <h1 className="hero-text-gradient text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+                AI·Affiliate
+              </h1>
+              <h2 className="text-xl md:text-2xl text-muted-foreground font-normal mt-4">
+                {t('h2')}
+              </h2>
+              {/* 搜索框容器 */}
+              <div className="max-w-2xl mx-auto mt-6 relative z-20">
+                <JetBrainsSearch />
+              </div>
 
-            {/* 添加搜索框 */}
-            <div className="mb-8">
-              <JetBrainsSearch />
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mt-4">
+                {t('description')}
+              </p>
             </div>
+          </div>
 
-            <p className="text-lg mb-8">
-              {t('description')}
-            </p>
+          {/* 背景装饰 */}
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-background/5 backdrop-blur-3xl" />
           </div>
         </div>
       </section>
