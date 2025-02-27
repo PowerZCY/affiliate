@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { createToken } from '@/lib/auth';
 
-export async function POST(request) {
+export async function POST(request: NextRequest) {
   const { password } = await request.json();
 
   if (password === process.env.ACCESS_PASSWORD) {

@@ -1,17 +1,36 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { Octokit } from '@octokit/rest';
 import matter from 'gray-matter';
+import { appConfig } from "@/lib/appConfig";
 
 const octokit = new Octokit({
-  auth: process.env.GITHUB_TOKEN
+  auth: appConfig.github.token
 });
 
-const owner = process.env.GITHUB_OWNER;
-const repo = process.env.GITHUB_REPO;
+const owner = appConfig.github.owner;
+const repo = appConfig.github.repo;
 const articlesJsonPath = 'data/json/articles.json';
 const mdFolderPath = 'data/md';
 
-export async function POST(request) {
+interface GitHubFile {
+  type: "file" | "dir" | "submodule" | "symlink";
+  size: number;
+  name: string;
+  path: string;
+  content?: string;
+  sha: string;
+  url: string;
+  git_url: string | null;
+  html_url: string | null;
+  download_url: string | null;
+  _links: {
+    self: string;
+    git: string;
+    html: string;
+  };
+}
+
+export async function POST(request: NextRequest) {
   const { title, description, content, slug } = await request.json();
 
   // Validate slug
@@ -28,9 +47,9 @@ export async function POST(request) {
         owner,
         repo,
         path,
-      });
+      }) as { data: GitHubFile };
       return NextResponse.json({ error: 'Article with this slug already exists' }, { status: 400 });
-    } catch (error) {
+    } catch (error: any) {
       if (error.status !== 404) {
         throw error;
       }
@@ -69,7 +88,7 @@ async function syncArticles() {
       owner,
       repo,
       path: mdFolderPath,
-    });
+    }) as { data: GitHubFile[] };
 
     const mdFiles = files.filter(file => file.name.endsWith('.md'));
 
@@ -78,9 +97,9 @@ async function syncArticles() {
         owner,
         repo,
         path: file.path,
-      });
+      }) as { data: GitHubFile };
 
-      const content = Buffer.from(data.content, 'base64').toString('utf8');
+      const content = Buffer.from(data.content || '', 'base64').toString('utf8');
       const { data: frontMatter, content: articleContent } = matter(content);
 
       // Fetch the last commit for this file
@@ -89,7 +108,7 @@ async function syncArticles() {
         repo,
         path: file.path,
         per_page: 1
-      });
+      }) as { data: any[] };
 
       const lastModified = commits[0]?.commit.committer.date || data.sha;
 
@@ -107,7 +126,7 @@ async function syncArticles() {
       owner,
       repo,
       path: articlesJsonPath,
-    });
+    }) as { data: GitHubFile };
 
     await octokit.repos.createOrUpdateFileContents({
       owner,

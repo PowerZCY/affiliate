@@ -1,6 +1,6 @@
 // category/page.tsx
 import React from 'react'; // 确保导入 React
-import { getCategories } from '@/lib/data';
+import { getCategoryMetaList } from '@/lib/data';
 
 import { CategoryList } from '@/components/ToolsList';
 
@@ -27,7 +27,7 @@ export async function generateMetadata() {
 export default async function Category() {
   const locale = await getLocale();
   // categories data
-  const categories = getCategories(locale);
+  const categories = getCategoryMetaList(locale);
   console.log('categories: ', categories)
 
   const t = await getTranslations('category');

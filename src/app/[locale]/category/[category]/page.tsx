@@ -1,5 +1,5 @@
 import React from 'react'; // 确保导入 React
-import { getCategoryByLink, getDataList } from '@/lib/data';
+import { getCategoryByLink, getToolList } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from "@/lib/i18n";
@@ -46,7 +46,7 @@ export default async function Tool({ params: { category } }: CategoryPageProps) 
   }
 
   // 获取该分类下的工具列表
-  const tools = getDataList(categoryData.src, locale);
+  const tools = getToolList(categoryData.src, locale);
 
   return (
     <main className="container py-12">

@@ -13,18 +13,20 @@ import './globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 
+// 全局字体设置
 const inter = Inter({ subsets: ['latin'] })
 const sansFont = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
+// 网站元数据(SEO)
 export const metadata: Metadata = {
   title: {
     default: 'AI Affiliate: Open-Source & Hot AI Tools Navigator',
     template: '%s | AI Affiliate'
   },
-  description: 'Explore Every Essential AI Tools You Need For Your Development Journey',
+  description: 'Embrace AI, explore the infinite possibilities of AI tools"',
   authors: { name: 'AI·Affiliate', url: 'http://localhost:3000/' },
   keywords: 'AI tools, AI tool',
   alternates: {
@@ -43,6 +45,7 @@ export const metadata: Metadata = {
   ],
 }
 
+// 网站根布局结构
 export default async function RootLayout({
   children,
   params: { locale }
@@ -59,8 +62,13 @@ export default async function RootLayout({
         <body className={cn(inter.className, sansFont.variable,
         )}>
           <NextIntlClientProvider messages={messages}>
+            {/* 国际化支持 */}
             <ThemeProvider attribute="class">
+              {/* 主题支持 */}
               <Layout>{children}</Layout>
+              {/* 布局结构 */}
+
+              {/* 网站统计和广告脚本 */}
               <GoogleAdsenseScript />
               <GoogleAnalyticsScript />
               <PlausibleAnalyticsScript />

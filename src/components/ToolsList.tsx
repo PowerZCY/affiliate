@@ -1,27 +1,19 @@
 // components/ResourceList.tsx
-import React from 'react'; // 确保导入 React
-import { Link } from "@/lib/i18n";
-import { ExternalLink, ArrowRightIcon } from 'lucide-react'
 import {
   Card,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
+import { Link } from "@/lib/i18n";
+import { ArrowRightIcon, ExternalLink } from 'lucide-react';
 
 import { Badge } from "@/components/ui/badge";
 
-import { getDataList } from '@/lib/data';
+import { getToolList, Tool } from '@/lib/data';
+import { Favicon } from "favicon-stealer";
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { Favicon } from "favicon-stealer";
-
-// type toolProps = {
-//   name: string;
-//   description: string;
-//   url: string;
-//   tags: string[]
-// }
 
 type categoryProps = {
   name: string,
@@ -51,12 +43,9 @@ type toolProps = {
 }
 
 
-
-
-
 const ToolsList = ({ category, locale, showMoreLink = true }: toolsListProps) => {
   const t = useTranslations('toolsList');
-  const srcList = getDataList(category.src, locale)
+  const srcList = getToolList(category.src, locale)
 
   return (
     <section>
@@ -114,7 +103,7 @@ const ToolsList = ({ category, locale, showMoreLink = true }: toolsListProps) =>
 }
 
 const ToolsPage = ({ category, locale }: { category: categoryProps, locale: string }) => {
-  const srcList = getDataList(category.src, locale);
+  const srcList = getToolList(category.src, locale);
 
   return (
     <section>
@@ -163,7 +152,7 @@ const ToolsPage = ({ category, locale }: { category: categoryProps, locale: stri
 }
 
 type searchPageProps = {
-  searchData: toolProps[]
+  searchData: Tool[]
 }
 
 const SearchPage = ({ searchData }: searchPageProps) => {
@@ -244,4 +233,4 @@ const CategoryList = ({ categories }: categoryListProps) => {
   )
 }
 
-export { ToolsList, ToolsPage, CategoryList, SearchPage };
+export { CategoryList, SearchPage, ToolsList, ToolsPage };

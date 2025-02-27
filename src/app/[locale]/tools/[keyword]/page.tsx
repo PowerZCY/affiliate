@@ -1,7 +1,5 @@
-import React from 'react'; // 确保导入 React
-import { SearchPage } from '@/components/ToolsList'
-import { searchDataByKeyword } from '@/lib/data';
-// import { Button } from '@/components/ui/button';
+import { SearchPage } from '@/components/ToolsList';
+import { searchToolByKeyword } from '@/lib/data';
 
 import {
   Breadcrumb,
@@ -10,8 +8,8 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { getTranslations, getLocale } from 'next-intl/server';
+} from "@/components/ui/breadcrumb";
+import { getLocale, getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params: { keyword } }: CategoryPageProps) {
   const t = await getTranslations('tools');
@@ -38,7 +36,7 @@ export default async function Tool({ params: { keyword } }: CategoryPageProps) {
   const decodeKeyword = decodeURIComponent(keyword)
 
   const locale = await getLocale();
-  const searchData = searchDataByKeyword(decodeKeyword, locale)
+  const searchData = searchToolByKeyword(decodeKeyword, locale)
   const t = await getTranslations('tools');
 
   return (

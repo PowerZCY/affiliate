@@ -38,7 +38,7 @@ export function getSortedPostsData() {
   })
 }
 
-export async function getPostData(slug) {
+export async function getPostData(slug: string) {
   const fullPath = path.join(postsDirectory, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
@@ -62,7 +62,7 @@ export async function getPostData(slug) {
   };
 }
 
-export async function getPostData2(id) {
+export async function getPostData2(id: string) {
   const fullPath = path.join(postsDirectory, `${id}.md`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
 

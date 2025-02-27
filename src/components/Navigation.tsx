@@ -69,6 +69,15 @@ export const Navigation = ({ categories }: navigationProp) => {
 
 
   const size = 30;
+  /* 
+  让NavigationMenuLink能访问 DOM 节点进行焦点管理，即用户能用通过键盘操作菜单，示例
+  首页 [Tab键] -> 分类 [Tab键] -> 文章 [Tab键] -> 更新日志
+    展开子菜单时
+    分类 [Enter键] -> 
+      - 开发工具 [方向键下]
+      - 设计资源 [方向键下]
+      - 学习资料
+  */
   const ListItem = React.forwardRef<
     React.ElementRef<"a">,
     React.ComponentPropsWithoutRef<"a">
@@ -93,12 +102,28 @@ export const Navigation = ({ categories }: navigationProp) => {
       </li>
     )
   })
+  // 仅仅是为了方便调试
   ListItem.displayName = "ListItem"
+  /* 
+  React组件控制显隐的模式
+  1.通过 className 控制：
+  - hidden/block
+  - invisible/visible
+  - opacity-0/opacity-100
+  2.通过状态控制：
+  - open={boolean}
+  - visible={boolean}
+  - show={boolean}
+  3.通过条件渲染：
+  - {condition && <Component/>}
+  - {condition ? <Show/> : <Hide/>}
+  */
   return (
 
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex gap-6 md:gap-10">
+          {/* 显示Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <Image
               src={IconImage}
@@ -109,6 +134,7 @@ export const Navigation = ({ categories }: navigationProp) => {
             />
             <span className="inline-block font-bold text-xl">AI·Affiliate</span>
           </Link>
+          {/* 导航菜单，默认隐藏，屏幕大的就显示，即非移动端展示 */}
           <nav className="hidden md:flex gap-6">
             <NavigationMenu>
               <NavigationMenuList className="flex gap-1">
@@ -194,6 +220,7 @@ export const Navigation = ({ categories }: navigationProp) => {
           </nav>
         </div>
         <div className="flex items-center gap-3">
+          {/* 桌面端才有, 提交工具按钮 */}
           <Link href="/article/add-new-developer-tools" className='hidden md:block'>
             <Button
               variant="default"
@@ -202,10 +229,12 @@ export const Navigation = ({ categories }: navigationProp) => {
               {t('submitToolBtn')}
             </Button>
           </Link>
+          {/* 主题、语言按钮，全端都有 */}
           <div className="flex items-center gap-2">
             <ThemeModeButton />
             <LocaleButton />
           </div>
+          {/* Github链接，全端 */}
           <Link
             href={"https://github.com/PowerZCY/affiliate"}
             target="_blank"
@@ -215,6 +244,7 @@ export const Navigation = ({ categories }: navigationProp) => {
             <Github className="h-5 w-5" />
             <span className="sr-only">GitHub</span>
           </Link>
+          {/* Sheet页，通过open开关，指定了只有移动端才有，这里才是移动端的导航菜单 */}
           <Sheet
             open={mobileMenuOpen}
             onOpenChange={(open) => setMobileMenuOpen(open)}

@@ -1,14 +1,11 @@
 // pages/index.js
-import React, { Suspense } from 'react'; // 确保导入 React
-import { getSortedPostsData } from '@/lib/posts'
-import { getCategories } from '@/lib/data';
-import { Link } from "@/lib/i18n"; // 修改导入方式
-import { JetBrainsToolCard } from '@/components/JetBrainsToolCard';
-import { Button } from "@/components/ui/button"
 import { JetBrainsSearch } from '@/components/JetBrainsSearch';
+import { JetBrainsToolCard } from '@/components/JetBrainsToolCard';
+import { getCategoryMetaList } from '@/lib/data';
+import { Link } from "@/lib/i18n"; // 修改导入方式
+import { getSortedPostsData } from '@/lib/posts';
 
-import { getTranslations, getLocale } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
+import { getLocale, getTranslations } from 'next-intl/server';
 
 export async function generateMetadata() {
   const t = await getTranslations('home');
@@ -29,13 +26,13 @@ export default async function Home() {
   const locale = await getLocale();
   const t = await getTranslations('home');
   // categories data
-  const categories = getCategories(locale);
+  const categories = getCategoryMetaList(locale);
 
   const allPostsData = getSortedPostsData().slice(0, 6)
 
   return (
     <main className="flex min-h-screen flex-col">
-      {/* 中部区域 */}
+      {/* Hero Section，俏标题·引人入胜 */}
       <section className="bg-gradient-to-b from-primary/10 to-background py-16 md:py-24">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
@@ -45,26 +42,20 @@ export default async function Home() {
             <h2 className="text-xl md:text-2xl text-muted-foreground mb-8">
               {t('h2')}
             </h2>
+
+            {/* 添加搜索框 */}
+            <div className="mb-8">
+              <JetBrainsSearch />
+            </div>
+
             <p className="text-lg mb-8">
               {t('description')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/category">
-                <Button size="lg" className="rounded-full">
-                  {t('browseToolsBtn') || 'browseToolsBtn'}
-                </Button>
-              </Link>
-              <Link href="/article/add-new-developer-tools">
-                <Button size="lg" variant="outline" className="rounded-full">
-                  {t('submitToolBtn') || 'submitToolBtn'}
-                </Button>
-              </Link>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* 热门工具区域 */}
+      {/* Showmaker Section，热门展区 */}
       <section className="py-16 bg-secondary">
         <div className="container">
           <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
@@ -105,8 +96,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-
     </main>
   )
 }
