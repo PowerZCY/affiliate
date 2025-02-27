@@ -152,7 +152,7 @@ export const Navigation = ({ categories }: navigationProp) => {
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className={cn('font-medium', '/category' === pathname && "font-extrabold")}>{t('categoryBtn')}</NavigationMenuTrigger>
+                  <NavigationMenuTrigger className={cn('font-medium hover:font-bold transition-all', '/category' === pathname && "font-bold")}>{t('categoryBtn')}</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-3 lg:w-[600px] ">
                       {categories.map((category) => (
@@ -176,7 +176,7 @@ export const Navigation = ({ categories }: navigationProp) => {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className={cn('font-medium', '/article' === pathname && "font-extrabold")}>
+                  <NavigationMenuTrigger className={cn('font-medium hover:font-bold transition-all', '/article' === pathname && "font-bold")}>
                     {t('articleBtn')}
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>

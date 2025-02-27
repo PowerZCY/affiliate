@@ -135,15 +135,11 @@
   /* Hero 区域特殊样式 */
   .hero-gradient {
     position: relative;
+    isolation: isolate;
     background-image: url('/hero-bg.png');
     background-size: 100% auto;
-    /* 修改为适应宽度 */
     background-position: center 40%;
-    /* 调整垂直位置 */
     background-repeat: no-repeat;
-    /* background: linear-gradient(135deg,
-        hsl(var(--background)) 0%,
-        hsl(var(--primary)/0.1) 100%); */
   }
 
   .hero-gradient::before {
@@ -151,21 +147,14 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg,
-        hsl(var(--background)/0.40) 0%,
-        hsl(var(--background)/0.40) 100%);
-    z-index: 1;
+        hsl(var(--background)/0.30) 0%,
+        hsl(var(--background)/0.45) 100%);
+    z-index: -1;
   }
 
-  /* 确保内容在遮罩层之上 */
-  .hero-gradient>* {
-    position: relative;
-    z-index: 2;
-  }
-
-  /* 调整容器高度确保能显示完整背景 */
   .hero-gradient>.container {
+    position: relative;
     min-height: 60vh;
-    /* 设置最小高度 */
     display: flex;
     align-items: center;
   }
