@@ -4,6 +4,7 @@ import { JetBrainsToolCard } from '@/components/JetBrainsToolCard';
 import { getCategoryMetaList } from '@/lib/data';
 import { Link } from "@/lib/i18n"; // 修改导入方式
 import { getSortedPostsData } from '@/lib/posts';
+import { CategoryGrid } from '@/components/CategoryGrid';
 
 import { getLocale, getTranslations } from 'next-intl/server';
 
@@ -61,45 +62,13 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Showmaker Section，热门展区 */}
-      <section className="py-16 bg-secondary">
-        <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-            {t('popularToolsTitle') || 'Popular AI Tools'}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* 使用 JetBrains 风格的卡片渲染工具 */}
-            {allPostsData.map((tool: any) => (
-              <JetBrainsToolCard
-                key={tool.title}
-                name={tool.title || ''}
-                description={tool.description || ''}
-                url={tool.url || '#'}
-                tags={tool.tags || []}
-                icon_url={tool.icon_url || ''}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* 分类区域 */}
       <section className="py-16">
         <div className="container">
           <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
             {t('categoriesTitle') || 'AI Tools Categories'}
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {/* 使用 JetBrains 风格的卡片渲染分类 */}
-            {categories.map((category: categoryType) => (
-              <Link key={category.link} href={`/category/${category.link}`}>
-                <div className="jetbrains-card h-full">
-                  <h3 className="text-lg font-semibold mb-2">{category.name}</h3>
-                  <p className="text-sm text-muted-foreground">{category.description}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <CategoryGrid categories={categories} />
         </div>
       </section>
     </main>
