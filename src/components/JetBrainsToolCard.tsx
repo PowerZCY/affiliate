@@ -57,6 +57,14 @@ export function JetBrainsToolCard({
   const showBanner = appConfig.ui.showToolBanner;
   const bannerImageSrc = home_img ? `/img/${home_img}` : '/img/default.png';
   
+  // 判断是否使用默认图片
+  const isDefaultImage = !home_img;
+  
+  // 根据主题设置banner图的蒙版颜色（仅用于默认图片）
+  const overlayColor = resolvedTheme === 'dark' 
+    ? 'rgba(17, 24, 39, 0.6)' // 深色主题下的蒙版颜色
+    : 'rgba(255, 255, 255, 0.6)'; // 浅色主题下的蒙版颜色
+  
   // 实际内容
   return (
     <div className="relative mt-3">
@@ -106,6 +114,7 @@ export function JetBrainsToolCard({
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover"
+                style={isDefaultImage ? { opacity: '0.7' } : {}} // 只对默认图片降低不透明度
                 priority
                 onError={(e) => {
                   console.error(`Failed to load image: ${bannerImageSrc}`);
@@ -113,6 +122,17 @@ export function JetBrainsToolCard({
                   e.currentTarget.src = '/img/default.png';
                 }}
               />
+              {/* 只对默认图片添加蒙版层 */}
+              {isDefaultImage && (
+                <div 
+                  className="absolute inset-0 z-10"
+                  style={{ 
+                    backgroundColor: overlayColor,
+                    backdropFilter: 'blur(1px)',
+                    mixBlendMode: resolvedTheme === 'dark' ? 'color-dodge' : 'multiply'
+                  }}
+                />
+              )}
             </div>
           )}
           
