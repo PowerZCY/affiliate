@@ -14,7 +14,8 @@
       "analytics",
       "web",
       "tracking"
-    ]
+    ],
+    "hot": "Free for non-commercial use"
   },
   // H
   // I
@@ -33,7 +34,8 @@
       "analytics",
       "open-source",
       "product"
-    ]
+    ],
+    "homeImg": "b.png"
   },
   {
     "name": "Plausible",
@@ -43,7 +45,9 @@
       "analytics",
       "privacy",
       "open-source"
-    ]
+    ],
+    "hot": "Free for non-commercial use",
+    "homeImg": "a.png"
   },
   // Q
   // R

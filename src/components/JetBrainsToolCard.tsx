@@ -14,6 +14,7 @@ export interface ToolCardProps {
   icon_url?: string;
   category?: string;
   hot?: string;
+  home_img?: string;
 }
 
 export function JetBrainsToolCard({ 
@@ -23,7 +24,8 @@ export function JetBrainsToolCard({
   tags = [], 
   icon_url,
   category,
-  hot 
+  hot,
+  home_img
 }: ToolCardProps) {
   // 使用国际化翻译
   const t = useTranslations('toolCard');
@@ -52,105 +54,140 @@ export function JetBrainsToolCard({
   
   // 实际内容
   return (
-    <div 
-      className="jetbrains-card group border rounded-lg shadow-sm p-4 h-[220px] flex flex-col transition-all duration-200"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onFocus={() => setIsFocused(true)}
-      onBlur={() => setIsFocused(false)}
-      tabIndex={0}
-      style={{
-        borderColor: (isHovered || isFocused) ? hoverBorderColor : '',
-        borderWidth: (isHovered || isFocused) ? '2px' : '1px',
-        boxShadow: (isHovered || isFocused) ? hoverShadow : '',
-        padding: (isHovered || isFocused) ? '15px' : '16px', // 保持内容区域大小一致
-        transform: (isHovered || isFocused) ? 'translateY(-2px) scale(1.01)' : 'translateY(0) scale(1)',
-        outline: 'none', // 移除默认的焦点轮廓
-      }}
-    >
-      {/* 头部区域：图标、名称、外部链接 */}
-      <div className="flex items-start justify-between mb-2">
-        <div className="flex items-center gap-3">
-          {icon_url ? (
-            <div className="h-10 w-10 overflow-hidden rounded-md flex-shrink-0">
-              <Image
-                src={icon_url}
-                alt={name}
-                width={40}
-                height={40}
-                className="h-full w-full object-cover"
-                loading="eager"
-              />
-            </div>
-          ) : (
-            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary flex-shrink-0">
-              {name.charAt(0)}
-            </div>
-          )}
-          <div className="min-w-0">
-            <h3 className="text-lg font-semibold truncate">{name}</h3>
-          </div>
-        </div>
-        <Link
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-muted-foreground hover:text-foreground flex-shrink-0 ml-2"
-        >
-          <ExternalLink className="h-4 w-4" />
-          <span className="sr-only">{t('visit')} {name}</span>
-        </Link>
-      </div>
-      
-      {/* 标签区域：固定高度 */}
-      <div className="h-8 mb-2">
-        {displayTags.length > 0 && (
-          <div className="flex flex-wrap gap-1">
-            {displayTags.map((tag) => (
-              <span
-                key={tag}
-                className="inline-flex items-center rounded-full bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground"
-              >
-                {tag}
-              </span>
-            ))}
-            {tags.length > 3 && (
-              <span className="inline-flex items-center rounded-full bg-secondary/70 px-2 py-0.5 text-xs font-medium text-secondary-foreground">
-                +{tags.length - 3}
-              </span>
-            )}
-            {category && (
-              <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
-                {category}
-              </span>
-            )}
-          </div>
-        )}
-      </div>
-      
-      {/* 描述区域：固定高度，最多2行 */}
-      <p className="text-sm text-muted-foreground h-10 line-clamp-2 mb-auto">{truncatedDescription}</p>
-      
-      {/* 按钮区域：固定在底部 */}
-      <div className="mt-auto pt-2">
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="relative mt-3">
+      {/* Hot标签 - 位于卡片顶部边缘 */}
+      {hot && (
+        <div 
+          className="absolute top-0 left-0 right-0 z-20 flex justify-center"
           style={{
-            display: 'inline-block',
-            padding: '8px 16px',
-            backgroundColor: '#1677ff',
-            color: 'white',
-            borderRadius: '6px',
-            fontWeight: '500',
-            fontSize: '14px',
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-            textDecoration: 'none'
+            transform: 'translateY(-50%)',
           }}
         >
-          {t('visitWebsite')}
-        </a>
+          <div 
+            className="px-6 py-1.5 rounded-md text-white font-medium text-sm"
+            style={{
+              backgroundColor: '#7c4dff', // 紫色背景
+              boxShadow: '0 2px 6px rgba(124, 77, 255, 0.4)',
+            }}
+          >
+            {hot}
+          </div>
+        </div>
+      )}
+      
+      <div 
+        className="jetbrains-card group border rounded-lg shadow-sm overflow-hidden flex flex-col transition-all duration-200"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        tabIndex={0}
+        style={{
+          borderColor: (isHovered || isFocused) ? hoverBorderColor : '',
+          borderWidth: (isHovered || isFocused) ? '2px' : '1px',
+          boxShadow: (isHovered || isFocused) ? hoverShadow : '',
+          transform: (isHovered || isFocused) ? 'translateY(-2px) scale(1.01)' : 'translateY(0) scale(1)',
+          outline: 'none', // 移除默认的焦点轮廓
+        }}
+      >
+        {/* Banner图 */}
+        <div className="relative w-full h-40">
+          <Image
+            src={home_img ? `/img/${home_img}` : '/img/default.png'}
+            alt={`${name} banner`}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+        
+        {/* 内容区域 */}
+        <div className="p-4 flex flex-col flex-grow">
+          {/* 头部区域：图标、名称、外部链接 */}
+          <div className="flex items-start justify-between mb-2">
+            <div className="flex items-center gap-3">
+              {icon_url ? (
+                <div className="h-10 w-10 overflow-hidden rounded-md flex-shrink-0">
+                  <Image
+                    src={icon_url}
+                    alt={name}
+                    width={40}
+                    height={40}
+                    className="h-full w-full object-cover"
+                    loading="eager"
+                  />
+                </div>
+              ) : (
+                <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary flex-shrink-0">
+                  {name.charAt(0)}
+                </div>
+              )}
+              <div className="min-w-0">
+                <h3 className="text-lg font-semibold truncate">{name}</h3>
+              </div>
+            </div>
+            <Link
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground flex-shrink-0 ml-2"
+            >
+              <ExternalLink className="h-4 w-4" />
+              <span className="sr-only">{t('visit')} {name}</span>
+            </Link>
+          </div>
+          
+          {/* 标签区域：固定高度 */}
+          <div className="h-8 mb-2">
+            {displayTags.length > 0 && (
+              <div className="flex flex-wrap gap-1">
+                {displayTags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-800"
+                  >
+                    {tag}
+                  </span>
+                ))}
+                {tags.length > 3 && (
+                  <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
+                    +{tags.length - 3}
+                  </span>
+                )}
+                {category && (
+                  <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
+                    {category}
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
+          
+          {/* 描述区域：固定高度，最多2行 */}
+          <p className="text-sm text-muted-foreground h-10 line-clamp-2 mb-auto">{truncatedDescription}</p>
+          
+          {/* 按钮区域：固定在底部 */}
+          <div className="mt-auto pt-2">
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-block',
+                padding: '8px 16px',
+                backgroundColor: '#1677ff',
+                color: 'white',
+                borderRadius: '6px',
+                fontWeight: '500',
+                fontSize: '14px',
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                textDecoration: 'none'
+              }}
+            >
+              {t('visitWebsite')}
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );

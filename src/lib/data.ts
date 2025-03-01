@@ -15,6 +15,8 @@ export interface Tool {
     url: string;         // 工具链接（改为 url）
     tags?: string[];     // 添加标签支持
     icon_url?: string;   // 工具图标（原 logo）
+    hot?: string;        // 冠名标题
+    home_img?: string;   // 首页图片
 }
 
 // 解析并验证数据结构
@@ -89,7 +91,9 @@ export function getToolList(srcName: string, locale: string): Tool[] {
             description: item.description || '',
             url: item.url || '',
             tags: Array.isArray(item.tags) ? item.tags : [],
-            icon_url: item.logo || ''
+            icon_url: item.logo || '',
+            hot: item.hot || '',
+            home_img: item.homeImg || ''
         }));
     };
 

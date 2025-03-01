@@ -20,7 +20,9 @@ type ToolType = {
   tags?: string[];
   icon_url?: string;
   category?: string; // 添加分类标识
-};
+  hot?: string;
+  home_img?: string;
+};  
 
 // 缓存对象，用于存储已获取的工具数据
 const toolsCache: Record<string, ToolType[]> = {};
@@ -314,6 +316,8 @@ export function CategoryGrid({ categories }: {
                 tags={tool.tags}
                 icon_url={tool.icon_url}
                 category={tool.category}
+                hot={tool.hot}
+                home_img={tool.home_img}
               />
             ))}
           </div>
