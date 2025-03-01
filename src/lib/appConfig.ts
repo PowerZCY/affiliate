@@ -49,4 +49,10 @@ export const appConfig = {
     mdFolder: 'data/md',
     toolsFolder: 'data/json',
   },
+  
+  // 界面配置
+  ui: {
+    // 是否显示工具卡片的banner图
+    showToolBanner: process.env.NEXT_PUBLIC_SHOW_TOOL_BANNER !== 'false',
+  },
 };
