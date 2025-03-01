@@ -9,9 +9,9 @@ import { ThemeProvider } from "next-themes";
 import { DM_Sans, Inter } from "next/font/google";
 import React from 'react';
 import './globals.css';
-
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import Script from 'next/script';
 
 // 全局字体设置
 const inter = Inter({ subsets: ['latin'] })
@@ -69,7 +69,14 @@ export default async function RootLayout({
               {/* 布局结构 */}
 
               {/* 网站统计和广告脚本 */}
-              <GoogleAdsenseScript />
+              {process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID && (
+                <Script
+                  async
+                  src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID}`}
+                  strategy="afterInteractive"
+                  crossOrigin="anonymous"
+                />
+              )}
               <GoogleAnalyticsScript />
               <PlausibleAnalyticsScript />
             </ThemeProvider>

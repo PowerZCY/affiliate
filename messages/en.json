@@ -1,17 +1,17 @@
 {
   "home": {
-    "meta_title": "AI Affiliate: Open-Source & Hot AI Tools Navigator",
-    "meta_description": "Embrace AI, explore the infinite possibilities of AI tools",
-    "h2": "Embrace AI, explore the infinite possibilities of AI tools",
+    "meta_title": "AI Affiliate: Open-Source & Hot AI Navigator",
+    "meta_description": "Embrace AI, explore the infinite possibilities of AI",
+    "h2": "Open-Source & Hot AI Navigator",
     "browseToolsBtn": "Browse Tools",
     "submitToolBtn": "Submit Tool",
     "popularToolsTitle": "Popular AI Tools",
     "categoriesTitle": "AI Tools Categories",
-    "description": "Embrace AI, explore the infinite possibilities of AI tools"
+    "description": "Embrace AI, explore the infinite possibilities of AI"
   },
   "article": {
     "meta_title": "Article",
-    "meta_description": "Read our latest articles on newest AI tools and best practices.",
+    "meta_description": "Read our latest articles on newest AI and best practices.",
     "h1": "Articles",
     "h2": "Read More About AI Affiliate Programs",
     "homeBtn": "Home",
@@ -33,6 +33,10 @@
     "comingSoon": "Coming soon...",
     "goToTop": "Go to top"
   },
+  "toolCard": {
+    "visit": "Visit",
+    "visitWebsite": "View"
+  },
   "tools": {
     "meta_description": "Embrace AI, explore the infinite possibilities of AI tools",
     "h2_1": "All AI tools related to",
@@ -49,7 +53,7 @@
     "homeBtn": "Home",
     "moreCategoryDescription": "More Categories",
     "articleBtn": "Article",
-    "articleDescription": "Embrace AI, explore the infinite possibilities of AI tools",
+    "articleDescription": "Embrace AI, explore the infinite possibilities of AI",
     "article1Title": "Adding New AI Tools to AI Affiliate",
     "article2Title": "Deploy your own AI Affiliate",
     "moreArticleBtn": "More",
@@ -58,7 +62,7 @@
     "submitToolBtn": "Submit Tool"
   },
   "footer": {
-    "description": "Open-Source & Hot AI Tools Navigator",
+    "description": "Open-Source & Hot AI Navigator",
     "builtWith": "Built with",
     "quickLinks": "Quick Links",
     "home": "Home",

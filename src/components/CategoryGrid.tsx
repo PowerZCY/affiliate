@@ -33,9 +33,16 @@ export function CategoryGrid({ categories }: {
   const [allTools, setAllTools] = useState<ToolType[]>([]);
   const [loading, setLoading] = useState<boolean>(true); // 初始加载状态设为true
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
-  const { theme } = useTheme(); // 获取当前主题
+  const { theme, resolvedTheme } = useTheme(); // 获取当前主题和解析后的主题
+  const [mounted, setMounted] = useState(false);
   const isMounted = useRef(true);
   const t = useTranslations('categoryGrid');
+  
+  // 在客户端挂载后设置mounted状态
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
   // 监听滚动事件，控制回到顶部按钮的显示
   useEffect(() => {
     const handleScroll = () => {
@@ -238,8 +245,11 @@ export function CategoryGrid({ categories }: {
   // 确定要显示的工具列表
   const displayTools = selectedCategory ? tools : allTools;
   
+  // 确定当前主题类名
+  const themeClass = mounted ? (resolvedTheme === 'dark' ? 'dark-theme' : 'light-theme') : '';
+  
   return (
-    <div className={`space-y-8 ${theme === 'light' ? 'light-theme' : 'dark-theme'}`}>
+    <div className={`space-y-4 ${themeClass}`}>
       <div className={styles.categoryContainer}>
         <div className={styles.categoryGrid}>
           {categories.map((category) => (
@@ -253,7 +263,7 @@ export function CategoryGrid({ categories }: {
           ))}
         </div>
         
-        {/* 回退按钮 - JetBrains风格 */}
+        {/* 回退按钮 - 更精致的JetBrains风格 */}
         <button 
           className={`${styles.resetButton} ${!selectedCategory ? styles.disabled : ''}`}
           onClick={handleResetClick}
@@ -261,29 +271,34 @@ export function CategoryGrid({ categories }: {
           aria-label={t('reset')}
           type="button"
         >
-          <span className={styles.resetIcon}>↩</span>
+          <span className={styles.resetIcon}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 10C2 10 4.00498 7.26822 5.63384 5.63824C7.26269 4.00827 9.5136 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.89691 21 4.43511 18.2543 3.35177 14.5M2 10V4M2 10H8" 
+                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </span>
         </button>
       </div>
       
-      <div className="mt-12">
+      <div className="mt-6">
         {selectedCategory && selectedCategoryData ? (
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold mb-4">{selectedCategoryData.name}</h2>
-            <p className="text-lg text-muted-foreground">{selectedCategoryData.description}</p>
+          <div className="mb-4">
+            <h2 className="text-2xl font-bold mb-2">{selectedCategoryData.name}</h2>
+            <p className="text-base text-muted-foreground">{selectedCategoryData.description}</p>
           </div>
         ) : (
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold mb-4">{t('browseAllTools')}</h2>
+          <div className="mb-4">
+            <h2 className="text-2xl font-bold mb-2">{t('browseAllTools')}</h2>
           </div>
         )}
         
         {loading ? (
-          <div className="text-center py-12">
-            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
-            <p className="mt-4">{t('loading')}</p>
+          <div className="text-center py-6">
+            <div className="inline-block h-6 w-6 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
+            <p className="mt-2">{t('loading')}</p>
           </div>
         ) : displayTools.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {displayTools.map((tool, index) => (
               <JetBrainsToolCard
                 key={`${tool.name}-${index}`}
@@ -297,7 +312,7 @@ export function CategoryGrid({ categories }: {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12">
+          <div className="text-center py-6">
             <p>{t('comingSoon')}</p>
           </div>
         )}

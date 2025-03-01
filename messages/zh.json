@@ -1,28 +1,28 @@
 {
   "home": {
-    "meta_title": "AI Affiliate: 开源的热门AI工具导航平台",
-    "meta_description": "积极拥抱AI，探索AI工具的无限可能",
+    "meta_title": "AI Affiliate: 热门AI导航平台",
+    "meta_description": "积极拥抱AI，探索AI无限可能",
     "browseToolsBtn": "浏览工具",
     "submitToolBtn": "提交工具",
     "popularToolsTitle": "热门AI工具",
     "categoriesTitle": "AI工具分类",
-    "h2": "开源的热门AI工具导航平台",
-    "description": "积极拥抱AI，探索AI工具的无限可能"
+    "h2": "热门AI导航平台",
+    "description": "积极拥抱AI，探索AI无限可能"
   },
   "article": {
     "meta_title": "文章",
-    "meta_description": "速览AI领域的热门事件",
+    "meta_description": "AI热门事件",
     "homeBtn": "首页",
     "articleBtn": "文章",
     "h1": "文章",
-    "h2": "速览AI领域的热门事件",
+    "h2": "AI热门事件",
     "backToArticles": "返回文章列表"
   },
   "changelog": {
     "meta_title": "更新日志",
-    "meta_description": "查看AI Affiliate的更新日志",
+    "meta_description": "查看更新日志",
     "h1": "更新日志",
-    "h2": "查看AI Affiliate的更新日志",
+    "h2": "查看更新日志",
     "homeBtn": "首页",
     "changelogBtn": "更新日志"
   },
@@ -33,8 +33,12 @@
     "comingSoon": "即将推出...",
     "goToTop": "回到顶部"
   },
+  "toolCard": {
+    "visit": "访问",
+    "visitWebsite": "访问网站"
+  },
   "tools": {
-    "meta_description": "积极拥抱AI，探索AI工具的无限可能",
+    "meta_description": "积极拥抱AI，探索AI无限可能",
     "h2_1": "所有与 ",
     "h2_2": " 相关的AI工具",
     "homeBtn": "首页"
@@ -49,7 +53,7 @@
     "homeBtn": "首页",
     "moreCategoryDescription": "更多分类",
     "articleBtn": "文章",
-    "articleDescription": "积极拥抱AI，探索AI工具的无限可能",
+    "articleDescription": "积极拥抱AI，探索AI无限可能",
     "article1Title": "添加新的AI工具到AI Affiliate",
     "article2Title": "部署你自己的AI Affiliate",
     "moreArticleBtn": "更多",
@@ -58,7 +62,7 @@
     "submitToolBtn": "提交工具"
   },
   "footer": {
-    "description": "开源的热门AI工具导航平台",
+    "description": "热门AI导航平台",
     "builtWith": "基于",
     "quickLinks": "快速链接",
     "home": "首页",

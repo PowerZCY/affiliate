@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ExternalLink } from 'lucide-react';
 import styles from './JetBrainsToolCard.module.css';
+import { useTranslations } from 'next-intl';
 
 export interface ToolCardProps {
   name: string;
@@ -21,6 +22,9 @@ export function JetBrainsToolCard({
   icon_url,
   category 
 }: ToolCardProps) {
+  // 使用国际化翻译
+  const t = useTranslations('toolCard');
+  
   return (
     <div className="jetbrains-card group">
       <div className="flex items-start justify-between">
@@ -68,7 +72,7 @@ export function JetBrainsToolCard({
           className="text-muted-foreground hover:text-foreground"
         >
           <ExternalLink className="h-4 w-4" />
-          <span className="sr-only">访问 {name}</span>
+          <span className="sr-only">{t('visit')} {name}</span>
         </Link>
       </div>
       <p className="mt-3 text-sm text-muted-foreground">{description}</p>
@@ -79,7 +83,7 @@ export function JetBrainsToolCard({
           rel="noopener noreferrer"
           className="jetbrains-button jetbrains-button-secondary text-sm px-3 py-1"
         >
-          访问网站
+          {t('visitWebsite')}
         </Link>
       </div>
     </div>

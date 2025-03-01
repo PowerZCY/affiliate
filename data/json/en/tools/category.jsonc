@@ -1,12 +1,12 @@
 [
   {
-    "name": "analytics",
+    "name": "Analytics",
     "src": "analytics.jsonc",
     "link": "analytics",
     "description": "Tools for tracking and analyzing website data."
   },
   {
-    "name": "database",
+    "name": "Database",
     "src": "database.jsonc",
     "link": "database",
     "description": "Services for storing and managing data."
@@ -18,13 +18,13 @@
     "description": "Libraries for building user interfaces."
   },
   {
-    "name": "payment",
+    "name": "Payment",
     "src": "payment.jsonc",
     "link": "payment",
     "description": "Platforms for processing online payments."
   },
   {
-    "name": "promotion",
+    "name": "Promotion",
     "src": "promotion.jsonc",
     "link": "promotion",
     "description": "Tools for promoting products and content."

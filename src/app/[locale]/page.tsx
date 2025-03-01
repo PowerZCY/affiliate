@@ -33,10 +33,10 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col">
-      {/* Hero Section，俏标题·引人入胜 */}
+      {/* Hero Section，俏标题·引人入胜 - 保持内容大小，减少间距 */}
       <section className="relative overflow-hidden">
         <div className="hero-gradient">
-          <div className="container relative z-10 py-8 md:py-16">
+          <div className="container relative z-10 py-6 md:py-10">
             <div className="max-w-4xl mx-auto text-center space-y-4">
               <h1 className="hero-text-gradient text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
                 AI·Affiliate
@@ -44,7 +44,7 @@ export default async function Home() {
               <h2 className="text-xl md:text-2xl text-muted-foreground font-normal mt-4">
                 {t('h2')}
               </h2>
-              {/* 搜索框容器 */}
+              {/* 搜索框容器 - 保持原来的大小 */}
               <div className="max-w-2xl mx-auto mt-6 relative z-20">
                 <JetBrainsSearch />
               </div>
@@ -62,8 +62,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 分类区域 */}
-      <section className="py-16">
+      {/* 分类区域 - 减少上下内边距 */}
+      <section className="py-8">
         <div className="container">
           <CategoryGrid categories={categories} />
         </div>

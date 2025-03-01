@@ -157,12 +157,14 @@
     z-index: 2;
   }
 
-  /* 调整容器高度确保能显示完整背景 */
+  /* 调整容器高度确保能显示完整背景，减少空白间距但保持内容大小 */
   .hero-gradient>.container {
     /* position: relative; */
-    min-height: 60vh;
+    min-height: 45vh; /* 从40vh增加到45vh，但仍比原来的60vh小 */
     display: flex;
     align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .hero-text-gradient {
