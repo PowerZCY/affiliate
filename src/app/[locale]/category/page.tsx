@@ -41,9 +41,6 @@ export default async function Category() {
               <BreadcrumbLink href="/">{t('homeBtn')}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>{t('categoryBtn')}</BreadcrumbPage>
-            </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
 

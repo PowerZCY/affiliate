@@ -9,16 +9,6 @@
     "categoriesTitle": "AI Tools Categories",
     "description": "Embrace AI, explore the infinite possibilities of AI tools"
   },
-  "category": {
-    "meta_title": "Category",
-    "meta_description": "Embrace AI, explore the infinite possibilities of AI tools",
-    "homeBtn": "Home",
-    "categoryBtn": "Category",
-    "submitToolBtn": "Submit Tool",
-    "h1": "AI Tools Category",
-    "h2": "Embrace AI, explore the infinite possibilities of AI tools",
-    "h2description": "All AI tools are sorted alphabetically"
-  },
   "article": {
     "meta_title": "Article",
     "meta_description": "Read our latest articles on newest AI tools and best practices.",
@@ -50,8 +40,6 @@
   },
   "navigation": {
     "homeBtn": "Home",
-    "categoryBtn": "Category",
-    "moreCategoryBtn": "More",
     "moreCategoryDescription": "More Categories",
     "articleBtn": "Article",
     "articleDescription": "Embrace AI, explore the infinite possibilities of AI tools",

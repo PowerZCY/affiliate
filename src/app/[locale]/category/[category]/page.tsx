@@ -68,11 +68,6 @@ export default async function Tool({ params: { category } }: CategoryPageProps) 
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/category" className="text-muted-foreground hover:text-foreground">
-                {t('categoryBtn')}
-              </BreadcrumbLink>
-            </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage className="capitalize font-medium">{categoryData.name}</BreadcrumbPage>

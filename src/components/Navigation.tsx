@@ -46,10 +46,6 @@ export const Navigation = ({ categories }: navigationProp) => {
         href: "/",
       },
       {
-        label: t('categoryBtn'),
-        href: "/category",
-      },
-      {
         label: t('articleBtn'),
         href: "/article",
       },
@@ -150,30 +146,6 @@ export const Navigation = ({ categories }: navigationProp) => {
                       {t('homeBtn')}
                     </Link>
                   </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className={cn('font-medium hover:font-bold transition-all', '/category' === pathname && "font-bold")}>{t('categoryBtn')}</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-3 lg:w-[600px] ">
-                      {categories.map((category) => (
-                        <ListItem
-                          key={category.name}
-                          title={category.name}
-                          href={`/category/${category.link}`}
-                          className='capitalize'
-                        >
-                          {category.description}
-                        </ListItem>
-                      ))}
-                      <ListItem
-                        title={t('moreCategoryBtn')}
-                        href={'/category'}
-                        className='capitalize border border-muted  bg-gradient-to-b  from-muted/50 to-muted/20'
-                      >
-                        {t('moreCategoryDescription')}
-                      </ListItem>
-                    </ul>
-                  </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className={cn('font-medium hover:font-bold transition-all', '/article' === pathname && "font-bold")}>

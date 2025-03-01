@@ -34,11 +34,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/category" className="text-sm hover:underline">
-                  {t('category')}
-                </Link>
-              </li>
-              <li>
                 <Link href="/article" className="text-sm hover:underline">
                   {t('article')}
                 </Link>

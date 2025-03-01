@@ -9,16 +9,7 @@
     "h2": "开源的热门AI工具导航平台",
     "description": "积极拥抱AI，探索AI工具的无限可能"
   },
-  "category": {
-    "meta_title": "分类",
-    "meta_description": "积极拥抱AI，探索AI工具的无限可能",
-    "homeBtn": "首页",
-    "categoryBtn": "分类",
-    "submitToolBtn": "提交工具",
-    "h1": "AI工具分类",
-    "h2": "积极拥抱AI，探索AI工具的无限可能",
-    "h2description": "默认按字母顺序排列"
-  },
+  
   "article": {
     "meta_title": "文章",
     "meta_description": "速览AI领域的热门事件",
@@ -50,8 +41,6 @@
   },
   "navigation": {
     "homeBtn": "首页",
-    "categoryBtn": "分类",
-    "moreCategoryBtn": "更多",
     "moreCategoryDescription": "更多分类",
     "articleBtn": "文章",
     "articleDescription": "积极拥抱AI，探索AI工具的无限可能",
