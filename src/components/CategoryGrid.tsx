@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import styles from '@/app/[locale]/category/CategoryPage.module.css';
 import { JetBrainsToolCard } from '@/components/JetBrainsToolCard';
+import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes'; // 如果您使用 next-themes 管理主题
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 type CategoryType = {
   name: string;
@@ -34,7 +35,7 @@ export function CategoryGrid({ categories }: {
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
   const { theme } = useTheme(); // 获取当前主题
   const isMounted = useRef(true);
-  
+  const t = useTranslations('categoryGrid');
   // 监听滚动事件，控制回到顶部按钮的显示
   useEffect(() => {
     const handleScroll = () => {
@@ -257,7 +258,7 @@ export function CategoryGrid({ categories }: {
           className={`${styles.resetButton} ${!selectedCategory ? styles.disabled : ''}`}
           onClick={handleResetClick}
           disabled={!selectedCategory}
-          aria-label="Reset"
+          aria-label={t('reset')}
           type="button"
         >
           <span className={styles.resetIcon}>↩</span>
@@ -272,15 +273,14 @@ export function CategoryGrid({ categories }: {
           </div>
         ) : (
           <div className="mb-8">
-            <h2 className="text-3xl font-bold mb-4">所有工具</h2>
-            <p className="text-lg text-muted-foreground">浏览我们提供的所有开发工具</p>
+            <h2 className="text-3xl font-bold mb-4">{t('browseAllTools')}</h2>
           </div>
         )}
         
         {loading ? (
           <div className="text-center py-12">
             <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
-            <p className="mt-4">loading...</p>
+            <p className="mt-4">{t('loading')}</p>
           </div>
         ) : displayTools.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -298,7 +298,7 @@ export function CategoryGrid({ categories }: {
           </div>
         ) : (
           <div className="text-center py-12">
-            <p>coming soon...</p>
+            <p>{t('comingSoon')}</p>
           </div>
         )}
       </div>
@@ -308,7 +308,7 @@ export function CategoryGrid({ categories }: {
         <button
           onClick={handleScrollToTop}
           className={styles.scrollTopButton}
-          aria-label="Go to top"
+          aria-label={t('goToTop')}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="10" />

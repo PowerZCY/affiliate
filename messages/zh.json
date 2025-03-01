@@ -9,7 +9,6 @@
     "h2": "开源的热门AI工具导航平台",
     "description": "积极拥抱AI，探索AI工具的无限可能"
   },
-  
   "article": {
     "meta_title": "文章",
     "meta_description": "速览AI领域的热门事件",
@@ -26,6 +25,13 @@
     "h2": "查看AI Affiliate的更新日志",
     "homeBtn": "首页",
     "changelogBtn": "更新日志"
+  },
+  "categoryGrid": {
+    "browseAllTools": "浏览所有工具",
+    "reset": "清除筛选",
+    "loading": "加载中...",
+    "comingSoon": "即将推出...",
+    "goToTop": "回到顶部"
   },
   "tools": {
     "meta_description": "积极拥抱AI，探索AI工具的无限可能",

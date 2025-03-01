@@ -1,10 +1,8 @@
-import React from 'react'; // 确保导入 React
-import { getCategoryByLink, getToolList } from '@/lib/data';
-import { notFound } from 'next/navigation';
-import { ArrowLeft } from 'lucide-react';
-import { Link } from "@/lib/i18n";
 import { JetBrainsToolCard } from '@/components/JetBrainsToolCard';
-import { Button } from '@/components/ui/button';
+import { getCategoryByLink, getToolList } from '@/lib/data';
+import { Link } from "@/lib/i18n";
+import { ArrowLeft } from 'lucide-react';
+import { notFound } from 'next/navigation';
 
 import {
   Breadcrumb,
@@ -13,9 +11,8 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { getTranslations, getLocale } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
+} from "@/components/ui/breadcrumb";
+import { getLocale, getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params: { category } }: CategoryPageProps) {
   const t = await getTranslations('category');

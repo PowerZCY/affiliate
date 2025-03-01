@@ -26,6 +26,13 @@
     "homeBtn": "Home",
     "changelogBtn": "Changelog"
   },
+  "categoryGrid": {
+    "browseAllTools": "Browse All Tools",
+    "reset": "Reset",
+    "loading": "Loading...",
+    "comingSoon": "Coming soon...",
+    "goToTop": "Go to top"
+  },
   "tools": {
     "meta_description": "Embrace AI, explore the infinite possibilities of AI tools",
     "h2_1": "All AI tools related to",
