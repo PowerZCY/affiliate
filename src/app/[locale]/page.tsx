@@ -63,7 +63,7 @@ export default async function Home() {
       </section>
 
       {/* 分类区域 - 减少上下内边距 */}
-      <section className="py-8">
+      <section className="py-6">
         <div className="container">
           <CategoryGrid categories={categories} />
         </div>

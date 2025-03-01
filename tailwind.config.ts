@@ -9,6 +9,7 @@ export const lightVariables = {
     foreground: "#1a1f36",     // 加深文本颜色
     primary: "#167dff",
     "primary-foreground": "#ffffff",
+    "primary-dark": "#0e5cb8",  // 添加深色主色调
     secondary: "#f7f8fa",
     "secondary-foreground": "#27282c",
     destructive: "#ff3633",
@@ -35,6 +36,7 @@ export const darkVariables = {
     foreground: "#e8eaed",     // 提高亮度
     primary: "#3592ff",
     "primary-foreground": "#ffffff",
+    "primary-dark": "#2a74cc",  // 添加深色主色调
     secondary: "#2b2d30",
     "secondary-foreground": "#dfe1e5",
     destructive: "#ff5647",
@@ -87,6 +89,7 @@ const config = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          dark: "hsl(var(--primary-dark))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",

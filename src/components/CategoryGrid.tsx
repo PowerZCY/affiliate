@@ -254,8 +254,9 @@ export function CategoryGrid({ categories }: {
   const themeClass = mounted ? (resolvedTheme === 'dark' ? 'dark-theme' : 'light-theme') : '';
   
   return (
-    <div className={`space-y-4 ${themeClass}`}>
-      <div className={styles.categoryContainer}>
+    <div className={`space-y-2 ${themeClass}`}>
+      {/* 分类按钮区域 - 减小内边距 */}
+      <div className={`${styles.categoryContainer} p-3`}>
         <div className={styles.categoryGrid}>
           {categories.map((category) => (
             <button
@@ -268,7 +269,7 @@ export function CategoryGrid({ categories }: {
           ))}
         </div>
         
-        {/* 回退按钮 - 更精致的JetBrains风格 */}
+        {/* 回退按钮 */}
         <button 
           className={`${styles.resetButton} ${!selectedCategory ? styles.disabled : ''}`}
           onClick={handleResetClick}
@@ -285,15 +286,15 @@ export function CategoryGrid({ categories }: {
         </button>
       </div>
       
-      <div className="mt-6">
+      <div className="mt-2">
         {selectedCategory && selectedCategoryData ? (
-          <div className="mb-4">
-            <h2 className="text-2xl font-bold mb-2">{selectedCategoryData.name}</h2>
+          <div className="mb-4 p-3">
+            <h2 className="text-2xl font-bold mb-1">{selectedCategoryData.name}</h2>
             <p className="text-base text-muted-foreground">{selectedCategoryData.description}</p>
           </div>
         ) : (
-          <div className="mb-4">
-            <h2 className="text-2xl font-bold mb-2">{t('browseAllTools')}</h2>
+          <div className="mb-4 p-3">
+            <h2 className="text-2xl font-bold">{t('browseAllTools')}</h2>
           </div>
         )}
         
@@ -327,7 +328,7 @@ export function CategoryGrid({ categories }: {
       {showScrollTop && (
         <button
           onClick={handleScrollToTop}
-          className={styles.scrollTopButton}
+          className={`${styles.scrollTopButton} bg-primary text-primary-foreground shadow-md hover:bg-primary/90`}
           aria-label={t('goToTop')}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
