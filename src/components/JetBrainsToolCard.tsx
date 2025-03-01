@@ -2,16 +2,25 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ExternalLink } from 'lucide-react';
+import styles from './JetBrainsToolCard.module.css';
 
-interface ToolCardProps {
+export interface ToolCardProps {
   name: string;
   description: string;
   url: string;
   tags?: string[];
   icon_url?: string;
+  category?: string;
 }
 
-export function JetBrainsToolCard({ name, description, url, tags, icon_url }: ToolCardProps) {
+export function JetBrainsToolCard({ 
+  name, 
+  description, 
+  url, 
+  tags = [], 
+  icon_url,
+  category 
+}: ToolCardProps) {
   return (
     <div className="jetbrains-card group">
       <div className="flex items-start justify-between">
@@ -43,6 +52,11 @@ export function JetBrainsToolCard({ name, description, url, tags, icon_url }: To
                     {tag}
                   </span>
                 ))}
+                {category && (
+                  <span className="inline-flex items-center rounded-full bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground">
+                    {category}
+                  </span>
+                )}
               </div>
             )}
           </div>
