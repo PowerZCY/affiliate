@@ -33,23 +33,23 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col">
-      {/* Hero Section，俏标题·引人入胜 - 保持内容大小，减少间距 */}
+      {/* Hero Section，俏标题·引人入胜 - 增加内容间距 */}
       <section className="relative overflow-hidden">
         <div className="hero-gradient">
-          <div className="container relative z-10 py-6 md:py-10">
-            <div className="max-w-4xl mx-auto text-center space-y-4">
+          <div className="container relative z-10 py-8 md:py-12">
+            <div className="max-w-4xl mx-auto text-center space-y-6">
               <h1 className="hero-text-gradient text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
                 AI·Affiliate
               </h1>
-              <h2 className="text-xl md:text-2xl text-muted-foreground font-normal mt-4">
+              <h2 className="text-xl md:text-2xl text-muted-foreground font-normal mt-6">
                 {t('h2')}
               </h2>
-              {/* 搜索框容器 - 保持原来的大小 */}
-              <div className="max-w-2xl mx-auto mt-6 relative z-20">
+              {/* 搜索框容器 - 增加最大宽度 */}
+              <div className="max-w-3xl mx-auto mt-8 relative z-20">
                 <JetBrainsSearch />
               </div>
 
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mt-4">
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mt-6">
                 {t('description')}
               </p>
             </div>

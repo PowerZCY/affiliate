@@ -2,7 +2,7 @@
 
 import styles from '@/app/[locale]/category/CategoryPage.module.css';
 import { JetBrainsToolCard } from '@/components/JetBrainsToolCard';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useTheme } from 'next-themes'; // 如果您使用 next-themes 管理主题
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -37,6 +37,7 @@ export function CategoryGrid({ categories }: {
   const [mounted, setMounted] = useState(false);
   const isMounted = useRef(true);
   const t = useTranslations('categoryGrid');
+  const locale = useLocale(); // 获取当前语言
   
   // 在客户端挂载后设置mounted状态
   useEffect(() => {
@@ -69,14 +70,14 @@ export function CategoryGrid({ categories }: {
     
     try {
       // 检查缓存中是否已有该分类的数据
-      if (toolsCache[src]) {
-        console.log(`Using cached data for ${src}`);
-        setTools(toolsCache[src]);
+      if (toolsCache[`${locale}-${src}`]) {
+        console.log(`Using cached data for ${locale}-${src}`);
+        setTools(toolsCache[`${locale}-${src}`]);
         setLoading(false);
         return;
       }
       
-      const response = await fetch(`/api/tools?category=${src}`);
+      const response = await fetch(`/api/tools?category=${src}&locale=${locale}`);
       const data = await response.json();
       
       if (data.tools && Array.isArray(data.tools)) {
@@ -86,8 +87,8 @@ export function CategoryGrid({ categories }: {
           category: categoryName
         }));
         
-        // 更新缓存
-        toolsCache[src] = toolsWithCategory;
+        // 更新缓存，使用语言-分类作为键
+        toolsCache[`${locale}-${src}`] = toolsWithCategory;
         setTools(toolsWithCategory);
       } else {
         console.warn(`No tools found for src ${src}`);
@@ -99,7 +100,7 @@ export function CategoryGrid({ categories }: {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [locale]);
   
   // 获取所有分类的工具数据（优先使用缓存）
   const fetchAllTools = useCallback(async () => {
@@ -107,6 +108,14 @@ export function CategoryGrid({ categories }: {
     setLoading(true);
     
     try {
+      // 检查缓存中是否已有所有工具的数据
+      if (toolsCache[`${locale}-all`]) {
+        console.log(`Using cached data for all tools in ${locale}`);
+        setAllTools(toolsCache[`${locale}-all`]);
+        setLoading(false);
+        return;
+      }
+      
       // 获取所有有src属性的分类
       const categoriesWithSrc = categories.filter(c => c.src);
       
@@ -119,14 +128,14 @@ export function CategoryGrid({ categories }: {
       
       // 检查是否所有分类都已缓存
       const allCached = categoriesWithSrc.every(category => 
-        category.src && toolsCache[category.src]
+        category.src && toolsCache[`${locale}-${category.src}`]
       );
       
       if (allCached) {
         console.log('Using cached data for all categories');
         // 合并所有缓存的工具数据
         const allCachedTools = categoriesWithSrc.flatMap(category => 
-          category.src ? toolsCache[category.src] : []
+          category.src ? toolsCache[`${locale}-${category.src}`] : []
         );
         
         // 去除重复项
@@ -136,37 +145,30 @@ export function CategoryGrid({ categories }: {
         
         setAllTools(uniqueTools);
         setLoading(false);
+        
+        // 更新缓存，使用语言-all作为键
+        toolsCache[`${locale}-all`] = uniqueTools;
+        
         return;
       }
       
-      // 并行获取所有分类的工具
+      // 对每个分类发起请求
       const promises = categoriesWithSrc.map(async (category) => {
-        if (category.src) {
-          // 检查缓存
-          if (toolsCache[category.src]) {
-            return toolsCache[category.src];
-          }
+        try {
+          const response = await fetch(`/api/tools?category=${category.src}&locale=${locale}`);
+          const data = await response.json();
           
-          try {
-            const response = await fetch(`/api/tools?category=${category.src}`);
-            const data = await response.json();
-            
-            if (data.tools && Array.isArray(data.tools)) {
-              // 为工具添加分类标识
-              const toolsWithCategory = data.tools.map((tool: ToolType) => ({
-                ...tool,
-                category: category.name
-              }));
-              
-              // 更新缓存
-              toolsCache[category.src] = toolsWithCategory;
-              return toolsWithCategory;
-            }
-          } catch (error) {
-            console.error(`Failed to fetch tools for ${category.src}:`, error);
+          if (data.tools && Array.isArray(data.tools)) {
+            return data.tools.map((tool: ToolType) => ({
+              ...tool,
+              category: category.name
+            }));
           }
+          return [];
+        } catch (error) {
+          console.error(`Failed to fetch tools for ${category.src}:`, error);
+          return [];
         }
-        return [];
       });
       
       const results = await Promise.all(promises);
@@ -179,13 +181,16 @@ export function CategoryGrid({ categories }: {
       
       console.log(`Fetched ${uniqueTools.length} tools from all categories`);
       setAllTools(uniqueTools);
+      
+      // 更新缓存，使用语言-all作为键
+      toolsCache[`${locale}-all`] = uniqueTools;
     } catch (error) {
       console.error('Failed to fetch all tools:', error);
       setAllTools([]);
     } finally {
       setLoading(false);
     }
-  }, [categories]);
+  }, [categories, locale]);
   
   // 组件加载时获取所有工具
   useEffect(() => {

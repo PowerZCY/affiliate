@@ -34,10 +34,10 @@ export function JetBrainsSearch() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <form
         onSubmit={handleSubmit}
-        className="relative flex w-full max-w-2xl items-center"
+        className="relative flex w-full items-center"
       >
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
