@@ -65,9 +65,6 @@ export default async function Home() {
       {/* 分类区域 */}
       <section className="py-16">
         <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-            {t('categoriesTitle') || 'AI Tools Categories'}
-          </h2>
           <CategoryGrid categories={categories} />
         </div>
       </section>

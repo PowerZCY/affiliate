@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import styles from '@/app/[locale]/category/CategoryPage.module.css';
 import { JetBrainsToolCard } from '@/components/JetBrainsToolCard';
+import { useTheme } from 'next-themes'; // 如果您使用 next-themes 管理主题
 
 type CategoryType = {
   name: string;
@@ -25,49 +26,79 @@ export function CategoryGrid({ categories }: {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [tools, setTools] = useState<ToolType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const { theme } = useTheme(); // 获取当前主题
+  const isMounted = useRef(true);
   
+  // 组件卸载时设置标志
   useEffect(() => {
-    async function fetchTools() {
-      if (selectedCategory) {
-        setLoading(true);
-        try {
-          // 找到选中分类的src
-          const category = categories.find(c => c.link === selectedCategory);
-          if (category && category.src) {
-            // 获取该分类下的工具
-            const response = await fetch(`/api/tools?category=${category.src}`);
-            const data = await response.json();
-            setTools(data.tools || []);
-          } else {
-            setTools([]);
-          }
-        } catch (error) {
-          console.error('获取工具列表失败:', error);
-          setTools([]);
-        } finally {
-          setLoading(false);
-        }
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
+  
+  // 获取工具数据的函数 - 直接使用src属性
+  const fetchToolsData = useCallback(async (src: string) => {
+    console.log(`Fetching tools for src: ${src}`);
+    setLoading(true);
+    
+    try {
+      // 直接使用传入的src参数
+      const response = await fetch(`/api/tools?category=${src}`);
+      const data = await response.json();
+      // console.log(`API response for src ${src}: `, data);
+      
+      if (data.tools && Array.isArray(data.tools)) {
+        setTools(data.tools);
       } else {
+        console.warn(`No tools found for src ${src}`);
+        setTools([]);
+      }
+    } catch (error) {
+      console.error(`Failed to fetch tools for src ${src}:`, error);
+      setTools([]);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+  
+  // 处理分类点击
+  const handleCategoryClick = useCallback((categoryLink: string) => {
+    console.log(`Clicking category: ${categoryLink}`);
+    
+    // 找到对应的分类对象
+    const category = categories.find(c => c.link === categoryLink);
+    
+    if (!category) {
+      console.error(`Category not found: ${categoryLink}`);
+      return;
+    }
+    
+    if (selectedCategory === categoryLink) {
+      // 如果点击的是已选中的分类，则取消选择
+      setSelectedCategory(null);
+      setTools([]);
+    } else {
+      // 选择新分类并获取数据
+      setSelectedCategory(categoryLink);
+      
+      // 使用src属性获取工具数据
+      if (category.src) {
+        console.log(`Using category.src: ${category.src}`);
+        fetchToolsData(category.src);
+      } else {
+        console.warn(`Category ${categoryLink} has no src property`);
         setTools([]);
       }
     }
-    
-    fetchTools();
-  }, [selectedCategory, categories]);
+  }, [selectedCategory, fetchToolsData, categories]);
   
-  const handleCategoryClick = (categoryLink: string) => {
-    if (selectedCategory === categoryLink) {
-      // 如果点击的是已选中的分类，则清除选择
-      setSelectedCategory(null);
-    } else {
-      // 否则设置为新选中的分类
-      setSelectedCategory(categoryLink);
-    }
-  };
-  
-  const handleResetClick = () => {
+  // 处理重置按钮点击
+  const handleResetClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     setSelectedCategory(null);
-  };
+    setTools([]);
+  }, []);
   
   // 获取当前选中的分类信息
   const selectedCategoryData = selectedCategory 
@@ -75,21 +106,27 @@ export function CategoryGrid({ categories }: {
     : null;
   
   return (
-    <div className="space-y-8">
-      <div className={styles.categoryGrid}>
-        {categories.map((category) => (
-          <button
-            key={category.link}
-            className={`${styles.categoryButton} ${selectedCategory === category.link ? styles.selected : ''}`}
-            onClick={() => handleCategoryClick(category.link)}
-          >
-            {category.name}
-          </button>
-        ))}
+    <div className={`space-y-8 ${theme === 'light' ? 'light-theme' : 'dark-theme'}`}>
+      <div className={styles.categoryContainer}>
+        <div className={styles.categoryGrid}>
+          {categories.map((category) => (
+            <button
+              key={category.link}
+              className={`${styles.categoryButton} ${selectedCategory === category.link ? styles.selected : ''}`}
+              onClick={() => handleCategoryClick(category.link)}
+            >
+              <span>{category.name}</span>
+            </button>
+          ))}
+        </div>
+        
+        {/* 回退按钮 - JetBrains风格 */}
         <button 
           className={`${styles.resetButton} ${!selectedCategory ? styles.disabled : ''}`}
           onClick={handleResetClick}
           disabled={!selectedCategory}
+          aria-label="Reset"
+          type="button"
         >
           <span className={styles.resetIcon}>↩</span>
         </button>
@@ -105,13 +142,13 @@ export function CategoryGrid({ categories }: {
           {loading ? (
             <div className="text-center py-12">
               <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
-              <p className="mt-4">加载中...</p>
+              <p className="mt-4">loading...</p>
             </div>
           ) : tools.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {tools.map((tool) => (
+              {tools.map((tool, index) => (
                 <JetBrainsToolCard
-                  key={tool.name}
+                  key={`${tool.name}-${index}`}
                   name={tool.name}
                   description={tool.description}
                   url={tool.url}
@@ -122,7 +159,7 @@ export function CategoryGrid({ categories }: {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p>该分类下暂无工具</p>
+              <p>coming soon...</p>
             </div>
           )}
         </div>
