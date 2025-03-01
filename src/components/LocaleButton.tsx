@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { appConfig } from "@/lib/appConfig";
-import { usePathname } from "@/lib/i18n";
+import { usePathname, useRouter } from "@/lib/i18n";
 
 
 import {
@@ -17,8 +17,8 @@ import {
 } from "lucide-react";
 
 import { useLocale } from "next-intl";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export function LocaleButton() {
   const router = useRouter();
@@ -27,6 +27,17 @@ export function LocaleButton() {
   const currentLocale = useLocale();
   const [locale, setLocale] = useState<string>(currentLocale);
   const { locales, localeLabels } = appConfig.i18n;
+  
+  // 当currentLocale变化时更新本地状态
+  useEffect(() => {
+    setLocale(currentLocale);
+  }, [currentLocale]);
+
+  // 构建完整的URL，包含查询参数
+  const getUrlWithParams = (path: string) => {
+    const params = searchParams.toString();
+    return params ? `${path}?${params}` : path;
+  };
 
   return (
     <DropdownMenu>
@@ -41,8 +52,10 @@ export function LocaleButton() {
           value={locale}
           onValueChange={(value) => {
             setLocale(value);
+            // 使用next-intl的router进行导航
             router.replace(
-              `/${value}/${pathname}?${searchParams.toString()}`,
+              getUrlWithParams(pathname),
+              { locale: value as "en" | "zh" }
             );
           }}
         >
