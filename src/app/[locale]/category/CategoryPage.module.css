@@ -119,6 +119,12 @@
   color: #000;
 }
 
+/* 匹配搜索结果的分类 */
+.categoryButton.matched {
+  border: 2px solid #ff0080;
+  box-shadow: 0 0 8px rgba(255, 0, 128, 0.5);
+}
+
 /* 回退按钮样式 - JetBrains风格 - 更加精致 */
 .resetButton {
   position: absolute;

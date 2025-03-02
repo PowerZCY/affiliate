@@ -1,20 +1,12 @@
+'use client'
+
 // pages/index.js
 import { JetBrainsSearch } from '@/components/JetBrainsSearch';
-import { JetBrainsToolCard } from '@/components/JetBrainsToolCard';
-import { getCategoryMetaList } from '@/lib/data';
-import { Link } from "@/lib/i18n"; // 修改导入方式
-import { getSortedPostsData } from '@/lib/posts';
+import { Link } from "@/lib/i18n";
 import { CategoryGrid } from '@/components/CategoryGrid';
-
-import { getLocale, getTranslations } from 'next-intl/server';
-
-export async function generateMetadata() {
-  const t = await getTranslations('home');
-  return {
-    title: t("meta_title"),
-    description: t("meta_description"),
-  };
-}
+import { useState, useEffect } from 'react';
+import { Tool } from '@/lib/data';
+import { useTranslations, useLocale } from 'next-intl';
 
 type categoryType = {
   name: string;
@@ -23,13 +15,58 @@ type categoryType = {
   link: string;
 }
 
-export default async function Home() {
-  const locale = await getLocale();
-  const t = await getTranslations('home');
-  // categories data
-  const categories = getCategoryMetaList(locale);
+// 扩展Tool类型以包含category属性
+interface SearchResultTool extends Tool {
+  category?: string;
+}
 
-  const allPostsData = getSortedPostsData().slice(0, 6)
+export default function Home() {
+  const [categories, setCategories] = useState<categoryType[]>([]);
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const locale = useLocale();
+  const t = useTranslations('home');
+
+  useEffect(() => {
+    // 客户端获取分类数据
+    const fetchCategories = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`/api/categories?locale=${locale}`);
+        const data = await response.json();
+        
+        if (data.categories) {
+          setCategories(data.categories);
+        } else {
+          console.error('Failed to fetch categories');
+        }
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchCategories();
+  }, [locale]);
+
+  // 处理搜索
+  const handleSearch = (keyword: string) => {
+    setSearchKeyword(keyword);
+  };
+
+  // 清除搜索
+  const clearSearch = () => {
+    setSearchKeyword('');
+  };
+
+  // 处理分类选择
+  const handleCategorySelect = (category: string | null) => {
+    // 如果选择了分类，清空搜索关键词
+    if (category !== null) {
+      setSearchKeyword('');
+    }
+  };
 
   return (
     <main className="flex min-h-screen flex-col">
@@ -46,7 +83,7 @@ export default async function Home() {
               </h2>
               {/* 搜索框容器 - 增加最大宽度 */}
               <div className="max-w-3xl mx-auto mt-8 relative z-20">
-                <JetBrainsSearch />
+                <JetBrainsSearch onSearch={handleSearch} initialKeyword={searchKeyword} />
               </div>
 
               <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mt-6">
@@ -65,7 +102,19 @@ export default async function Home() {
       {/* 分类区域 - 减少上下内边距 */}
       <section className="py-6">
         <div className="container">
-          <CategoryGrid categories={categories} />
+          {isLoading ? (
+            <div className="text-center py-12">
+              <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
+              <p className="mt-4">{t('loading')}</p>
+            </div>
+          ) : (
+            <CategoryGrid 
+              categories={categories} 
+              searchKeyword={searchKeyword}
+              onCategorySelect={handleCategorySelect}
+              onSearchClear={clearSearch}
+            />
+          )}
         </div>
       </section>
     </main>

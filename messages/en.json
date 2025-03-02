@@ -7,7 +7,9 @@
     "submitToolBtn": "Submit Tool",
     "popularToolsTitle": "Popular AI Tools",
     "categoriesTitle": "AI Tools Categories",
-    "description": "Embrace AI, explore the infinite possibilities of AI"
+    "description": "Embrace AI, explore the infinite possibilities of AI",
+    "loading": "Loading...",
+    "clearSearch": "Clear Search"
   },
   "article": {
     "meta_title": "Article",
@@ -31,7 +33,10 @@
     "reset": "Reset",
     "loading": "Loading...",
     "comingSoon": "Coming soon...",
-    "goToTop": "Go to top"
+    "goToTop": "Go to top",
+    "searchResults": "Search Results",
+    "matchedCategories": "Matched Categories",
+    "noSearchResults": "No matching results found"
   },
   "toolCard": {
     "visit": "Visit",

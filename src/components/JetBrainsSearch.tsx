@@ -17,14 +17,34 @@ import {
   GlobeIcon,
   LightningBoltIcon
 } from "@radix-ui/react-icons"
+import { useLocale } from 'next-intl'
 
-export function JetBrainsSearch() {
-  const [search, setSearch] = React.useState('')
+export function JetBrainsSearch({ 
+  onSearch, 
+  initialKeyword = '' 
+}: { 
+  onSearch?: (keyword: string) => void,
+  initialKeyword?: string
+}) {
+  const [search, setSearch] = React.useState(initialKeyword)
+  const [isSearching, setIsSearching] = React.useState(false)
   const t = useTranslations('search')
+  const locale = useLocale()
 
-  const handleSearch = () => {
+  // 当initialKeyword变化时更新search状态
+  React.useEffect(() => {
+    setSearch(initialKeyword);
+  }, [initialKeyword]);
+
+  const handleSearch = async () => {
     if (search.trim()) {
-      window.location.href = `/tools/${encodeURIComponent(search.trim())}`
+      if (onSearch) {
+        // 如果提供了onSearch回调，则在首页直接显示结果
+        onSearch(search.trim());
+      } else {
+        // 否则保持原有行为，跳转到搜索页面
+        window.location.href = `/tools/${encodeURIComponent(search.trim())}`
+      }
     }
   }
 
@@ -32,6 +52,19 @@ export function JetBrainsSearch() {
     e.preventDefault()
     handleSearch()
   }
+
+  // 处理建议选项选择
+  const handleSuggestionSelect = (suggestion: string) => {
+    setSearch(suggestion);
+    // 设置搜索词后立即触发搜索
+    setTimeout(() => {
+      if (onSearch) {
+        onSearch(suggestion);
+      } else {
+        window.location.href = `/tools/${encodeURIComponent(suggestion)}`;
+      }
+    }, 0);
+  };
 
   return (
     <div className="relative w-full">
@@ -57,22 +90,27 @@ export function JetBrainsSearch() {
         <Button
           type="submit"
           className="absolute right-1 top-1/2 -translate-y-1/2 h-10 rounded-full"
+          disabled={isSearching}
         >
-          {t('button')}
+          {isSearching ? (
+            <div className="h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-r-transparent"></div>
+          ) : (
+            t('button')
+          )}
         </Button>
       </form>
 
       {/* 搜索建议下拉框 */}
-      {search && (
+      {search && !isSearching && (
         <div className="absolute w-full mt-1">
           <Command className="rounded-lg border shadow-md">
             <CommandList>
               <CommandGroup heading={t('heading')}>
-                <CommandItem onSelect={() => window.location.href = '/tools/ai'}>
+                <CommandItem onSelect={() => handleSuggestionSelect('AI')}>
                   <LightningBoltIcon className="mr-2 h-4 w-4" />
                   <span>AI</span>
                 </CommandItem>
-                <CommandItem onSelect={() => window.location.href = '/tools/seo'}>
+                <CommandItem onSelect={() => handleSuggestionSelect('SEO')}>
                   <GlobeIcon className="mr-2 h-4 w-4" />
                   <span>SEO</span>
                 </CommandItem>

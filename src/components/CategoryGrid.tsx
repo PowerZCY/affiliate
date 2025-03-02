@@ -27,12 +27,21 @@ type ToolType = {
 // 缓存对象，用于存储已获取的工具数据
 const toolsCache: Record<string, ToolType[]> = {};
 
-export function CategoryGrid({ categories }: { 
-  categories: CategoryType[]
+export function CategoryGrid({ 
+  categories, 
+  searchKeyword = '',
+  onCategorySelect,
+  onSearchClear
+}: { 
+  categories: CategoryType[],
+  searchKeyword?: string,
+  onCategorySelect?: (category: string | null) => void,
+  onSearchClear?: () => void
 }) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [tools, setTools] = useState<ToolType[]>([]);
   const [allTools, setAllTools] = useState<ToolType[]>([]);
+  const [filteredTools, setFilteredTools] = useState<ToolType[]>([]);
   const [loading, setLoading] = useState<boolean>(true); // 初始加载状态设为true
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
   const { theme, resolvedTheme } = useTheme(); // 获取当前主题和解析后的主题
@@ -154,38 +163,19 @@ export function CategoryGrid({ categories }: {
         return;
       }
       
-      // 对每个分类发起请求
-      const promises = categoriesWithSrc.map(async (category) => {
-        try {
-          const response = await fetch(`/api/tools?category=${category.src}&locale=${locale}`);
-          const data = await response.json();
-          
-          if (data.tools && Array.isArray(data.tools)) {
-            return data.tools.map((tool: ToolType) => ({
-              ...tool,
-              category: category.name
-            }));
-          }
-          return [];
-        } catch (error) {
-          console.error(`Failed to fetch tools for ${category.src}:`, error);
-          return [];
-        }
-      });
+      // 使用API获取所有工具
+      const response = await fetch(`/api/tools/all?locale=${locale}`);
+      const data = await response.json();
       
-      const results = await Promise.all(promises);
-      
-      // 合并所有工具，并去除重复项
-      const allToolsData = results.flat();
-      const uniqueTools = allToolsData.filter((tool, index, self) => 
-        index === self.findIndex(t => t.name === tool.name)
-      );
-      
-      console.log(`Fetched ${uniqueTools.length} tools from all categories`);
-      setAllTools(uniqueTools);
-      
-      // 更新缓存，使用语言-all作为键
-      toolsCache[`${locale}-all`] = uniqueTools;
+      if (data.tools && Array.isArray(data.tools)) {
+        setAllTools(data.tools);
+        
+        // 更新缓存，使用语言-all作为键
+        toolsCache[`${locale}-all`] = data.tools;
+      } else {
+        console.warn('No tools found for all categories');
+        setAllTools([]);
+      }
     } catch (error) {
       console.error('Failed to fetch all tools:', error);
       setAllTools([]);
@@ -196,8 +186,10 @@ export function CategoryGrid({ categories }: {
   
   // 组件加载时获取所有工具
   useEffect(() => {
-    fetchAllTools();
-  }, [fetchAllTools]);
+    if (categories.length > 0) {
+      fetchAllTools();
+    }
+  }, [fetchAllTools, categories]);
   
   // 处理分类点击
   const handleCategoryClick = useCallback((categoryLink: string) => {
@@ -211,12 +203,23 @@ export function CategoryGrid({ categories }: {
       return;
     }
     
+    // 如果有搜索关键词，清空搜索
+    if (searchKeyword && onSearchClear) {
+      onSearchClear();
+    }
+    
     if (selectedCategory === categoryLink) {
       // 如果点击的是已选中的分类，则取消选择并显示所有工具
       setSelectedCategory(null);
+      if (onCategorySelect) {
+        onCategorySelect(null);
+      }
     } else {
       // 选择新分类并获取数据
       setSelectedCategory(categoryLink);
+      if (onCategorySelect) {
+        onCategorySelect(categoryLink);
+      }
       
       // 使用src属性获取工具数据
       if (category.src) {
@@ -227,14 +230,21 @@ export function CategoryGrid({ categories }: {
         setTools([]);
       }
     }
-  }, [selectedCategory, fetchToolsData, categories]);
+  }, [selectedCategory, fetchToolsData, categories, searchKeyword, onSearchClear, onCategorySelect]);
   
   // 处理重置按钮点击
   const handleResetClick = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setSelectedCategory(null);
-  }, []);
+    if (onCategorySelect) {
+      onCategorySelect(null);
+    }
+    // 同时清除搜索框内容
+    if (searchKeyword && onSearchClear) {
+      onSearchClear();
+    }
+  }, [onCategorySelect, searchKeyword, onSearchClear]);
   
   // 处理回到顶部按钮点击
   const handleScrollToTop = useCallback(() => {
@@ -249,33 +259,75 @@ export function CategoryGrid({ categories }: {
     ? categories.find(c => c.link === selectedCategory) 
     : null;
   
+  // 根据搜索关键词过滤工具
+  useEffect(() => {
+    if (!searchKeyword) {
+      setFilteredTools([]);
+      return;
+    }
+    
+    const keyword = searchKeyword.toLowerCase();
+    const filtered = allTools.filter(tool => 
+      tool.name.toLowerCase().includes(keyword) || 
+      tool.description.toLowerCase().includes(keyword) ||
+      (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(keyword)))
+    );
+    
+    setFilteredTools(filtered);
+    
+    // 如果有搜索结果，找出涉及的分类
+    if (filtered.length > 0) {
+      // 获取搜索结果中涉及的所有分类
+      const matchedCategories = filtered
+        .map(tool => tool.category)
+        .filter((category, index, self) => category && self.indexOf(category) === index);
+      
+      console.log('Matched categories:', matchedCategories);
+      
+      // 搜索时不自动选中任何分类
+      setSelectedCategory(null);
+    }
+  }, [searchKeyword, allTools]);
+  
   // 确定要显示的工具列表
-  const displayTools = selectedCategory ? tools : allTools;
+  const displayTools = searchKeyword 
+    ? filteredTools 
+    : (selectedCategory ? tools : allTools);
   
   // 确定当前主题类名
   const themeClass = mounted ? (resolvedTheme === 'dark' ? 'dark-theme' : 'light-theme') : '';
   
+  // 获取搜索结果中涉及的分类
+  const matchedCategories = searchKeyword 
+    ? Array.from(new Set(filteredTools.map(tool => tool.category).filter(Boolean) as string[])) 
+    : [];
+  
   return (
     <div className={`space-y-2 ${themeClass}`}>
-      {/* 分类按钮区域 - 减小内边距 */}
-      <div className={`${styles.categoryContainer} p-3`}>
+      {/* 分类按钮区域 */}
+      <div className={styles.categoryContainer}>
         <div className={styles.categoryGrid}>
-          {categories.map((category) => (
-            <button
-              key={category.link}
-              className={`${styles.categoryButton} ${selectedCategory === category.link ? styles.selected : ''}`}
-              onClick={() => handleCategoryClick(category.link)}
-            >
-              <span>{category.name}</span>
-            </button>
-          ))}
+          {categories.map((category) => {
+            // 判断该分类是否在搜索结果中
+            const isInSearchResults = searchKeyword && matchedCategories.includes(category.name);
+            
+            return (
+              <button
+                key={category.link}
+                className={`${styles.categoryButton} ${selectedCategory === category.link ? styles.selected : ''} ${isInSearchResults ? styles.matched : ''}`}
+                onClick={() => handleCategoryClick(category.link)}
+              >
+                <span>{category.name}</span>
+              </button>
+            );
+          })}
         </div>
         
         {/* 回退按钮 */}
         <button 
-          className={`${styles.resetButton} ${!selectedCategory ? styles.disabled : ''}`}
+          className={`${styles.resetButton} ${!selectedCategory && !searchKeyword ? styles.disabled : ''}`}
           onClick={handleResetClick}
-          disabled={!selectedCategory}
+          disabled={!selectedCategory && !searchKeyword}
           aria-label={t('reset')}
           type="button"
         >
@@ -289,7 +341,18 @@ export function CategoryGrid({ categories }: {
       </div>
       
       <div className="mt-2">
-        {selectedCategory && selectedCategoryData ? (
+        {searchKeyword ? (
+          <div className="mb-4 p-3">
+            <h2 className="text-2xl font-bold mb-1">
+              {t('searchResults')}: "{searchKeyword}" ({displayTools.length})
+            </h2>
+            {matchedCategories.length > 0 && (
+              <p className="text-base text-muted-foreground">
+                {t('matchedCategories')}: {matchedCategories.join(', ')}
+              </p>
+            )}
+          </div>
+        ) : selectedCategory && selectedCategoryData ? (
           <div className="mb-4 p-3">
             <h2 className="text-2xl font-bold mb-1">{selectedCategoryData.name}</h2>
             <p className="text-base text-muted-foreground">{selectedCategoryData.description}</p>
@@ -300,7 +363,7 @@ export function CategoryGrid({ categories }: {
           </div>
         )}
         
-        {loading ? (
+        {loading && !searchKeyword ? (
           <div className="text-center py-6">
             <div className="inline-block h-6 w-6 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
             <p className="mt-2">{t('loading')}</p>
@@ -323,7 +386,7 @@ export function CategoryGrid({ categories }: {
           </div>
         ) : (
           <div className="text-center py-6">
-            <p>{t('comingSoon')}</p>
+            <p>{searchKeyword ? t('noSearchResults') : t('comingSoon')}</p>
           </div>
         )}
       </div>
