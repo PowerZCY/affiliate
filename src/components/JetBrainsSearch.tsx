@@ -28,6 +28,7 @@ export function JetBrainsSearch({
 }) {
   const [search, setSearch] = React.useState(initialKeyword)
   const [isSearching, setIsSearching] = React.useState(false)
+  const [isFocused, setIsFocused] = React.useState(false)
   const t = useTranslations('search')
   const locale = useLocale()
 
@@ -80,6 +81,11 @@ export function JetBrainsSearch({
             className="pl-10 pr-20 h-12 rounded-full border-2 focus-visible:ring-primary"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={(e) => {
+              // 延迟失去焦点的处理，以便用户可以点击建议项
+              setTimeout(() => setIsFocused(false), 200);
+            }}
             onKeyDown={(e) => {
               if (e.key === 'Enter' && !e.defaultPrevented) {
                 handleSearch()
@@ -100,8 +106,8 @@ export function JetBrainsSearch({
         </Button>
       </form>
 
-      {/* 搜索建议下拉框 */}
-      {search && !isSearching && (
+      {/* 搜索建议下拉框 - 当输入框获得焦点时显示 */}
+      {isFocused && !isSearching && (
         <div className="absolute w-full mt-1">
           <Command className="rounded-lg border shadow-md">
             <CommandList>
