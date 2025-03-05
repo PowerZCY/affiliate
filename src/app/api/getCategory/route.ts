@@ -21,7 +21,7 @@ async function getCategoryFromGitHub(locale: string) {
       repo: repo ?? '',
       path: githubBasePath + locale + categoryPath,
     });
-    // @ts-ignore
+    // @ts-expect-error TODO
     const content = Buffer.from(data.content, 'base64').toString('utf8');
     const json = jsonc.parse(content);
     if (typeof json === 'string') {
@@ -54,8 +54,8 @@ export async function GET(req: Request) {
     try {
       const resources = await getCategoryFromGitHub(locale);
       return NextResponse.json(resources);
-      // @ts-ignore
     } catch (error) {
+      console.error('Error fetching resources from GitHub:', error);
       return NextResponse.json({ error: 'Failed to fetch resources from GitHub' }, { status: 500 });
     }
   } else {
@@ -82,7 +82,7 @@ export async function POST(req: Request) {
       path: githubBasePath + locale + categoryPath,
       message: 'Update category',
       content: Buffer.from(JSON.stringify(resources, null, 2)).toString('base64'),
-      // @ts-ignore
+      // @ts-expect-error TODO
       sha: currentFile.sha,
     });
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Script from "next/script";
@@ -16,12 +17,10 @@ export function GoogleAnalyticsScript() {
 
         (window as any).dataLayer = (window as any).dataLayer || [];
 
-        function gtag() {
-          (window as any).dataLayer.push(arguments);
+        function gtag(...args: any[]) {
+          (window as any).dataLayer.push(args);
         }
-        // @ts-expect-error gtag is only improted in the browser
         gtag("js", new Date());
-        // @ts-expect-error gtag is only improted in the browser
         gtag("config", googleAnalyticsId);
       }}
     />

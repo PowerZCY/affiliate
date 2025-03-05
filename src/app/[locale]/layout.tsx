@@ -1,4 +1,3 @@
-import GoogleAdsenseScript from "@/components/ads/GoogleAdsenseScript";
 import { GoogleAnalyticsScript } from "@/components/analytics/GoogleAnalyticsScript";
 import { PlausibleAnalyticsScript } from "@/components/analytics/PlausibleAnalyticsScript";
 import { Layout } from '@/components/Layout';

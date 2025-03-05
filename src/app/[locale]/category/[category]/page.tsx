@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { JetBrainsToolCard } from '@/components/JetBrainsToolCard';
 import { getCategoryByLink, getToolList } from '@/lib/data';
 import { Link } from "@/lib/i18n";

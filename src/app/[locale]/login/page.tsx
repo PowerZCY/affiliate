@@ -7,7 +7,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const router = useRouter();
 
-  // @ts-ignore
+  // @ts-expect-error TODO
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch('/api/login', {

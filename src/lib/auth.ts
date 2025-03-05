@@ -26,6 +26,7 @@ export function verifyToken(token: string): boolean {
             return decoded && decoded.domain === DOMAIN;
         }
     } catch (error) {
+        console.error('Error verifying token:', error);
         return false;
     }
 }

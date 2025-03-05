@@ -1,11 +1,10 @@
-import React from 'react'; // 确保导入 React
+import React, { ReactNode } from 'react';
 import { Navigation } from './Navigation'
 import { Footer } from '@/components/Footer'
 import { getCategoryMetaList } from '@/lib/data';
 import { getLocale } from 'next-intl/server';
 
-// @ts-expect-error
-export async function Layout({ children }) {
+export async function Layout({ children }: { children: ReactNode }) {
   const locale = await getLocale();
   // categories data
   const categories: { name: string, src: string, description: string, link: string }[] = getCategoryMetaList(locale);

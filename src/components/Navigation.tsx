@@ -27,12 +27,11 @@ type categoriesType = {
   link: string
 }
 
-type navigationProp = {
+type NavigationProp = {
   categories: categoriesType[]
 }
 
-
-export const Navigation = ({ categories }: navigationProp) => {
+export const Navigation = ({ categories: _categories }: NavigationProp) => {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const t = useTranslations('navigation');

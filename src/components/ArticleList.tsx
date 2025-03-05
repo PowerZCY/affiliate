@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card"
 import { useTranslations } from 'next-intl';
 
-// @ts-ignore
+// @ts-expect-error TODO
 const ArticleList = ({ articles, showMoreLink = true }) => {
   const t = useTranslations('articleList');
   return (
@@ -22,7 +22,7 @@ const ArticleList = ({ articles, showMoreLink = true }) => {
         )}
       </div>
       <div className="space-y-6">
-        {/* @ts-expect-error */}
+        {/* @ts-expect-error TODO */}
         {articles.map(({ id, title, description }) => (
           <Card key={id}>
             <CardHeader>
@@ -42,12 +42,12 @@ const ArticleList = ({ articles, showMoreLink = true }) => {
   )
 }
 
-// @ts-ignore
+// @ts-expect-error TODO
 const ArticlePage = ({ articles }) => {
   return (
     <section>
       <div className="space-y-6">
-        {/* @ts-expect-error */}
+        {/* @ts-expect-error TODO */}
         {articles.map(({ id, title, description }) => (
           <Card key={id}>
             <CardHeader>

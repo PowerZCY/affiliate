@@ -2,18 +2,15 @@
 import React from 'react'; // 确保导入 React
 import { getCategoryMetaList } from '@/lib/data';
 import { CategoryGrid } from '@/components/CategoryGrid';
-import styles from './CategoryPage.module.css';
 
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { getTranslations, getLocale } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
 
 
 export async function generateMetadata() {

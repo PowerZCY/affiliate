@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { appConfig } from "@/lib/appConfig";
 import { Octokit } from '@octokit/rest';
 import matter from 'gray-matter';
@@ -114,7 +115,7 @@ async function syncArticles() {
       }) as { data: GitHubFile };
 
       const content = Buffer.from(data.content || '', 'base64').toString('utf8');
-      const { data: frontMatter, content: articleContent } = matter(content);
+      const { data: frontMatter } = matter(content);
 
       // Fetch the last commit for this file
       const { data: commits } = await octokit.repos.listCommits({
@@ -166,7 +167,7 @@ async function updateMdFile(article: any) {
     }) as { data: GitHubFile };
 
     const currentContent = Buffer.from(currentFile.content || '', 'base64').toString('utf8');
-    const { data: frontMatter, content: articleContent } = matter(currentContent);
+    const { data: frontMatter } = matter(currentContent);
 
     const updatedFrontMatter = {
       ...frontMatter,

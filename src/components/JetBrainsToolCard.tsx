@@ -1,8 +1,8 @@
+'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ExternalLink } from 'lucide-react';
-import styles from './JetBrainsToolCard.module.css';
 import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 import { appConfig } from '@/lib/appConfig';
@@ -18,11 +18,11 @@ export interface ToolCardProps {
   home_img?: string;
 }
 
-export function JetBrainsToolCard({ 
-  name, 
-  description, 
-  url, 
-  tags = [], 
+export function JetBrainsToolCard({
+  name,
+  description,
+  url,
+  tags = [],
   icon_url,
   category,
   hot,
@@ -30,53 +30,53 @@ export function JetBrainsToolCard({
 }: ToolCardProps) {
   // 使用国际化翻译
   const t = useTranslations('toolCard');
-  
+
   // 添加悬停状态
   const [isHovered, setIsHovered] = useState(false);
   // 添加焦点状态
   const [isFocused, setIsFocused] = useState(false);
   // 获取当前主题
   const { resolvedTheme } = useTheme();
-  
+
   // 限制 tags 只显示前 3 个
   const displayTags = tags.slice(0, 3);
-  
+
   // 限制 description 的长度，超过 80 个字符则截断并添加省略号
   const maxDescriptionLength = 80;
-  const truncatedDescription = description.length > maxDescriptionLength 
-    ? `${description.substring(0, maxDescriptionLength)}...` 
+  const truncatedDescription = description.length > maxDescriptionLength
+    ? `${description.substring(0, maxDescriptionLength)}...`
     : description;
-  
+
   // 根据主题设置边框颜色
   const hoverBorderColor = resolvedTheme === 'dark' ? 'rgba(56, 189, 248, 0.8)' : 'rgba(14, 165, 233, 0.8)';
-  const hoverShadow = resolvedTheme === 'dark' 
-    ? '0 0 0 1px rgba(56, 189, 248, 0.5), 0 4px 12px rgba(56, 189, 248, 0.25)' 
+  const hoverShadow = resolvedTheme === 'dark'
+    ? '0 0 0 1px rgba(56, 189, 248, 0.5), 0 4px 12px rgba(56, 189, 248, 0.25)'
     : '0 0 0 1px rgba(14, 165, 233, 0.5), 0 4px 12px rgba(14, 165, 233, 0.25)';
-  
+
   // 是否显示banner图 - 如果配置开启且有图片，或者配置开启但使用默认图片
   const showBanner = appConfig.ui.showToolBanner;
   const bannerImageSrc = home_img ? `/img/${home_img}` : '/img/default.png';
-  
+
   // 判断是否使用默认图片
   const isDefaultImage = !home_img;
-  
+
   // 根据主题设置banner图的蒙版颜色（仅用于默认图片）
-  const overlayColor = resolvedTheme === 'dark' 
+  const overlayColor = resolvedTheme === 'dark'
     ? 'rgba(17, 24, 39, 0.6)' // 深色主题下的蒙版颜色
     : 'rgba(255, 255, 255, 0.6)'; // 浅色主题下的蒙版颜色
-  
+
   // 实际内容
   return (
     <div className="relative mt-3">
       {/* Hot标签 - 位于卡片顶部边缘 */}
       {hot && (
-        <div 
+        <div
           className="absolute top-0 left-0 right-0 z-20 flex justify-center"
           style={{
             transform: 'translateY(-50%)',
           }}
         >
-          <div 
+          <div
             className="px-6 py-1.5 rounded-md text-white font-medium text-sm"
             style={{
               backgroundColor: '#7c4dff', // 紫色背景
@@ -87,8 +87,8 @@ export function JetBrainsToolCard({
           </div>
         </div>
       )}
-      
-      <div 
+
+      <div
         className="jetbrains-card group border rounded-lg shadow-sm overflow-hidden flex flex-col transition-all duration-200"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -124,9 +124,9 @@ export function JetBrainsToolCard({
               />
               {/* 只对默认图片添加蒙版层 */}
               {isDefaultImage && (
-                <div 
+                <div
                   className="absolute inset-0 z-10"
-                  style={{ 
+                  style={{
                     backgroundColor: overlayColor,
                     backdropFilter: 'blur(1px)',
                     mixBlendMode: resolvedTheme === 'dark' ? 'color-dodge' : 'multiply'
@@ -135,7 +135,7 @@ export function JetBrainsToolCard({
               )}
             </div>
           )}
-          
+
           {/* 内容区域 */}
           <div className="p-4 flex flex-col flex-grow">
             {/* 头部区域：图标、名称、外部链接 */}
@@ -171,7 +171,7 @@ export function JetBrainsToolCard({
                 <span className="sr-only">{t('visit')} {name}</span>
               </Link>
             </div>
-            
+
             {/* 标签区域：固定高度 */}
             <div className="h-8 mb-2">
               {displayTags.length > 0 && (
@@ -197,10 +197,10 @@ export function JetBrainsToolCard({
                 </div>
               )}
             </div>
-            
+
             {/* 描述区域：固定高度，最多2行 */}
             <p className="text-sm text-muted-foreground h-10 line-clamp-2 mb-auto">{truncatedDescription}</p>
-            
+
             {/* 按钮区域：固定在底部 */}
             <div className="mt-auto pt-2">
               <a

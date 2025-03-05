@@ -8,7 +8,6 @@ import { useTranslations } from 'next-intl'
 import {
   Command,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command"
@@ -17,20 +16,18 @@ import {
   GlobeIcon,
   LightningBoltIcon
 } from "@radix-ui/react-icons"
-import { useLocale } from 'next-intl'
 
-export function JetBrainsSearch({ 
-  onSearch, 
-  initialKeyword = '' 
-}: { 
+export function JetBrainsSearch({
+  onSearch,
+  initialKeyword = ''
+}: {
   onSearch?: (keyword: string) => void,
   initialKeyword?: string
 }) {
   const [search, setSearch] = React.useState(initialKeyword)
-  const [isSearching, setIsSearching] = React.useState(false)
+  const [isSearching] = React.useState(false)
   const [isFocused, setIsFocused] = React.useState(false)
   const t = useTranslations('search')
-  const locale = useLocale()
 
   // 当initialKeyword变化时更新search状态
   React.useEffect(() => {
@@ -82,7 +79,7 @@ export function JetBrainsSearch({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onFocus={() => setIsFocused(true)}
-            onBlur={(e) => {
+            onBlur={(_e) => {
               // 延迟失去焦点的处理，以便用户可以点击建议项
               setTimeout(() => setIsFocused(false), 200);
             }}

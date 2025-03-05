@@ -1,13 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import { X } from 'lucide-react';
 
-// @ts-expect-error
-export default function LoginModal({ isOpen, onClose, onLogin }) {
+interface LoginModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onLogin: () => void;
+}
+
+export default function LoginModal({ isOpen, onClose, onLogin }: LoginModalProps) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  // @ts-expect-error
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     try {

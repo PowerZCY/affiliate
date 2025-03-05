@@ -2,10 +2,8 @@
 
 // pages/index.js
 import { JetBrainsSearch } from '@/components/JetBrainsSearch';
-import { Link } from "@/lib/i18n";
 import { CategoryGrid } from '@/components/CategoryGrid';
 import { useState, useEffect } from 'react';
-import { Tool } from '@/lib/data';
 import { useTranslations, useLocale } from 'next-intl';
 
 type categoryType = {
@@ -13,11 +11,6 @@ type categoryType = {
   src: string;
   description: string;
   link: string;
-}
-
-// 扩展Tool类型以包含category属性
-interface SearchResultTool extends Tool {
-  category?: string;
 }
 
 export default function Home() {
@@ -34,7 +27,7 @@ export default function Home() {
       try {
         const response = await fetch(`/api/categories?locale=${locale}`);
         const data = await response.json();
-        
+
         if (data.categories) {
           setCategories(data.categories);
         } else {
@@ -46,7 +39,7 @@ export default function Home() {
         setIsLoading(false);
       }
     };
-    
+
     fetchCategories();
   }, [locale]);
 
@@ -108,8 +101,8 @@ export default function Home() {
               <p className="mt-4">{t('loading')}</p>
             </div>
           ) : (
-            <CategoryGrid 
-              categories={categories} 
+            <CategoryGrid
+              categories={categories}
               searchKeyword={searchKeyword}
               onCategorySelect={handleCategorySelect}
               onSearchClear={clearSearch}

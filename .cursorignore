@@ -1,0 +1,35 @@
+# 构建输出
+/dist/
+/build/
+/.next/
+/out/
+
+# 依赖
+/node_modules/
+
+# 缓存
+/.cache/
+/.svelte-kit/
+
+# 环境配置
+.env*
+.env.local
+.env.development
+.env.production
+.env.test
+
+# 版本控制
+.git/
+.gitignore
+
+# 编辑器配置
+.vscode/
+.idea/
+
+# 其他
+.DS_Store
+*.log 
+
+# 无关项目的文件
+/docs/Git规范.md
+/docs/GitRules.md
