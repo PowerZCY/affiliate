@@ -12,7 +12,6 @@ pnpm add -D eslint-plugin-unused-imports
 {
   "extends": [
     "next/core-web-vitals",
-    "next/typescript",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended"
   ],
