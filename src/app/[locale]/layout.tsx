@@ -1,16 +1,17 @@
 import { GoogleAnalyticsScript } from "@/components/analytics/GoogleAnalyticsScript";
 import { PlausibleAnalyticsScript } from "@/components/analytics/PlausibleAnalyticsScript";
-import { Layout } from '@/components/Layout';
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
 import { cn } from "@/lib/utils";
 import '@radix-ui/themes/styles.css';
 import { Metadata } from 'next';
-import { ThemeProvider } from "next-themes";
-import { DM_Sans, Inter } from "next/font/google";
-import React from 'react';
-import './globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import { ThemeProvider } from "next-themes";
+import { DM_Sans, Inter } from "next/font/google";
 import Script from 'next/script';
+import React from 'react';
+import './globals.css';
 
 // 全局字体设置
 const inter = Inter({ subsets: ['latin'] })
@@ -64,9 +65,10 @@ export default async function RootLayout({
             {/* 国际化支持 */}
             <ThemeProvider attribute="class">
               {/* 主题支持 */}
-              <Layout>{children}</Layout>
+              <Header/>
+              {children}
+              <Footer/>
               {/* 布局结构 */}
-
               {/* 网站统计和广告脚本 */}
               {process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID && (
                 <Script

@@ -1,6 +1,5 @@
 'use client'
 
-// pages/index.js
 import { JetBrainsSearch } from '@/components/JetBrainsSearch';
 import { CategoryGrid } from '@/components/CategoryGrid';
 import { useState, useEffect } from 'react';

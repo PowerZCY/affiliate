@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/app/[locale]/category/CategoryPage.module.css';
+import styles from '@/styles/CategoryPage.module.css';
 import { JetBrainsToolCard } from '@/components/JetBrainsToolCard';
 import { useTranslations, useLocale } from 'next-intl';
 import { useTheme } from 'next-themes'; // 如果您使用 next-themes 管理主题

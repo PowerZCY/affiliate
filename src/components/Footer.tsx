@@ -1,10 +1,9 @@
 // components/Footer.js
 import { Link } from "@/lib/i18n";
-import React from 'react'; // 确保导入 React
+import { Github } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Image from "next/image";
 import IconImage from "../../public/favicon.svg";
-import { useTranslations } from 'next-intl';
-import { Github } from 'lucide-react';
 
 export function Footer() {
   const t = useTranslations('footer');
@@ -31,16 +30,6 @@ export function Footer() {
               <li>
                 <Link href="/" className="text-sm hover:underline">
                   {t('home')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/article" className="text-sm hover:underline">
-                  {t('article')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/changelog" className="text-sm hover:underline">
-                  {t('changelog')}
                 </Link>
               </li>
             </ul>
