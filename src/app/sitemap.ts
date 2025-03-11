@@ -7,19 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: '', // home
       lastModified: new Date(),
       changeFrequency: 'daily',
-      priority: 1,
-    },
-    {
-      url: 'tools', // tools
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: 'category', // category
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
+      priority: 0.7,
     }
   ];
 

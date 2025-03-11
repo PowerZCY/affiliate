@@ -2,7 +2,7 @@
 
 import { JetBrainsSearch } from '@/components/JetBrainsSearch';
 import { CategoryGrid } from '@/components/CategoryGrid';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 
 type categoryType = {
@@ -12,30 +12,78 @@ type categoryType = {
   link: string;
 }
 
+// 缓存相关的工具函数
+const cacheUtils = {
+  getCache: (key: string) => {
+    if (typeof window === 'undefined') return null;
+    try {
+      const cached = sessionStorage.getItem(key);
+      return cached ? JSON.parse(cached) : null;
+    } catch (e) {
+      console.error('[Categories] Error reading from sessionStorage:', e);
+      return null;
+    }
+  },
+  
+  setCache: (key: string, data: any) => {
+    if (typeof window === 'undefined') return;
+    try {
+      sessionStorage.setItem(key, JSON.stringify(data));
+    } catch (e) {
+      console.error('[Categories] Error writing to sessionStorage:', e);
+    }
+  }
+};
+
 export default function Home() {
   const [categories, setCategories] = useState<categoryType[]>([]);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const locale = useLocale();
   const t = useTranslations('home');
+  const isFetching = useRef(false);
 
   useEffect(() => {
     // 客户端获取分类数据
     const fetchCategories = async () => {
+      const cacheKey = `categories-${locale}`;
+      
+      // 如果正在获取数据，直接返回
+      if (isFetching.current) {
+        console.log(`[Categories] Skip duplicate request - fetch in progress for locale: ${locale}`);
+        return;
+      }
+
+      // 检查 sessionStorage 中是否已有数据
+      const cachedData = cacheUtils.getCache(cacheKey);
+      if (cachedData) {
+        console.log(`[Categories] Using cached data from sessionStorage for locale: ${locale}`);
+        setCategories(cachedData);
+        setIsLoading(false);
+        return;
+      }
+      
+      console.log(`[Categories] Start fetching categories for locale: ${locale}`);
       setIsLoading(true);
+      isFetching.current = true;
+
       try {
         const response = await fetch(`/api/categories?locale=${locale}`);
         const data = await response.json();
 
         if (data.categories) {
+          console.log(`[Categories] Successfully fetched ${data.categories.length} categories for locale: ${locale}`);
+          // 更新 sessionStorage 缓存和状态
+          cacheUtils.setCache(cacheKey, data.categories);
           setCategories(data.categories);
         } else {
-          console.error('Failed to fetch categories');
+          console.error(`[Categories] Failed to fetch categories for locale: ${locale} - invalid response format`);
         }
       } catch (error) {
-        console.error('Error fetching categories:', error);
+        console.error(`[Categories] Error fetching categories for locale: ${locale}:`, error);
       } finally {
         setIsLoading(false);
+        isFetching.current = false;
       }
     };
 
