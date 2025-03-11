@@ -6,27 +6,19 @@ import { ExternalLink } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 import { appConfig } from '@/lib/appConfig';
+import { Tool } from '@/lib/data';
 
-export interface ToolCardProps {
-  name: string;
-  description: string;
-  url: string;
-  tags?: string[];
-  icon_url?: string;
-  category?: string;
-  hot?: string;
-  home_img?: string;
-}
+export type ToolCardProps = Tool;
 
 export function JetBrainsToolCard({
   name,
   description,
   url,
   tags = [],
-  icon_url,
+  iconUrl,
   category,
   hot,
-  home_img
+  homeImg
 }: ToolCardProps) {
   // 使用国际化翻译
   const t = useTranslations('toolCard');
@@ -59,10 +51,10 @@ export function JetBrainsToolCard({
 
   // 是否显示banner图 - 如果配置开启且有图片，或者配置开启但使用默认图片
   const showBanner = appConfig.ui.showToolBanner;
-  const bannerImageSrc = home_img ? `/img/${home_img}` : '/img/default.png';
+  const bannerImageSrc = homeImg ? `/img/${homeImg}` : '/img/default.png';
 
   // 判断是否使用默认图片
-  const isDefaultImage = !home_img;
+  const isDefaultImage = !homeImg;
 
   // 根据主题设置banner图的蒙版颜色（仅用于默认图片）
   const overlayColor = resolvedTheme === 'dark'
@@ -176,10 +168,10 @@ export function JetBrainsToolCard({
             {/* 头部区域：图标、名称、外部链接 */}
             <div className="flex items-start justify-between mb-2">
               <div className="flex items-center gap-3">
-                {icon_url ? (
+                {iconUrl ? (
                   <div className="h-10 w-10 overflow-hidden rounded-md flex-shrink-0">
                     <Image
-                      src={icon_url}
+                      src={iconUrl}
                       alt={name}
                       width={40}
                       height={40}

@@ -4,7 +4,8 @@ import path from 'path'
 import * as jsonc from 'jsonc-parser';
 import { appConfig } from '@/lib/appConfig';
 
-interface CategoryMeta {
+// 统一导出所有类型定义
+export interface CategoryMeta {
     name: string;        // 分类名称
     src: string;         // 数据源文件
     description: string; // 分类描述
@@ -14,11 +15,18 @@ interface CategoryMeta {
 export interface Tool {
     name: string;        // 工具名称
     description: string; // 工具描述
-    url: string;         // 工具链接（改为 url）
-    tags?: string[];     // 添加标签支持
-    icon_url?: string;   // 工具图标（原 logo）
+    url: string;         // 工具链接
+    tags?: string[];     // 标签支持
+    iconUrl?: string;    // 工具图标
+    category?: string;   // 分类标识
     hot?: string;        // 冠名标题
-    home_img?: string;   // 首页图片
+    homeImg?: string;    // 首页图片
+}
+
+// 用于缓存数据的类型定义
+export interface CacheData {
+    categories?: CategoryMeta[];
+    tools?: Tool[];
 }
 
 // 解析并验证数据结构
@@ -93,9 +101,9 @@ export function getToolList(srcName: string, locale: string): Tool[] {
             description: item.description || '',
             url: item.url || '',
             tags: Array.isArray(item.tags) ? item.tags : [],
-            icon_url: item.logo || '',
+            iconUrl: item.iconUrl || '',
             hot: item.hot || '',
-            home_img: item.homeImg || ''
+            homeImg: item.homeImg || ''
         }));
     };
 

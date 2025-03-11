@@ -5,27 +5,10 @@ import { JetBrainsToolCard } from '@/components/JetBrainsToolCard';
 import { useTranslations, useLocale } from 'next-intl';
 import { useTheme } from 'next-themes'; // 如果您使用 next-themes 管理主题
 import { useCallback, useEffect, useRef, useState } from 'react';
-
-type CategoryType = {
-  name: string;
-  link: string;
-  description: string;
-  src?: string;
-};
-
-type ToolType = {
-  name: string;
-  description: string;
-  url: string;
-  tags?: string[];
-  icon_url?: string;
-  category?: string; // 添加分类标识
-  hot?: string;
-  home_img?: string;
-};
+import { CategoryMeta, Tool } from '@/lib/data';
 
 // 缓存对象，用于存储已获取的工具数据
-const toolsCache: Record<string, ToolType[]> = {};
+const toolsCache: Record<string, Tool[]> = {};
 
 export function CategoryGrid({
   categories,
@@ -33,15 +16,15 @@ export function CategoryGrid({
   onCategorySelect,
   onSearchClear
 }: {
-  categories: CategoryType[],
+  categories: CategoryMeta[],
   searchKeyword?: string,
   onCategorySelect?: (category: string | null) => void,
   onSearchClear?: () => void
 }) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [tools, setTools] = useState<ToolType[]>([]);
-  const [allTools, setAllTools] = useState<ToolType[]>([]);
-  const [filteredTools, setFilteredTools] = useState<ToolType[]>([]);
+  const [tools, setTools] = useState<Tool[]>([]);
+  const [allTools, setAllTools] = useState<Tool[]>([]);
+  const [filteredTools, setFilteredTools] = useState<Tool[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
   const { resolvedTheme } = useTheme();
@@ -379,10 +362,10 @@ export function CategoryGrid({
                 description={tool.description}
                 url={tool.url}
                 tags={tool.tags}
-                icon_url={tool.icon_url}
+                iconUrl={tool.iconUrl}
                 category={tool.category}
                 hot={tool.hot}
-                home_img={tool.home_img}
+                homeImg={tool.homeImg}
               />
             ))}
           </div>

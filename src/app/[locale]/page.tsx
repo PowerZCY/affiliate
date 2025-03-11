@@ -4,33 +4,7 @@ import { JetBrainsSearch } from '@/components/JetBrainsSearch';
 import { CategoryGrid } from '@/components/CategoryGrid';
 import { useState, useEffect, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-
-type categoryType = {
-  name: string;
-  src: string;
-  description: string;
-  link: string;
-}
-
-type CacheData = {
-  categories: Array<{
-    name: string;
-    src: string;
-    description: string;
-    link: string;
-  }>;
-} | {
-  tools: Array<{
-    name: string;
-    description: string;
-    url: string;
-    tags?: string[];
-    icon_url?: string;
-    category?: string;
-    hot?: string;
-    home_img?: string;
-  }>;
-};
+import { CategoryMeta, CacheData } from '@/lib/data';
 
 // 缓存相关的工具函数
 const cacheUtils = {
@@ -56,7 +30,7 @@ const cacheUtils = {
 };
 
 export default function Home() {
-  const [categories, setCategories] = useState<categoryType[]>([]);
+  const [categories, setCategories] = useState<CategoryMeta[]>([]);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const locale = useLocale();
