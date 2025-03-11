@@ -35,6 +35,10 @@ export function JetBrainsToolCard({
   const [isHovered, setIsHovered] = useState(false);
   // 添加焦点状态
   const [isFocused, setIsFocused] = useState(false);
+  // 添加原始图片错误状态
+  const [originalImageError, setOriginalImageError] = useState(false);
+  // 添加默认图片错误状态
+  const [defaultImageError, setDefaultImageError] = useState(false);
   // 获取当前主题
   const { resolvedTheme } = useTheme();
 
@@ -108,22 +112,53 @@ export function JetBrainsToolCard({
           {/* Banner图 - 根据配置显示 */}
           {showBanner && (
             <div className="relative w-full h-40">
-              <Image
-                src={bannerImageSrc}
-                alt={`${name} banner`}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover"
-                style={isDefaultImage ? { opacity: '0.7' } : {}} // 只对默认图片降低不透明度
-                priority
-                onError={(e) => {
-                  console.error(`Failed to load image: ${bannerImageSrc}`);
-                  // 加载失败时使用备用默认图片
-                  e.currentTarget.src = '/img/default.png';
-                }}
-              />
+              {!originalImageError ? (
+                <Image
+                  src={bannerImageSrc}
+                  alt={`${name} banner`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover"
+                  style={isDefaultImage ? { opacity: '0.7' } : {}}
+                  priority
+                  onError={(e) => {
+                    console.error(`Failed to load original image: ${bannerImageSrc}`);
+                    setOriginalImageError(true);
+                    if (!isDefaultImage) {
+                      // 如果不是默认图片，则尝试加载默认图片
+                      e.currentTarget.src = '/img/default.png';
+                      e.currentTarget.onerror = (_e2) => {
+                        console.error('Failed to load default image');
+                        setDefaultImageError(true);
+                      };
+                    } else {
+                      // 如果本身就是默认图片加载失败
+                      setDefaultImageError(true);
+                    }
+                  }}
+                />
+              ) : !defaultImageError ? (
+                <Image
+                  src="/img/default.png"
+                  alt="Default banner"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover"
+                  style={{ opacity: '0.7' }}
+                  priority
+                  onError={(e) => {
+                    console.error('Failed to load default image');
+                    setDefaultImageError(true);
+                    e.currentTarget.onerror = null;
+                  }}
+                />
+              ) : (
+                <div className="w-full h-40 bg-muted flex items-center justify-center">
+                  <span className="text-muted-foreground">Failed to load Img</span>
+                </div>
+              )}
               {/* 只对默认图片添加蒙版层 */}
-              {isDefaultImage && (
+              {(isDefaultImage || originalImageError) && !defaultImageError && (
                 <div
                   className="absolute inset-0 z-10"
                   style={{
