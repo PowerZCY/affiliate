@@ -2,13 +2,6 @@ export const appConfig = {
   // 基础配置
   baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
 
-  // GitHub 配置
-  github: {
-    owner: process.env.GITHUB_OWNER || '',
-    repo: process.env.GITHUB_REPO || '',
-    token: process.env.GITHUB_TOKEN || '',
-  },
-
   // 国际化配置
   i18n: {
     // locales: ["en", "de", "es"] as const,
@@ -29,26 +22,6 @@ export const appConfig = {
       es: "USD",
     },
   },
-  auth: {
-    oAuthProviders: ["google", "github"],
-  },
-
-  // API 路径配置
-  api: {
-    articles: '/api/articles',
-    category: '/api/getCategory',
-    src: '/api/getSrc',
-    login: '/api/login',
-    logout: '/api/logout',
-    checkAuth: '/api/check-auth',
-  },
-
-  // 内容路径配置
-  content: {
-    articles: 'data/json/articles.json',
-    mdFolder: 'data/md',
-    toolsFolder: 'data/json',
-  },
   
   // 界面配置
   ui: {
@@ -56,3 +29,14 @@ export const appConfig = {
     showToolBanner: process.env.NEXT_PUBLIC_SHOW_TOOL_BANNER !== 'false',
   },
 };
+
+// 辅助函数：检查是否为支持的语言
+function isSupportedLocale(locale: string): locale is typeof appConfig.i18n.locales[number] {
+  return (appConfig.i18n.locales as readonly string[]).includes(locale);
+}
+
+// 辅助函数：获取有效的语言设置
+// 如果当前语言不支持，则返回默认语言
+export function getValidLocale(locale: string): typeof appConfig.i18n.locales[number] {
+  return isSupportedLocale(locale) ? locale : appConfig.i18n.defaultLocale;
+}

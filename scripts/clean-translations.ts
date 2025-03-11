@@ -11,12 +11,14 @@ interface TranslationInfo {
   keys: string[] // 完整的翻译键路径
 }
 
-interface TranslationReport {
-  [key: string]: string[]; // 动态键名
-}
-
 // 存储所有日志消息
 const logMessages: string[] = []
+
+// 检查是否带有 --remove 参数
+const shouldRemove = process.argv.includes('--remove')
+
+// 根据是否带有 --remove 参数确定日志文件名
+const logFileName = shouldRemove ? 'remove.log' : 'clean.log'
 
 // 自定义日志函数
 function log(message: string): void {
@@ -34,7 +36,6 @@ function logError(message: string): void {
 const translations: Record<string, Record<string, any>> = {}
 
 // 动态加载所有语言的翻译文件
-// 注意翻译文件的目录位置，推荐项目根目录
 appConfig.i18n.locales.forEach(locale => {
   try {
     const filePath = path.join(process.cwd(), `messages/${locale}.json`)
@@ -69,26 +70,6 @@ function getAllKeys(obj: Record<string, any>, prefix: string = ''): string[] {
 // 获取对象的顶级键（命名空间）
 function getTopLevelKeys(obj: Record<string, any>): string[] {
   return Object.keys(obj)
-}
-
-// 检查键是否存在于翻译文件中
-function checkKeyExists(key: string, translations: Record<string, any>): boolean {
-  const parts = key.split('.')
-  let current: any = translations
-
-  for (const part of parts) {
-    if (current[part] === undefined) {
-      return false
-    }
-    current = current[part]
-  }
-
-  return true
-}
-
-// 检查命名空间是否存在于翻译文件中
-function checkNamespaceExists(namespace: string, translations: Record<string, any>): boolean {
-  return translations[namespace] !== undefined
 }
 
 // 从文件内容中提取翻译键和命名空间
@@ -180,9 +161,51 @@ function extractTranslationsInfo(content: string, filePath: string): Translation
   return result
 }
 
+// 从翻译对象中删除指定键
+function removeKeyFromTranslations(key: string, translations: Record<string, any>): boolean {
+  const parts = key.split('.')
+  const lastPart = parts.pop()
+  
+  if (!lastPart) return false
+  
+  let current = translations
+  
+  // 导航到最后一级的父对象
+  for (const part of parts) {
+    if (current[part] === undefined || typeof current[part] !== 'object') {
+      return false
+    }
+    current = current[part]
+  }
+  
+  // 删除键
+  if (current[lastPart] !== undefined) {
+    delete current[lastPart]
+    return true
+  }
+  
+  return false
+}
+
+// 清理空对象（递归）
+function cleanEmptyObjects(obj: Record<string, any>): Record<string, any> {
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      if (typeof obj[key] === 'object' && obj[key] !== null) {
+        obj[key] = cleanEmptyObjects(obj[key])
+        // 如果对象为空，删除它
+        if (Object.keys(obj[key]).length === 0) {
+          delete obj[key]
+        }
+      }
+    }
+  }
+  return obj
+}
+
 // 主函数
-async function checkTranslations(): Promise<number> {
-  log('开始检查翻译...')
+async function cleanTranslations(): Promise<number> {
+  log('开始检查未使用的翻译键...')
 
   // 获取所有 TSX/TS 文件
   const files: string[] = glob.sync('src/**/*.{tsx,ts,jsx,js}', {
@@ -191,7 +214,7 @@ async function checkTranslations(): Promise<number> {
 
   log(`找到 ${files.length} 个文件需要扫描`)
 
-  // 扫描所有文件
+  // 扫描所有文件，收集使用的翻译键和命名空间
   for (const file of files) {
     try {
       const content = fs.readFileSync(file, 'utf8')
@@ -224,108 +247,121 @@ async function checkTranslations(): Promise<number> {
     }
   }
 
-  log('\n检查翻译文件中的键...')
+  log(`\n在代码中找到 ${foundTranslationKeys.size} 个使用的翻译键`)
   log(`在代码中找到 ${foundNamespaces.size} 个使用的命名空间: ${Array.from(foundNamespaces).join(', ')}`)
 
-  // 检查结果
-  const report: TranslationReport = {
-    missingInEn: [],
-    missingInZh: [],
-    enOnlyKeys: [],
-    zhOnlyKeys: [],
-    missingNamespacesInEn: [],
-    missingNamespacesInZh: []
+  // 检查每个语言文件中未使用的键
+  const unusedKeys: Record<string, string[]> = {}
+  const removedKeys: Record<string, string[]> = {}
+  const unusedNamespaces: Record<string, string[]> = {}
+  
+  appConfig.i18n.locales.forEach(locale => {
+    unusedKeys[locale] = []
+    removedKeys[locale] = []
+    unusedNamespaces[locale] = []
+    
+    // 获取翻译文件中的所有键
+    const allTranslationKeys = getAllKeys(translations[locale])
+    
+    // 获取翻译文件中的所有命名空间
+    const allNamespaces = getTopLevelKeys(translations[locale])
+    
+    // 找出未使用的命名空间
+    allNamespaces.forEach(namespace => {
+      if (!foundNamespaces.has(namespace)) {
+        unusedNamespaces[locale].push(namespace)
+      }
+    })
+    
+    // 找出未使用的键
+    allTranslationKeys.forEach(key => {
+      if (!foundTranslationKeys.has(key)) {
+        unusedKeys[locale].push(key)
+      }
+    })
+    
+    log(`\n在 ${locale} 翻译文件中找到 ${unusedKeys[locale].length} 个未使用的键`)
+    log(`在 ${locale} 翻译文件中找到 ${unusedNamespaces[locale].length} 个未使用的命名空间`)
+  })
+  
+  if (shouldRemove) {
+    log('\n开始删除未使用的翻译键...')
+    
+    // 删除每个语言文件中未使用的键
+    appConfig.i18n.locales.forEach(locale => {
+      unusedKeys[locale].forEach(key => {
+        if (removeKeyFromTranslations(key, translations[locale])) {
+          removedKeys[locale].push(key)
+        }
+      })
+      
+      // 删除未使用的命名空间
+      unusedNamespaces[locale].forEach(namespace => {
+        if (translations[locale][namespace] !== undefined) {
+          delete translations[locale][namespace]
+          log(`从 ${locale} 翻译文件中删除了未使用的命名空间: ${namespace}`)
+        }
+      })
+      
+      // 清理空对象
+      translations[locale] = cleanEmptyObjects(translations[locale])
+      
+      // 保存更新后的翻译文件
+      const filePath = path.join(process.cwd(), `messages/${locale}.json`)
+      fs.writeFileSync(filePath, JSON.stringify(translations[locale], null, 2), 'utf8')
+      
+      log(`从 ${locale} 翻译文件中删除了 ${removedKeys[locale].length} 个未使用的键`)
+    })
+  } else {
+    log('\n要删除未使用的键，请使用 --remove 参数运行脚本')
   }
 
-  // 检查命名空间是否存在
-  foundNamespaces.forEach(namespace => {
-    appConfig.i18n.locales.forEach(locale => {
-      const missingNamespaceKey = `missingNamespacesIn${locale.toUpperCase()}`;
-      if (!checkNamespaceExists(namespace, translations[locale])) {
-        report[missingNamespaceKey] = report[missingNamespaceKey] || [];
-        report[missingNamespaceKey].push(namespace);
-      }
-    });
-  });
-
-  // 检查翻译键是否存在
-  foundTranslationKeys.forEach(key => {
-    appConfig.i18n.locales.forEach(locale => {
-      const missingKey = `missingIn${locale.toUpperCase()}`;
-      if (!checkKeyExists(key, translations[locale])) {
-        report[missingKey] = report[missingKey] || [];
-        report[missingKey].push(key);
-      }
-    });
-  });
-
-  // 检查翻译文件的键是否一致
-  appConfig.i18n.locales.forEach(locale => {
-    const allKeys = getAllKeys(translations[locale]);
-    appConfig.i18n.locales.forEach(otherLocale => {
-      if (locale !== otherLocale) {
-        const otherKeys = getAllKeys(translations[otherLocale]);
-        const onlyKeys = `${locale}OnlyKeys`;
-        report[onlyKeys] = allKeys.filter(key => !otherKeys.includes(key));
-      }
-    });
-  });
-
   // 生成报告
-  log('\n=== 翻译检查报告 ===\n');
-
-  // 首先报告缺失的命名空间，这通常是最严重的问题
+  log('\n=== 未使用的翻译键报告 ===\n')
+  
   appConfig.i18n.locales.forEach(locale => {
-    const missingNamespaceKey = `missingNamespacesIn${locale.toUpperCase()}`;
-    if (report[missingNamespaceKey]?.length > 0) {
-      log(`🚨 ${locale} 翻译文件中缺失的命名空间:`);
-      report[missingNamespaceKey].forEach(namespace => log(`  - ${namespace}`));
+    if (unusedNamespaces[locale].length > 0) {
+      log(`🔍 ${locale} 翻译文件中未使用的命名空间:`)
+      unusedNamespaces[locale].forEach(namespace => log(`  - ${namespace}`))
     } else {
-      log(`✅ ${locale} 翻译文件中包含所有使用的命名空间`);
+      log(`✅ ${locale} 翻译文件中没有未使用的命名空间`)
     }
-  });
-
-  // 然后报告缺失的翻译键
-  appConfig.i18n.locales.forEach(locale => {
-    const missingKey = `missingIn${locale.toUpperCase()}`;
-    if (report[missingKey]?.length > 0) {
-      log(`\n🔴 ${locale} 翻译文件中缺失的键:`);
-      report[missingKey].forEach(key => log(`  - ${key}`));
+    
+    if (unusedKeys[locale].length > 0) {
+      log(`\n🔍 ${locale} 翻译文件中未使用的键:`)
+      unusedKeys[locale].forEach(key => log(`  - ${key}`))
     } else {
-      log(`\n✅ ${locale} 翻译文件中包含所有使用的键`);
+      log(`\n✅ ${locale} 翻译文件中没有未使用的键`)
     }
-  });
-
-  // 最后报告不一致的键
-  appConfig.i18n.locales.forEach(locale => {
-    const onlyKeys = `${locale}OnlyKeys`;
-    if (report[onlyKeys]?.length > 0) {
-      log(`\n⚠️ 仅在 ${locale} 翻译文件中存在的键:`);
-      report[onlyKeys].forEach(key => log(`  - ${key}`));
+    
+    if (shouldRemove && removedKeys[locale].length > 0) {
+      log(`\n🗑️ 从 ${locale} 翻译文件中删除的键:`)
+      removedKeys[locale].forEach(key => log(`  - ${key}`))
     }
-  });
-
+  })
+  
   log('\n=== 报告结束 ===\n')
 
   // 在所有操作完成后，一次性写入日志文件
-  const logFilePath = path.join(process.cwd(), 'scripts', 'check.log')
+  const logFilePath = path.join(process.cwd(), 'scripts', logFileName)
   fs.writeFileSync(logFilePath, logMessages.join('\n'), 'utf8')
 
   log(`检查完成，日志已保存到 ${logFilePath}`)
 
-  // 如果有任何问题，返回非零状态码
-  return Object.values(report).some(keys => keys.length > 0) ? 1 : 0
+  // 如果有任何未使用的键或命名空间，返回非零状态码
+  return (Object.values(unusedKeys).some(keys => keys.length > 0) || 
+          Object.values(unusedNamespaces).some(namespaces => namespaces.length > 0)) ? 1 : 0
 }
 
-// 运行检查
-checkTranslations().then(exitCode => {
+// 运行清理
+cleanTranslations().then(exitCode => {
   // 确保所有日志都已写入
-  const logFilePath = path.join(process.cwd(), 'scripts', 'check.log')
+  const logFilePath = path.join(process.cwd(), 'scripts', logFileName)
   fs.writeFileSync(logFilePath, logMessages.join('\n'), 'utf8')
   console.log(`日志已保存到 ${logFilePath}`)
 
   process.exit(exitCode)
 }).catch(error => {
-  console.error('检查翻译时发生错误:', error)
+  console.error('清理翻译时发生错误:', error)
   process.exit(1)
-})
+}) 

@@ -1,5 +1,4 @@
 import { NextRequest } from 'next/server';
-import { verifyToken } from './lib/auth';
 import createMiddleware from 'next-intl/middleware';
 import { appConfig } from "./lib/appConfig";
 
@@ -33,23 +32,13 @@ export function middleware(request: NextRequest) {
 
   // Only check authentication for /admin routes
   if (path.startsWith('/admin')) {
-    const token = request.cookies.get('auth_token')?.value;
-    const isLoggedIn = token && verifyToken(token);
-    console.log('isLoggedIn', isLoggedIn);
-    if (!isLoggedIn) {
-      console.log('Not authenticated');
-    }
+    console.log('isLoggedIn');
   }
-
   return intlMiddleware(request);
 }
 
 export const config = {
   matcher: [
-    "/((?!api|_next|.*\\..*).*)",
-    // '/', 
-    // '/:locale?/:path*',
-    '/admin/:path*',  // Match all paths starting with /admin
-
+    "/((?!api|_next|.*\\..*).*)"
   ],
 };

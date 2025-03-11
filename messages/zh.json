@@ -1,32 +1,21 @@
 {
   "home": {
-    "meta_title": "AI Affiliate: 热门AI导航平台",
-    "meta_description": "积极拥抱AI，探索AI无限可能",
-    "browseToolsBtn": "浏览工具",
-    "submitToolBtn": "提交工具",
-    "popularToolsTitle": "热门AI工具",
-    "categoriesTitle": "AI工具分类",
     "h2": "热门AI导航平台",
     "description": "积极拥抱AI，探索AI无限可能",
-    "loading": "加载中...",
-    "clearSearch": "清除搜索"
+    "loading": "加载中..."
   },
-  "article": {
-    "meta_title": "文章",
-    "meta_description": "AI热门事件",
-    "homeBtn": "首页",
-    "articleBtn": "文章",
-    "h1": "文章",
-    "h2": "AI热门事件",
-    "backToArticles": "返回文章列表"
+  "header": {
+
   },
-  "changelog": {
-    "meta_title": "更新日志",
-    "meta_description": "查看更新日志",
-    "h1": "更新日志",
-    "h2": "查看更新日志",
-    "homeBtn": "首页",
-    "changelogBtn": "更新日志"
+  "toolCard": {
+    "visit": "访问",
+    "visitWebsite": "查看详情"
+  },
+  "search": {
+    "inputPlaceholder": "搜索AI工具",
+    "heading": "建议",
+    "more": "更多",
+    "button": "搜索"
   },
   "categoryGrid": {
     "browseAllTools": "浏览所有工具",
@@ -38,55 +27,13 @@
     "matchedCategories": "匹配分类",
     "noSearchResults": "没有找到匹配的结果"
   },
-  "toolCard": {
-    "visit": "访问",
-    "visitWebsite": "查看详情"
-  },
-  "tools": {
-    "meta_description": "积极拥抱AI，探索AI无限可能",
-    "h2_1": "所有与 ",
-    "h2_2": " 相关的AI工具",
-    "homeBtn": "首页"
-  },
-  "search": {
-    "input_placeholder": "搜索AI工具",
-    "heading": "建议",
-    "more": "更多",
-    "button": "搜索"
-  },
-  "navigation": {
-    "homeBtn": "首页",
-    "moreCategoryDescription": "更多分类",
-    "articleBtn": "文章",
-    "articleDescription": "积极拥抱AI，探索AI无限可能",
-    "article1Title": "添加新的AI工具到AI Affiliate",
-    "article2Title": "部署你自己的AI Affiliate",
-    "moreArticleBtn": "更多",
-    "moreArticleDescription": "更多文章",
-    "changelogBtn": "更新日志",
-    "submitToolBtn": "提交工具"
-  },
   "footer": {
-    "description": "热门AI导航平台",
-    "builtWith": "基于",
     "quickLinks": "快速链接",
     "home": "首页",
-    "category": "分类",
-    "article": "文章",
-    "changelog": "更新日志",
     "privacy": "隐私政策",
     "termsOfService": "服务条款",
     "legal": "法律声明",
     "connect": "联系我们",
-    "support": "支持",
     "copyright": "版权所有。"
-  },
-  "toolsList": {
-    "more": "更多",
-    "tools": "工具"
-  },
-  "articleList": {
-    "h2": "文章",
-    "moreArticles": "更多文章"
   }
 }

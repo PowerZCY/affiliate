@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --fix . && next lint",
-    "check-translations": "ts-node --project tsconfig.node.json scripts/check-translations.ts"
+    "check-translations": "ts-node --project tsconfig.node.json scripts/check-translations.ts",
+    "clean-translations": "ts-node --project tsconfig.node.json scripts/clean-translations.ts",
+    "remove-translations": "ts-node --project tsconfig.node.json scripts/clean-translations.ts --remove"
   },
   "dependencies": {
     "@octokit/rest": "^21.0.1",

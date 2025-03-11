@@ -1,32 +1,21 @@
 {
   "home": {
-    "meta_title": "AI Affiliate: Open-Source & Hot AI Navigator",
-    "meta_description": "Embrace AI, explore the infinite possibilities of AI",
     "h2": "Open-Source & Hot AI Navigator",
-    "browseToolsBtn": "Browse Tools",
-    "submitToolBtn": "Submit Tool",
-    "popularToolsTitle": "Popular AI Tools",
-    "categoriesTitle": "AI Tools Categories",
     "description": "Embrace AI, explore the infinite possibilities of AI",
-    "loading": "Loading...",
-    "clearSearch": "Clear Search"
+    "loading": "Loading..."
   },
-  "article": {
-    "meta_title": "Article",
-    "meta_description": "Read our latest articles on newest AI and best practices.",
-    "h1": "Articles",
-    "h2": "Read More About AI Affiliate Programs",
-    "homeBtn": "Home",
-    "articleBtn": "Article",
-    "backToArticles": "Back to articles"
+  "header": {
+
   },
-  "changelog": {
-    "meta_title": "Changelog",
-    "meta_description": "Stay up to date with the latest updates in AI Affiliate",
-    "h1": "Changelog",
-    "h2": "Stay up to date with the latest updates in AI Affiliate",
-    "homeBtn": "Home",
-    "changelogBtn": "Changelog"
+  "toolCard": {
+    "visit": "Visit",
+    "visitWebsite": "View Details"
+  },
+  "search": {
+    "inputPlaceholder": "Search tools by name / tags...",
+    "heading": "Suggestions",
+    "more": "More",
+    "button": "Search"
   },
   "categoryGrid": {
     "browseAllTools": "Browse All Tools",
@@ -38,55 +27,13 @@
     "matchedCategories": "Matched Categories",
     "noSearchResults": "No matching results found"
   },
-  "toolCard": {
-    "visit": "Visit",
-    "visitWebsite": "View Details"
-  },
-  "tools": {
-    "meta_description": "Embrace AI, explore the infinite possibilities of AI tools",
-    "h2_1": "All AI tools related to",
-    "h2_2": "",
-    "homeBtn": "Home"
-  },
-  "search": {
-    "input_placeholder": "Search tools by name / tags...",
-    "heading": "Suggestions",
-    "more": "More",
-    "button": "Search"
-  },
-  "navigation": {
-    "homeBtn": "Home",
-    "moreCategoryDescription": "More Categories",
-    "articleBtn": "Article",
-    "articleDescription": "Embrace AI, explore the infinite possibilities of AI",
-    "article1Title": "Adding New AI Tools to AI Affiliate",
-    "article2Title": "Deploy your own AI Affiliate",
-    "moreArticleBtn": "More",
-    "moreArticleDescription": "More articles",
-    "changelogBtn": "Changelog",
-    "submitToolBtn": "Submit Tool"
-  },
   "footer": {
-    "description": "Open-Source & Hot AI Navigator",
-    "builtWith": "Built with",
     "quickLinks": "Quick Links",
     "home": "Home",
-    "category": "Category",
-    "article": "Article",
-    "changelog": "Changelog",
     "privacy": "Privacy",
     "termsOfService": "Terms of Service",
     "legal": "Legal",
     "connect": "Connect",
-    "support": "Support",
     "copyright": "All rights reserved."
-  },
-  "toolsList": {
-    "more": "More",
-    "tools": "tools"
-  },
-  "articleList": {
-    "h2": "Articles",
-    "moreArticles": "More articles"
   }
 }

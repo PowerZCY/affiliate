@@ -74,7 +74,7 @@ export function JetBrainsSearch({
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             type="search"
-            placeholder={t('input_placeholder')}
+            placeholder={t('inputPlaceholder')}
             className="pl-10 pr-20 h-12 rounded-full border-2 focus-visible:ring-primary"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
