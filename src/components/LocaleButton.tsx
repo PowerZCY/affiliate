@@ -9,14 +9,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { appConfig } from "@/lib/appConfig";
-import { usePathname, useRouter } from "@/lib/i18n";
+import { usePathname } from "@/lib/i18n";
 import { LanguagesIcon } from "lucide-react";
 import { useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect, useCallback, useRef } from "react";
 
 export function LocaleButton() {
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentLocale = useLocale();

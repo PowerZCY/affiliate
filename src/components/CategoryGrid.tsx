@@ -42,21 +42,19 @@ export function CategoryGrid({
   const [tools, setTools] = useState<ToolType[]>([]);
   const [allTools, setAllTools] = useState<ToolType[]>([]);
   const [filteredTools, setFilteredTools] = useState<ToolType[]>([]);
-  const [loading, setLoading] = useState<boolean>(true); // 初始加载状态设为true
+  const [loading, setLoading] = useState<boolean>(true);
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
-  const { resolvedTheme } = useTheme(); // 获取当前主题和解析后的主题
+  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const isMounted = useRef(true);
-  const isAllToolsFetching = useRef(false); // 防止重复请求
+  const isAllToolsFetching = useRef(false);
   const t = useTranslations('categoryGrid');
-  const locale = useLocale(); // 获取当前语言
+  const locale = useLocale();
 
-  // 在客户端挂载后设置mounted状态
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // 监听滚动事件，控制回到顶部按钮的显示
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300);
@@ -68,47 +66,36 @@ export function CategoryGrid({
     };
   }, []);
 
-  // 组件卸载时设置标志
   useEffect(() => {
     return () => {
       isMounted.current = false;
     };
   }, []);
 
-  // 获取单个分类的工具数据（优先使用缓存）
-  const fetchToolsData = useCallback(async (src: string, categoryName: string) => {
-    console.log(`[Tools] Fetching tools for category: ${categoryName} (src: ${src})`);
+  // 获取单个分类的工具数据（从缓存）
+  const fetchToolsData = useCallback((src: string, categoryName: string) => {
+    console.log(`[Tools] Getting tools for category: ${categoryName}`);
     setLoading(true);
 
     try {
-      // 检查缓存中是否已有该分类的数据
-      if (toolsCache[`${locale}-${src}`]) {
-        console.log(`[Tools] Using cached data for ${locale}-${src}`);
-        setTools(toolsCache[`${locale}-${src}`]);
-        setLoading(false);
+      // 从全局缓存中获取数据
+      const allToolsCacheKey = `${locale}-all`;
+      const allToolsCache = toolsCache[allToolsCacheKey];
+      
+      if (!allToolsCache) {
+        console.warn(`[Tools] No tools cache found for locale: ${locale}`);
+        setTools([]);
         return;
       }
 
-      const response = await fetch(`/api/tools?category=${src}&locale=${locale}`);
-      const data = await response.json();
-
-      if (data.tools && Array.isArray(data.tools)) {
-        // 为工具添加分类标识
-        const toolsWithCategory = data.tools.map((tool: ToolType) => ({
-          ...tool,
-          category: categoryName
-        }));
-
-        console.log(`[Tools] Successfully fetched ${toolsWithCategory.length} tools for category: ${categoryName}`);
-        // 更新缓存，使用语言-分类作为键
-        toolsCache[`${locale}-${src}`] = toolsWithCategory;
-        setTools(toolsWithCategory);
-      } else {
-        console.warn(`[Tools] No tools found for category: ${categoryName} (src: ${src})`);
-        setTools([]);
-      }
+      // 从缓存中过滤出当前分类的工具
+      const categoryTools = allToolsCache.filter(tool => tool.category === categoryName);
+      console.log(`[Tools] Found ${categoryTools.length} tools in cache for ${categoryName}`);
+      
+      // 更新工具列表
+      setTools(categoryTools);
     } catch (error) {
-      console.error(`[Tools] Failed to fetch tools for category: ${categoryName} (src: ${src})`, error);
+      console.error(`[Tools] Error getting tools for category: ${categoryName}`, error);
       setTools([]);
     } finally {
       setLoading(false);
@@ -117,7 +104,6 @@ export function CategoryGrid({
 
   // 获取所有分类的工具数据（优先使用缓存）
   const fetchAllTools = useCallback(async () => {
-    const cacheKey = `all-tools-${locale}`;
     // 防止重复请求，使用locale作为key
     if (isAllToolsFetching.current) {
       console.log(`[Tools] Skip duplicate request - already fetching all tools for locale: ${locale}`);
@@ -173,7 +159,7 @@ export function CategoryGrid({
 
       // 使用API获取所有工具
       console.log(`[Tools] Fetching all tools from API for locale: ${locale}`);
-      const response = await fetch(`/api/tools/all?locale=${locale}`);
+      const response = await fetch(`/api/tools?locale=${locale}`);
       const data = await response.json();
 
       if (data.tools && Array.isArray(data.tools)) {

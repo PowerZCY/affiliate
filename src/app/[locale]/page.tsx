@@ -12,6 +12,26 @@ type categoryType = {
   link: string;
 }
 
+type CacheData = {
+  categories: Array<{
+    name: string;
+    src: string;
+    description: string;
+    link: string;
+  }>;
+} | {
+  tools: Array<{
+    name: string;
+    description: string;
+    url: string;
+    tags?: string[];
+    icon_url?: string;
+    category?: string;
+    hot?: string;
+    home_img?: string;
+  }>;
+};
+
 // 缓存相关的工具函数
 const cacheUtils = {
   getCache: (key: string) => {
@@ -25,7 +45,7 @@ const cacheUtils = {
     }
   },
   
-  setCache: (key: string, data: any) => {
+  setCache: (key: string, data: CacheData) => {
     if (typeof window === 'undefined') return;
     try {
       sessionStorage.setItem(key, JSON.stringify(data));
@@ -68,6 +88,7 @@ export default function Home() {
       isFetching.current = true;
 
       try {
+        // 获取分类数据
         const response = await fetch(`/api/categories?locale=${locale}`);
         const data = await response.json();
 
