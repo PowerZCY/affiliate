@@ -31,6 +31,16 @@ export const appConfig = {
     toolsPerPage: 12,
   },
 
+  // 分类配置数据
+  metaConfig: {
+    category: {
+      dirName: 'data',
+      secondDirName: 'json',
+      toolDirName: 'tools',
+      coreName: 'category.jsonc'
+    }
+  },
+
   // 菜单配置
   menu: [
     {

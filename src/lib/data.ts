@@ -2,6 +2,7 @@
 import fs from 'fs'
 import path from 'path'
 import * as jsonc from 'jsonc-parser';
+import { appConfig } from '@/lib/appConfig';
 
 interface CategoryMeta {
     name: string;        // 分类名称
@@ -62,11 +63,11 @@ function sortByName<T extends { name: string }>(list: T[]): T[] {
 }
 
 function fetchDefaultMetaPath(locale: string): string {
-    return fetchMetaPath(locale, 'category.jsonc');
+    return path.join(process.cwd(), appConfig.metaConfig.category.dirName, appConfig.metaConfig.category.secondDirName, locale, appConfig.metaConfig.category.coreName);
 }
 
-function fetchMetaPath(locale: string, srcName: string): string {
-    return path.join(process.cwd(), 'data', 'json', locale, 'tools', srcName);
+function fetchToolMetaPath(locale: string, srcName: string): string {
+    return path.join(process.cwd(), appConfig.metaConfig.category.dirName, appConfig.metaConfig.category.secondDirName, locale, appConfig.metaConfig.category.toolDirName, srcName);
 }
 
 // 根据link获取指定分类元数据
@@ -77,7 +78,7 @@ export function getCategoryByLink(link: string, locale: string): CategoryMeta | 
 
 // 根据src(分类文件名)获取指定分类下的数据列表
 export function getToolList(srcName: string, locale: string): Tool[] {
-    const targetCategoryPath = fetchMetaPath(locale, srcName);
+    const targetCategoryPath = fetchToolMetaPath(locale, srcName);
 
     // 解析并验证数据结构
     const parseAndValidate = (data: any, metaPath: string): Tool[] => {
@@ -128,11 +129,4 @@ export function searchToolByKeyword(keyword: string, locale: string): Tool[] {
         console.error(`Search tool by keyword ${keyword} failed: `, error);
         return [];
     }
-}
-
-// 读取更新日志
-export function getChangelog() {
-    const dataPath = path.join(process.cwd(), 'data', 'json', 'changelog.jsonc');
-    const dataList = jsonc.parse(fs.readFileSync(dataPath, 'utf8'));
-    return dataList;
 }
