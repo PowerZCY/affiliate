@@ -66,11 +66,6 @@ function getAllKeys(obj: Record<string, any>, prefix: string = ''): string[] {
   return keys
 }
 
-// 获取对象的顶级键（命名空间）
-function getTopLevelKeys(obj: Record<string, any>): string[] {
-  return Object.keys(obj)
-}
-
 // 检查键是否存在于翻译文件中
 function checkKeyExists(key: string, translations: Record<string, any>): boolean {
   const parts = key.split('.')

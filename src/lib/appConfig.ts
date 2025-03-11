@@ -27,7 +27,35 @@ export const appConfig = {
   ui: {
     // 是否显示工具卡片的banner图
     showToolBanner: process.env.NEXT_PUBLIC_SHOW_TOOL_BANNER !== 'false',
+    // 每页显示的工具数量
+    toolsPerPage: 12,
   },
+
+  // 菜单配置
+  menu: [
+    {
+      key: 'journey',
+      href: '/journey',
+    },
+    {
+      key: 'docs',
+      href: '/docs',
+      children: [
+        {
+          key: 'gettingStarted',
+          href: '/docs/getting-started',
+        },
+        {
+          key: 'guides',
+          href: '/docs/guides',
+        },
+        {
+          key: 'apiReference',
+          href: '/docs/api',
+        },
+      ],
+    }
+  ] as MenuItem[]
 };
 
 // 辅助函数：检查是否为支持的语言
@@ -40,3 +68,11 @@ function isSupportedLocale(locale: string): locale is typeof appConfig.i18n.loca
 export function getValidLocale(locale: string): typeof appConfig.i18n.locales[number] {
   return isSupportedLocale(locale) ? locale : appConfig.i18n.defaultLocale;
 }
+
+// 菜单项类型定义
+export type MenuItem = {
+  key: string;        // 唯一标识，也用作国际化翻译键
+  href: string;       // 链接地址
+  children?: MenuItem[]; // 子菜单项
+  external?: boolean; // 是否为外部链接
+};

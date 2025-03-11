@@ -1,130 +1,129 @@
 'use client'
-import { LocaleButton } from "@/components/LocaleButton";
-import { ThemeModeButton } from "@/components/ThemeModeButton";
-import { Link } from "@/lib/i18n";
-import { Github } from 'lucide-react';
-import Image from "next/image";
-import IconImage from "../../public/favicon.svg";
-import { useTranslations, useLocale } from "next-intl";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
-import { getValidLocale } from "@/lib/appConfig";
-
-// 菜单项类型定义
-type MenuItem = {
-  key: string;
-  href: string;
-  children?: MenuItem[];
-};
+import React, { useState } from 'react'
+import { Link } from '@/lib/i18n'
+import { useLocale, useTranslations } from 'next-intl'
+import { Menu, X, Github } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { ThemeModeButton } from '@/components/ThemeModeButton'
+import { LocaleButton } from '@/components/LocaleButton'
+import { NavigationMenu } from '@/components/NavigationMenu'
+import { appConfig, getValidLocale } from '@/lib/appConfig'
+import Image from "next/image"
+import IconImage from "../../public/favicon.svg"
 
 export function Header() {
-  const size = 30;
-  const t = useTranslations('header');
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const currentLocale = useLocale();
   // 使用 appConfig 中的辅助函数获取有效的语言设置
   const locale = getValidLocale(currentLocale);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const t1 = useTranslations('menu')
+  const size = 30;
 
-  // 菜单项配置 - 实际项目中可以从配置文件中导入
-  const menuItems: MenuItem[] = [
-    {
-      key: 'ai-journey',
-      href: '/ai-journey',
-    },
-    {
-      key: 'documentation',
-      href: '/docs',
-    },
-    // 可以在这里添加更多菜单项
-  ];
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
 
-  // 处理Logo点击事件，确保跳转到当前语言的首页
-  const handleLogoClick = () => {
-    setMobileMenuOpen(false); // 如果移动菜单打开，则关闭
-  };
+  const closeMenu = () => {
+    setIsMenuOpen(false)
+  }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background">
-      <div className="container flex h-16 items-center justify-between">
-        {/* 左侧 Logo 区域 */}
-        <div className="flex items-center gap-4">
+    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-14 items-center">
+        {/* Logo 和网站名称 */}
+        <div className="mr-4 flex">
           <Link 
             href="/" 
-            className="flex items-center space-x-2"
-            onClick={handleLogoClick}
-            locale={locale}
+            locale={locale} 
+            className="mr-6 flex items-center space-x-2 hover:opacity-80 transition-opacity"
           >
             <Image
               src={IconImage}
-              className="block"
               width={size}
               height={size}
-              alt="AI Affiliate Logo"
+              alt="AI·Affiliate"
+              className="cursor-pointer"
             />
-            <span className="inline-block font-bold text-xl">AI·Affiliate</span>
+            <span className="font-bold text-xl cursor-pointer">AI·Affiliate</span>
           </Link>
         </div>
 
-        {/* 中间导航菜单 - 桌面端显示 */}
-        <nav className="hidden md:flex items-center space-x-6 mx-6">
-          {menuItems.map((item) => (
-            <Link
-              key={item.key}
-              href={item.href}
-              locale={locale}
-              className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
-            >
-              {t(item.key, { fallback: item.key })}
-            </Link>
-          ))}
-        </nav>
+        {/* 桌面导航菜单 - 只在大屏幕上显示 */}
+        <div className="hidden md:flex md:flex-1">
+          <NavigationMenu 
+            items={appConfig.menu} 
+            locale={locale} 
+          />
+        </div>
 
-        {/* 右侧工具栏 */}
-        <div className="flex items-center gap-3">
-          <ThemeModeButton />
-          <LocaleButton />
-          <Link
-            href="https://github.com/PowerZCY/affiliate"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <Github className="h-5 w-5" />
-            <span className="sr-only">GitHub</span>
-          </Link>
-          
+        <div className="flex flex-1 items-center justify-end">
+          {/* 桌面端按钮组 */}
+          <div className="hidden md:flex items-center divide-x divide-border">
+            <div className="px-2">
+              <LocaleButton />
+            </div>
+            <div className="px-2">
+              <ThemeModeButton />
+            </div>
+            <div className="pl-2">
+              <Link
+                href="https://github.com/PowerZCY/affiliate"
+                target="_blank"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Github className="h-5 w-5" />
+              </Link>
+            </div>
+          </div>
+
           {/* 移动端菜单按钮 */}
           <Button
             variant="ghost"
-            size="icon"
             className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? t1('closeMenu') : t1('openMenu')}
           >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            <span className="sr-only">Toggle menu</span>
+            {isMenuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </Button>
         </div>
       </div>
 
       {/* 移动端菜单 */}
-      {mobileMenuOpen && (
+      {isMenuOpen && (
         <div className="md:hidden border-t">
-          <div className="container py-4 space-y-3">
-            {menuItems.map((item) => (
-              <Link
-                key={item.key}
-                href={item.href}
-                locale={locale}
-                className="block py-2 text-muted-foreground hover:text-foreground transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t(item.key, { fallback: item.key })}
-              </Link>
-            ))}
+          <div className="container py-4">
+            <NavigationMenu 
+              items={appConfig.menu} 
+              locale={locale} 
+              mobile={true}
+              onItemClick={closeMenu}
+            />
+            
+            {/* 移动端按钮组 */}
+            <div className="mt-4 flex items-center divide-x divide-border border-t pt-4">
+              <div className="px-2">
+                <LocaleButton />
+              </div>
+              <div className="px-2">
+                <ThemeModeButton />
+              </div>
+              <div className="pl-2">
+                <Link
+                  href="https://github.com/PowerZCY/affiliate"
+                  target="_blank"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <Github className="h-5 w-5" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       )}
     </header>
-  );
+  )
 }

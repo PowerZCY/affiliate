@@ -1,13 +1,23 @@
-// components/Footer.js
+'use client'
+
+import React from 'react'
 import { Link } from "@/lib/i18n";
 import { Github } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Image from "next/image";
 import IconImage from "../../public/favicon.svg";
+import { appConfig, getValidLocale, MenuItem } from '@/lib/appConfig'
 
 export function Footer() {
+  const currentLocale = useLocale()
+  const locale = getValidLocale(currentLocale)
   const t = useTranslations('footer');
+  const t1 = useTranslations('menu');
   const size = 30;
+  
+  // 获取一级菜单项（没有子菜单的项目）
+  const topLevelMenuItems = appConfig.menu.filter(item => !item.children || item.children.length === 0)
+  
   return (
     <footer className="bg-secondary text-secondary-foreground border-t">
       <div className="container py-12 md:py-16">
@@ -28,10 +38,24 @@ export function Footer() {
             <h3 className="font-semibold mb-4">{t('quickLinks')}</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-sm hover:underline">
+                <Link href="/" locale={locale} className="text-sm hover:underline">
                   {t('home')}
                 </Link>
               </li>
+              {/* 添加配置的一级菜单项 */}
+              {topLevelMenuItems.map((item: MenuItem) => (
+                <li key={item.key}>
+                  <Link 
+                    href={item.href} 
+                    locale={locale} 
+                    target={item.external ? '_blank' : undefined}
+                    rel={item.external ? 'noopener noreferrer' : undefined}
+                    className="text-sm hover:underline"
+                  >
+                    {t1(item.key, { fallback: item.key })}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -39,12 +63,12 @@ export function Footer() {
             <h3 className="font-semibold mb-4">{t('legal')}</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/privacy" className="text-sm hover:underline">
+                <Link href="/privacy" locale={locale} className="text-sm hover:underline">
                   {t('privacy')}
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-sm hover:underline">
+                <Link href="/terms" locale={locale} className="text-sm hover:underline">
                   {t('termsOfService')}
                 </Link>
               </li>

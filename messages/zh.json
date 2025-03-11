@@ -4,8 +4,15 @@
     "description": "积极拥抱AI，探索AI无限可能",
     "loading": "加载中..."
   },
-  "header": {
-
+  "menu": {
+    "journey": "征途",
+    "docs": "文档",
+    "gettingStarted": "快速开始",
+    "guides": "样例",
+    "apiReference": "API说明",
+    "closeMenu": "关闭菜单",
+    "openMenu": "打开菜单"
+    
   },
   "toolCard": {
     "visit": "访问",

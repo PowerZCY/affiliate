@@ -4,8 +4,15 @@
     "description": "Embrace AI, explore the infinite possibilities of AI",
     "loading": "Loading..."
   },
-  "header": {
-
+  "menu": {
+    "journey": "Journey",
+    "docs": "Docs",
+    "gettingStarted": "Getting Started",
+    "guides": "Guides",
+    "apiReference": "API Reference",
+    "closeMenu": "Close Menu",
+    "openMenu": "Open Menu"
+    
   },
   "toolCard": {
     "visit": "Visit",
