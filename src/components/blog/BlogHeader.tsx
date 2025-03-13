@@ -35,7 +35,8 @@ export function BlogHeader({ slug, locale }: BlogHeaderProps) {
           fill
           className="object-cover"
           sizes="100vw"
-          priority
+          priority={false} // 移除优先加载，除非这是首屏关键图片
+          loading="eager" // 使用eager替代priority，更适合首屏但不那么激进
         />
       </div>
 
@@ -78,7 +79,8 @@ export function BlogHeader({ slug, locale }: BlogHeaderProps) {
                     fill
                     className="object-cover"
                     sizes="40px"
-                    priority
+                    priority={false} // 移除优先加载
+                    loading="lazy" // 使用懒加载，因为头像通常不是关键渲染内容
                   />
                 </div>
                 <span className="font-medium">{post.author.name}</span>

@@ -7,11 +7,6 @@ import { appConfig } from "./lib/appConfig";
 - 如果没有语言前缀，根据用户浏览器设置添加默认语言
 - 处理语言切换的重定向
 - 验证请求的语言是否在支持列表中
-例如：
-
-- 访问 /admin → 可能重定向到 /en/admin 或 /zh/admin
-- 访问 /about → 可能重定向到 /en/about 或 /zh/about
-- 访问 /fr/about （不支持的语言）→ 重定向到默认语言
 这样设计确保：
 
 1. 所有页面都有正确的语言前缀
@@ -21,10 +16,12 @@ import { appConfig } from "./lib/appConfig";
 const intlMiddleware = createMiddleware({
   // A list of all locales that are supported
   locales: appConfig.i18n.locales,
-
   // Used when no locale matches
   defaultLocale: appConfig.i18n.defaultLocale,
-  localePrefix: "as-needed",
+  // 禁用自动语言检测，确保使用defaultLocale作为默认语言
+  localeDetection: false,
+  // 设置为 'always'，确保所有路径都有语言前缀
+  localePrefix: 'always'
 });
 
 export function middleware(request: NextRequest) {

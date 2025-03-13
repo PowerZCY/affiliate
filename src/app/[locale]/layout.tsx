@@ -2,6 +2,7 @@ import { GoogleAnalyticsScript } from "@/components/analytics/GoogleAnalyticsScr
 import { PlausibleAnalyticsScript } from "@/components/analytics/PlausibleAnalyticsScript";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import LanguageDetector from '@/components/LanguageDetector';
 import { cn } from "@/lib/utils";
 import '@radix-ui/themes/styles.css';
 import { Metadata } from 'next';
@@ -65,9 +66,10 @@ export default async function RootLayout({
             {/* 国际化支持 */}
             <ThemeProvider attribute="class">
               {/* 主题支持 */}
-              <Header/>
+              <Header />
+              <LanguageDetector />
               {children}
-              <Footer/>
+              <Footer />
               {/* 布局结构 */}
               {/* 网站统计和广告脚本 */}
               {process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID && (

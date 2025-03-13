@@ -108,7 +108,8 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
                 fill
                 sizes="100vw"
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
-                priority
+                priority={false} // 移除优先加载，除非这是首屏关键图片
+                loading="eager" // 使用eager替代priority，更适合首屏但不那么激进
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 md:p-10 text-white">
@@ -134,7 +135,8 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
                       fill
                       sizes="40px"
                       className="object-cover"
-                      priority
+                      priority={false} // 移除优先加载
+                      loading="lazy" // 使用懒加载，因为头像通常不是关键渲染内容
                     />
                   </div>
                   <span>{featuredPost.author.name}</span>
@@ -164,7 +166,8 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    priority
+                    priority={false} // 移除优先加载，除非这是首屏关键图片
+                    loading="eager" // 使用eager替代priority，更适合首屏但不那么激进
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-300 group-hover:opacity-90"></div>
                 </div>
@@ -242,7 +245,8 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
                             fill
                             sizes="24px"
                             className="object-cover"
-                            priority
+                            priority={false} // 移除优先加载，除非这是首屏关键图片
+                            loading="lazy" // 使用懒加载，因为头像通常不是关键渲染内容
                           />
                         </div>
                         <span className="text-xs text-muted-foreground truncate" title={post.author.name}>
@@ -286,7 +290,8 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
                       fill
                       sizes="80px"
                       className="object-cover"
-                      priority
+                      priority={false} // 移除优先加载
+                      loading="lazy" // 使用懒加载，因为头像通常不是关键渲染内容
                     />
                   </div>
                   <div className="flex-1">

@@ -1,4 +1,10 @@
 {
+  "languageDetection": {
+    "title": "语言检测",
+    "description": "是否切换到",
+    "close": "不用了",
+    "changeAction": "是的，切换"
+  },
   "home": {
     "h2": "热门AI导航平台",
     "description": "积极拥抱AI，探索AI无限可能",

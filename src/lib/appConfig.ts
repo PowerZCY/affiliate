@@ -14,7 +14,12 @@ export const appConfig = {
       // de: "Deutsch",
       // fr: "asdf",
     },
-    localeDetection: false,
+    detector: {
+      storageKey: 'language-preference-status',
+      autoCloseTimeout: 10000,
+      expirationDays: 30,
+      storagePrefix: 'AI-Affiliate'
+    },
     localeCurrencies: {
       /* This only works with Stripe for now. For LemonSqueezy, we need to set the currency in the LemonSqueezy dashboard and there can only be one. */
       en: "USD",

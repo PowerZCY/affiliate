@@ -1,4 +1,10 @@
 {
+  "languageDetection": {
+    "title": "Language Detection",
+    "description": "Would you like to switch to",
+    "close": "No, thanks",
+    "changeAction": "Yes, switch"
+  },
   "home": {
     "h2": "Open-Source & Hot AI Navigator",
     "description": "Embrace AI, explore the infinite possibilities of AI",

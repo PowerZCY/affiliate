@@ -5,7 +5,7 @@ slug: "markdown-module"
 excerpt: "A detailed introduction to the Markdown-based blog system implementation in the Space-Brain project, including file structure, processing workflow, and related configurations."
 tags: ["tutorials", "insights"]
 author:
-  name: "dibage"
+  name: "D8ger"
   avatar: "/images/default.webp"
 publishedAt: "2024-03-13"
 imageUrl: "/images/default.webp"
@@ -41,6 +41,10 @@ space-brain/
     │       ├── BlogHeader.tsx                   # Header component
     │       ├── BlogFooter.tsx                   # Footer component
     │       └── BlogSidebar.tsx                  # Sidebar component
+    │       └── card.tsx                         # Table of contents card component
+    │       └── separator.tsx                    # Separator component
+    │   └── MdCoder.tsx                          # Markdown code block component
+    │   └── MarkdownRenderer.tsx                 # Markdown rendering component
     └── types/
     │   └── blog-data.d.ts                       # Data type definitions
     └── lib/
@@ -57,6 +61,15 @@ pnpm add next-mdx-remote    # MDX support
 
 # Development tools related
 pnpm add -D @types/node fs-extra @types/fs-extra
+
+# Markdown rendering related
+pnpm add @tailwindcss/typography react-markdown remark-math remark-gfm rehype-katex rehype-prism mermaid katex
+# Markdown code block highlighting related
+pnpm add react-syntax-highlighter @types/react-syntax-highlighter
+
+# UI components related
+pnpm add framer-motion
+pnpm install @radix-ui/react-separator
 ```
 
 ## 2. Implementation Process

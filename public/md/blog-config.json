@@ -2,7 +2,7 @@
   "en": {
     "posts": [
       {
-        "id": "3",
+        "id": "1",
         "title": "Configurable Blog Implementation Based on Markdown",
         "slug": "markdown-module",
         "excerpt": "A detailed introduction to the Markdown-based blog system implementation in the Space-Brain project, including file structure, processing workflow, and related configurations.",
@@ -11,135 +11,24 @@
           "insights"
         ],
         "author": {
-          "name": "dibage",
+          "name": "D8ger",
           "avatar": "/images/default.webp"
         },
         "publishedAt": "2024-03-13",
-        "readTime": "3 min",
+        "readTime": "4 min",
         "imageUrl": "/images/default.webp",
         "featured": true
-      },
-      {
-        "id": "1",
-        "title": "AI编辑器问题集锦",
-        "slug": "AI编辑器问题集锦",
-        "excerpt": "常见开发问题的解决方案集合，包括 ESLint 配置、国际化检查等实用技巧。",
-        "tags": [
-          "insights",
-          "productUpdates"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2024-01-23",
-        "readTime": "2 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
-      },
-      {
-        "id": "2",
-        "title": "Space-Brain 代码架构设计文档",
-        "slug": "code-architecture",
-        "excerpt": "详细的技术架构设计，包括技术栈选型、项目结构、核心模块设计等完整开发指南。",
-        "tags": [
-          "productUpdates",
-          "tutorials"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2024-01-22",
-        "readTime": "4 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
-      },
-      {
-        "id": "7",
-        "title": "代码生成规则文档",
-        "slug": "代码生成规则",
-        "excerpt": "项目代码规范指南，包括项目架构、Git提交规范、LICENSE声明等开发标准。",
-        "tags": [
-          "insights",
-          "roadOverSea"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2024-01-22",
-        "readTime": "1 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
-      },
-      {
-        "id": "4",
-        "title": "Space-Brain 产品设计文档",
-        "slug": "product-design",
-        "excerpt": "Space-Brain 产品的完整设计方案，包括产品定位、目标用户、核心功能及路线图规划。",
-        "tags": [
-          "makeMoney",
-          "roadOverSea"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2024-01-21",
-        "readTime": "2 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
-      },
-      {
-        "id": "6",
-        "title": "Space-Brain UI设计文档",
-        "slug": "ui-design",
-        "excerpt": "详细的UI设计规范，包括设计原则、排版、组件库使用等完整指南。",
-        "tags": [
-          "roadOverSea",
-          "tutorials"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2024-01-21",
-        "readTime": "4 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
-      },
-      {
-        "id": "5",
-        "title": "Wonderful Markdown🍎🍏🍎🍏🍺🍎🍏🍎🍏🍺",
-        "slug": "space-ide-2-5-release",
-        "excerpt": "各种 Markdown 语法，包括 KateX 公式、Mermaid 图表以及代码支持示例。",
-        "tags": [
-          "tutorials",
-          "roadOverSea"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/avatars/default.webp"
-        },
-        "publishedAt": "2024-01-20",
-        "readTime": "4 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
       }
     ],
     "tags": [
-      "insights",
-      "productUpdates",
       "tutorials",
-      "makeMoney",
-      "roadOverSea"
+      "insights"
     ]
   },
   "zh": {
     "posts": [
       {
-        "id": "4",
+        "id": "1",
         "title": "基于 Markdown 的配置化博客实现方案",
         "slug": "markdown-module",
         "excerpt": "详细介绍 Space-Brain 项目中基于 Markdown 的博客系统实现方案，包括文件结构、处理流程和相关配置。",
@@ -155,142 +44,10 @@
         "readTime": "3 min",
         "imageUrl": "/images/default.webp",
         "featured": true
-      },
-      {
-        "id": "1",
-        "title": "AI编辑器问题集锦",
-        "slug": "AI编辑器问题集锦",
-        "excerpt": "常见开发问题的解决方案集合，包括 ESLint 配置、国际化检查等实用技巧。",
-        "tags": [
-          "productUpdates",
-          "tutorials",
-          "makeMoney",
-          "roadOverSea",
-          "insights"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2024-01-23",
-        "readTime": "2 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
-      },
-      {
-        "id": "2",
-        "title": "Space-Brain 代码架构设计文档",
-        "slug": "code-architecture",
-        "excerpt": "详细的技术架构设计，包括技术栈选型、项目结构、核心模块设计等完整开发指南。",
-        "tags": [
-          "productUpdates",
-          "tutorials"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2024-01-22",
-        "readTime": "4 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
-      },
-      {
-        "id": "8",
-        "title": "代码生成规则文档",
-        "slug": "代码生成规则",
-        "excerpt": "项目代码规范指南，包括项目架构、Git提交规范、LICENSE声明等开发标准。",
-        "tags": [
-          "tutorials",
-          "productUpdates"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2024-01-22",
-        "readTime": "1 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
-      },
-      {
-        "id": "3",
-        "title": "GGGGGGGGGGGGGGGGGGGGGGGGGG",
-        "slug": "gggggggggg",
-        "excerpt": "GGGGGGGGGGGGGGGGGGGGGGG",
-        "tags": [
-          "insights",
-          "tutorials"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2024-01-21",
-        "readTime": "1 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
-      },
-      {
-        "id": "5",
-        "title": "Space-Brain 产品设计文档",
-        "slug": "product-design",
-        "excerpt": "Space-Brain 产品的完整设计方案，包括产品定位、目标用户、核心功能及路线图规划。",
-        "tags": [
-          "makeMoney",
-          "tutorials"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2024-01-21",
-        "readTime": "2 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
-      },
-      {
-        "id": "7",
-        "title": "Space-Brain UI设计文档",
-        "slug": "ui-design",
-        "excerpt": "详细的UI设计规范，包括设计原则、排版、组件库使用等完整指南。",
-        "tags": [
-          "productUpdates",
-          "tutorials"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2024-01-21",
-        "readTime": "4 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
-      },
-      {
-        "id": "6",
-        "title": "Wonderful Markdown🍎🍏🍎🍏🍺🍎🍏🍎🍏🍺",
-        "slug": "space-ide-2-5-release",
-        "excerpt": "各种 Markdown 语法，包括 KateX 公式、Mermaid 图表以及代码支持示例。",
-        "tags": [
-          "makeMoney",
-          "insights"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2024-01-20",
-        "readTime": "4 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
       }
     ],
     "tags": [
-      "productUpdates",
       "tutorials",
-      "makeMoney",
-      "roadOverSea",
       "insights"
     ]
   }
