@@ -57,24 +57,24 @@ export function CategoryGrid({
 
   // 获取单个分类的工具数据（从缓存）
   const fetchToolsData = useCallback((src: string, categoryName: string) => {
-    console.log(`[Tools] Getting tools for category: ${categoryName}`);
+    // console.log(`[Tools] Getting tools for category: ${categoryName}`);
     setLoading(true);
 
     try {
       // 从全局缓存中获取数据
       const allToolsCacheKey = `${locale}-all`;
       const allToolsCache = toolsCache[allToolsCacheKey];
-      
+
       if (!allToolsCache) {
-        console.warn(`[Tools] No tools cache found for locale: ${locale}`);
+        // console.warn(`[Tools] No tools cache found for locale: ${locale}`);
         setTools([]);
         return;
       }
 
       // 从缓存中过滤出当前分类的工具
       const categoryTools = allToolsCache.filter(tool => tool.category === categoryName);
-      console.log(`[Tools] Found ${categoryTools.length} tools in cache for ${categoryName}`);
-      
+      // console.log(`[Tools] Found ${categoryTools.length} tools in cache for ${categoryName}`);
+
       // 更新工具列表
       setTools(categoryTools);
     } catch (error) {
@@ -92,8 +92,8 @@ export function CategoryGrid({
       console.log(`[Tools] Skip duplicate request - already fetching all tools for locale: ${locale}`);
       return;
     }
-    
-    console.log(`[Tools] Start fetching all tools for locale: ${locale}`);
+
+    // console.log(`[Tools] Start fetching all tools for locale: ${locale}`);
     setLoading(true);
     isAllToolsFetching.current = true;
 
@@ -166,7 +166,7 @@ export function CategoryGrid({
   // 组件加载时获取所有工具
   useEffect(() => {
     const shouldFetchTools = categories.length > 0 && !isAllToolsFetching.current && !toolsCache[`${locale}-all`];
-    
+
     if (shouldFetchTools) {
       console.log(`[Tools] Initial load - fetching all tools for locale: ${locale}`);
       fetchAllTools();

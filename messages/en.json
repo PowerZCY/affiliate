@@ -12,7 +12,6 @@
     "apiReference": "API Reference",
     "closeMenu": "Close Menu",
     "openMenu": "Open Menu"
-    
   },
   "toolCard": {
     "visit": "Visit",
@@ -33,6 +32,38 @@
     "searchResults": "Search Results",
     "matchedCategories": "Matched Categories",
     "noSearchResults": "No matching results found"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Latest news, updates, and insights",
+    "readMore": "Read More",
+    "readTime": "Read Time",
+    "loadMore": "Load More",
+    "searchPlaceholder": "Search articles...",
+    "recentPosts": "Recent Posts",
+    "tags": {
+      "productUpdates": "Product Updates",
+      "tutorials": "Tutorials",
+      "makeMoney": "Make Money",
+      "roadOverSea": "Road Over Sea",
+      "insights": "Insights"
+    },
+    "allPosts": "All Posts",
+    "development": "Development",
+    "design": "Design",
+    "tutorials": "Tutorials",
+    "company": "Company",
+    "hero": {
+      "title": "Space Brain Blog",
+      "subtitle": "Insights, tutorials, and news from our team"
+    },
+    "readArticle": "Read Article",
+    "subscribe": {
+      "title": "Stay Updated",
+      "description": "Subscribe to our newsletter to receive the latest updates and articles.",
+      "placeholder": "Enter your email",
+      "button": "Subscribe"
+    }
   },
   "footer": {
     "quickLinks": "Quick Links",

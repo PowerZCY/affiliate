@@ -12,7 +12,6 @@
     "apiReference": "API说明",
     "closeMenu": "关闭菜单",
     "openMenu": "打开菜单"
-    
   },
   "toolCard": {
     "visit": "访问",
@@ -33,6 +32,38 @@
     "searchResults": "搜索结果",
     "matchedCategories": "匹配分类",
     "noSearchResults": "没有找到匹配的结果"
+  },
+  "blog": {
+    "title": "博客",
+    "subtitle": "最新消息、更新和见解",
+    "readMore": "阅读更多",
+    "readTime": "阅读时长",
+    "loadMore": "加载更多",
+    "searchPlaceholder": "搜索文章...",
+    "recentPosts": "最近文章",
+    "tags": {
+      "productUpdates": "产品更新",
+      "tutorials": "工具教程",
+      "makeMoney": "专心搞钱",
+      "roadOverSea": "出海之路",
+      "insights": "真知灼见"
+    },
+    "allPosts": "所有文章",
+    "development": "开发",
+    "design": "设计",
+    "tutorials": "教程",
+    "company": "公司",
+    "hero": {
+      "title": "Space Brain 博客",
+      "subtitle": "来自我们团队的见解、教程和新闻"
+    },
+    "readArticle": "阅读文章",
+    "subscribe": {
+      "title": "保持更新",
+      "description": "订阅我们的通讯以接收最新的更新和文章。",
+      "placeholder": "输入您的电子邮箱",
+      "button": "订阅"
+    }
   },
   "footer": {
     "quickLinks": "快速链接",

@@ -22,7 +22,29 @@ export const appConfig = {
       es: "USD",
     },
   },
-  
+  // 博客配置
+  blog: {
+    // 博客相关路径
+    dir: 'public/md',
+    config: 'public/md/blog-config.json',
+    // 标签定义: 决定了翻译文件字段
+    tags: [
+      'productUpdates',
+      'tutorials',
+      'makeMoney',
+      'roadOverSea',
+      'insights'
+    ],
+    // 图片资源路径
+    images: {
+      default: '/images/default.webp',
+      defaultAvatar: '/images/avatars/default.webp'
+    },
+    getTagDisplayCount: (_locale: string) => {
+      return 2;
+    },
+  },
+
   // 界面配置
   ui: {
     // 是否显示工具卡片的banner图
@@ -45,26 +67,26 @@ export const appConfig = {
   menu: [
     {
       key: 'journey',
-      href: '/journey',
+      href: '/blog',
     },
-    {
-      key: 'docs',
-      href: '/docs',
-      children: [
-        {
-          key: 'gettingStarted',
-          href: '/docs/getting-started',
-        },
-        {
-          key: 'guides',
-          href: '/docs/guides',
-        },
-        {
-          key: 'apiReference',
-          href: '/docs/api',
-        },
-      ],
-    }
+    // {
+    //   key: 'docs',
+    //   href: '/docs',
+    //   children: [
+    //     {
+    //       key: 'gettingStarted',
+    //       href: '/docs/getting-started',
+    //     },
+    //     {
+    //       key: 'guides',
+    //       href: '/docs/guides',
+    //     },
+    //     {
+    //       key: 'apiReference',
+    //       href: '/docs/api',
+    //     },
+    //   ],
+    // }
   ] as MenuItem[]
 };
 
