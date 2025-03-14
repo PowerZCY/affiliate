@@ -2,26 +2,19 @@
   {
     "id": "1",
     "name": "There's An AI For That®",
-    "description": "30k+ AI Tools\nGGGGGGGGGGGGGGGGG\nggggggggggggg\nggggggggggggggg",
+    "description": "30k+ AI Tools",
     "url": "https://theresanaiforthat.com/",
     "homeImg": "1.webp",
     "iconUrl": "",
-    "tags": [
-      "D8ger",
-      "First Show",
-      "AI",
-      "Tools",
-      "AI Tools",
-      "AI Tools List"
-    ],
+    "tags": [],
     "submit": true,
     "showPrice": true,
     "price": 99,
-    "salePrice": 35.55,
-    "hot": "For sale, 50% off!",
-    "star": 4.9,
+    "salePrice": 0,
+    "hot": "",
+    "star": 0,
     "traffic": 6000000,
-    "like": 308
+    "like": 0
   },
   {
     "id": "8",

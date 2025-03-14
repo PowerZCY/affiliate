@@ -2,26 +2,19 @@
   {
     "id": "1",
     "name": "There's An AI For That®",
-    "description": "330k+ AI Tools\nGGGGGGGGGGGGGGGGG\nggggggggggggg\nggggggggggggggg",
+    "description": "30k+ AI Tools",
     "url": "https://theresanaiforthat.com/",
     "homeImg": "1.webp",
     "iconUrl": "",
-    "tags": [
-      "帝八哥",
-      "首秀",
-      "AI",
-      "工具集",
-      "提效神器",
-      "专业摸鱼"
-    ],
+    "tags": [],
     "submit": true,
     "showPrice": true,
     "price": 99,
-    "salePrice": 55.4,
-    "hot": "全场5折，快快选购!",
-    "star": 4.8,
+    "salePrice": 0,
+    "hot": "",
+    "star": 0,
     "traffic": 6000000,
-    "like": 505
+    "like": 0
   },
   {
     "id": "8",
