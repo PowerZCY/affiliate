@@ -87,7 +87,6 @@ export function CategoryGrid({
       return;
     }
 
-    // console.log(`[Tools] Start fetching all tools for locale: ${locale}`);
     setLoading(true);
     isAllToolsFetching.current = true;
 
@@ -97,9 +96,10 @@ export function CategoryGrid({
         console.log(`[Tools] Using cached data for all tools in locale: ${locale}`);
         setAllTools(toolsCache[`${locale}-all`]);
         setLoading(false);
+        isAllToolsFetching.current = false; // 重置请求状态
         return;
       }
-
+      
       // 获取所有有src属性的分类
       const categoriesWithSrc = categories.filter(c => c.src);
 
@@ -159,14 +159,17 @@ export function CategoryGrid({
 
   // 组件加载时获取所有工具
   useEffect(() => {
-    const shouldFetchTools = categories.length > 0 && !isAllToolsFetching.current && !toolsCache[`${locale}-all`];
-
+    const shouldFetchTools = categories.length > 0 && !isAllToolsFetching.current;
+    
     if (shouldFetchTools) {
-      console.log(`[Tools] Initial load - fetching all tools for locale: ${locale}`);
-      fetchAllTools();
-    } else if (toolsCache[`${locale}-all`]) {
-      console.log(`[Tools] Using existing cache for locale: ${locale}`);
-      setAllTools(toolsCache[`${locale}-all`]);
+      if (toolsCache[`${locale}-all`]) {
+        console.log(`[Tools] Using existing cache for locale: ${locale}`);
+        setAllTools(toolsCache[`${locale}-all`]);
+        setLoading(false); // 确保加载状态被重置
+      } else {
+        console.log(`[Tools] Initial load - fetching all tools for locale: ${locale}`);
+        fetchAllTools();
+      }
     }
   }, [fetchAllTools, categories, locale]);
 
