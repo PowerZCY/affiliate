@@ -3,7 +3,7 @@
 import styles from '@/styles/CategoryPage.module.css';
 import { JetBrainsToolCard } from '@/components/JetBrainsToolCard';
 import { useTranslations, useLocale } from 'next-intl';
-import { useTheme } from 'next-themes'; // 如果您使用 next-themes 管理主题
+// 如果您使用 next-themes 管理主题
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { CategoryMeta, Tool } from '@/lib/data';
 
@@ -27,16 +27,10 @@ export function CategoryGrid({
   const [filteredTools, setFilteredTools] = useState<Tool[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const isMounted = useRef(true);
   const isAllToolsFetching = useRef(false);
   const t = useTranslations('categoryGrid');
   const locale = useLocale();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -280,7 +274,7 @@ export function CategoryGrid({
     : (selectedCategory ? tools : allTools);
 
   // 确定当前主题类名
-  const themeClass = mounted ? (resolvedTheme === 'dark' ? 'dark-theme' : 'light-theme') : '';
+  // const themeClass = mounted ? (resolvedTheme === 'dark' ? 'dark-theme' : 'light-theme') : '';
 
   // 获取搜索结果中涉及的分类
   const matchedCategories = searchKeyword
@@ -288,7 +282,7 @@ export function CategoryGrid({
     : [];
 
   return (
-    <div className={`space-y-2 ${themeClass}`}>
+    <div className="space-y-2">
       {/* 分类按钮区域 */}
       <div className={styles.categoryContainer}>
         <div className={styles.categoryGrid}>

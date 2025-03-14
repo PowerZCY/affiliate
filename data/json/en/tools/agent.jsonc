@@ -17,11 +17,11 @@
     "submit": true,
     "showPrice": true,
     "price": 99,
-    "salePrice": 0,
+    "salePrice": 35.55,
     "hot": "For sale, 50% off!",
-    "star": 0,
+    "star": 4.9,
     "traffic": 6000000,
-    "like": 0
+    "like": 308
   },
   {
     "id": "8",

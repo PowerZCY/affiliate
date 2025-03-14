@@ -21,14 +21,14 @@ export interface Tool {
     homeImg?: string;    // banner图片
     iconUrl?: string;    // 工具图标
     tags?: string[];     // 标签支持
-    submit?: boolean;    // 是否支持提交
-    showPrice?: boolean; // 是否显示价格
+    submit: boolean;    // 是否支持提交
+    showPrice: boolean; // 是否显示价格
     price?: number;      // 价格
     salePrice?: number;  // 促销价格
     hot?: string;        // 冠名标题
-    star?: number;       // 星级reduce
-    traffic?: number;    // 流量级别
-    like?: number;       // 点赞数
+    star: number;       // 星级reduce
+    traffic: number;    // 流量级别
+    like: number;       // 点赞数
 }
 
 // 用于缓存数据的类型定义

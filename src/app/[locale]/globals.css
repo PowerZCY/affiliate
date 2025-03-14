@@ -5,9 +5,8 @@
 @layer base {
   :root {
     /* JetBrains 浅色主题 */
-    --background: 0 0% 100%;
+    --background: 210 40% 96.1%; /* 调整为更明显的蓝灰色背景 */
     --foreground: 222 47% 11%;
-    /* 加深前景色 */
 
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
@@ -89,6 +88,14 @@
 
   body {
     @apply bg-background text-foreground;
+    background-image: 
+      linear-gradient(to bottom,
+        hsl(var(--card) / 0.9) 0%,
+        hsl(var(--background)) 100%),
+      linear-gradient(to right,
+        hsl(210 40% 94%) 0%,
+        hsl(210 40% 98%) 100%);
+    background-blend-mode: overlay;
   }
 
   /* JetBrains 字体样式 */

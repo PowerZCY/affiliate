@@ -6,6 +6,18 @@ import { useTheme } from 'next-themes';
 import { appConfig } from '@/lib/appConfig';
 import { Tool } from '@/lib/data';
 
+// 格式化数字显示（K、M单位）
+function formatNumber(num: number): string {
+  if (num <= 0) return '0';
+  if (num >= 1000000) {
+    return `${Math.floor(num / 1000000)}M+`;
+  }
+  if (num >= 1000) {
+    return `${Math.floor(num / 1000)}K+`;
+  }
+  return num.toString();
+}
+
 export type ToolCardProps = Tool;
 
 // TODO
@@ -17,7 +29,14 @@ export function JetBrainsToolCard({
   homeImg,
   iconUrl,
   tags = [],
-  hot
+  hot,
+  submit,
+  showPrice,
+  price,
+  salePrice,
+  star,
+  traffic,
+  like
 }: ToolCardProps) {
   // 使用国际化翻译
   const t = useTranslations('toolCard');
@@ -35,9 +54,10 @@ export function JetBrainsToolCard({
   const { resolvedTheme } = useTheme();
 
   // 修改标签显示逻辑，将分类标签也加入到显示标签中，并去重
-  const allTags = category 
-    ? Array.from(new Set([category, ...tags]))
-    : Array.from(new Set(tags));
+  const allTags = category
+    ? Array.from(new Set([category, ...tags])).slice(0, 5)
+    : Array.from(new Set(tags)).slice(0, 5);
+
   // 移除 showAllTags 相关代码，只保留固定显示 2 个标签的逻辑
   const displayTags = allTags.slice(0, 2);
 
@@ -101,77 +121,82 @@ export function JetBrainsToolCard({
           borderWidth: (isHovered || isFocused) ? '2px' : '1px',
           boxShadow: (isHovered || isFocused) ? hoverShadow : '',
           transform: (isHovered || isFocused) ? 'translateY(-2px) scale(1.01)' : 'translateY(0) scale(1)',
-          outline: 'none', // 移除默认的焦点轮廓
+          outline: 'none',
         }}
       >
-        {/* 卡片内容 */}
-        <div className="flex flex-col h-full">
-          {/* Banner图 - 根据配置显示 */}
-          {showBanner && (
-            <div className="relative w-full h-28">
-              {!originalImageError ? (
-                <Image
-                  src={bannerImageSrc}
-                  alt={`${name} banner`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover"
-                  style={isDefaultImage ? { opacity: '0.7' } : {}}
-                  priority={false}
-                  loading="lazy"
-                  onError={(e) => {
-                    console.error(`Failed to load original image: ${bannerImageSrc}`);
-                    setOriginalImageError(true);
-                    if (!isDefaultImage) {
-                      // 如果不是默认图片，则尝试加载默认图片
-                      e.currentTarget.src = defaultImg;
-                      e.currentTarget.onerror = (_e2) => {
-                        console.error('Failed to load default image');
-                        setDefaultImageError(true);
-                      };
-                    } else {
-                      // 如果本身就是默认图片加载失败
+        {/* Banner图区域 */}
+        {showBanner && (
+          <div className="relative w-full h-28">
+            {!originalImageError ? (
+              <Image
+                src={bannerImageSrc}
+                alt={`${name} banner`}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover"
+                style={isDefaultImage ? { opacity: '0.7' } : {}}
+                priority={false}
+                loading="lazy"
+                onError={(e) => {
+                  console.error(`Failed to load original image: ${bannerImageSrc}`);
+                  setOriginalImageError(true);
+                  if (!isDefaultImage) {
+                    // 如果不是默认图片，则尝试加载默认图片
+                    e.currentTarget.src = defaultImg;
+                    e.currentTarget.onerror = (_e2) => {
+                      console.error('Failed to load default image');
                       setDefaultImageError(true);
-                    }
-                  }}
-                />
-              ) : !defaultImageError ? (
-                <Image
-                  src={defaultImg}
-                  alt="Default banner"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover"
-                  style={{ opacity: '0.7' }}
-                  priority={false}
-                  loading="lazy"
-                  onError={(e) => {
-                    console.error('Failed to load default image');
+                    };
+                  } else {
+                    // 如果本身就是默认图片加载失败
                     setDefaultImageError(true);
-                    e.currentTarget.onerror = null;
-                  }}
-                />
-              ) : (
-                <div className="w-full h-40 bg-muted flex items-center justify-center">
-                  <span className="text-muted-foreground">Failed to load Img</span>
-                </div>
-              )}
-              {/* 只对默认图片添加蒙版层 */}
-              {(isDefaultImage || originalImageError) && !defaultImageError && (
-                <div
-                  className="absolute inset-0 z-10"
-                  style={{
-                    backgroundColor: overlayColor,
-                    backdropFilter: 'blur(1px)',
-                    mixBlendMode: resolvedTheme === 'dark' ? 'color-dodge' : 'multiply'
-                  }}
-                />
-              )}
-            </div>
-          )}
+                  }
+                }}
+              />
+            ) : !defaultImageError ? (
+              <Image
+                src={defaultImg}
+                alt="Default banner"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover"
+                style={{ opacity: '0.7' }}
+                priority={false}
+                loading="lazy"
+                onError={(e) => {
+                  console.error('Failed to load default image');
+                  setDefaultImageError(true);
+                  e.currentTarget.onerror = null;
+                }}
+              />
+            ) : (
+              <div className="w-full h-40 bg-muted flex items-center justify-center">
+                <span className="text-muted-foreground">Failed to load Img</span>
+              </div>
+            )}
+            {/* 只对默认图片添加蒙版层 */}
+            {(isDefaultImage || originalImageError) && !defaultImageError && (
+              <div
+                className="absolute inset-0 z-10"
+                style={{
+                  backgroundColor: overlayColor,
+                  backdropFilter: 'blur(1px)',
+                  mixBlendMode: resolvedTheme === 'dark' ? 'color-dodge' : 'multiply'
+                }}
+              />
+            )}
+          </div>
+        )}
 
-          {/* 内容区域 - 移除左右内边距，与 banner 对齐 */}
-          <div className="flex flex-col flex-grow pt-3 pb-2"> {/* 移除 px-3，只保留上下内边距 */}
+        {/* 内容区域 - 包装在链接中 */}
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col flex-grow cursor-pointer"
+        >
+          <div className="flex flex-col flex-grow pt-3 pb-2">
+            {/* 头部区域到描述区域的代码保持不变 */}
             {/* 头部区域：图标、名称、外部链接 */}
             <div className="flex items-start justify-between mb-1.5 px-3"> {/* 添加水平内边距 */}
               <div className="flex items-center gap-2">
@@ -219,13 +244,13 @@ export function JetBrainsToolCard({
                         +{allTags.length - 2}
                       </button>
                       {isTagsHovered && (
-                        <div 
+                        <div
                           className="absolute left-0 top-full mt-1 z-50 py-2 min-w-max"
                           onMouseEnter={() => setIsTagsHovered(true)}
                           onMouseLeave={() => setIsTagsHovered(false)}
                         >
                           {allTags.slice(2).map((tag) => (
-                            <div 
+                            <div
                               key={tag}
                               className="px-3 py-1"
                             >
@@ -243,33 +268,89 @@ export function JetBrainsToolCard({
             </div>
 
             {/* 描述区域 - 调整为3行高度 */}
-            <p className="text-xs text-muted-foreground h-12 line-clamp-3 mb-auto px-3">
+            <p className="text-xs text-muted-foreground h-12 line-clamp-3 mb-2 px-3">
               {truncatedDescription}
             </p>
+          </div>
+        </a>
+        {/* 数据展示区域 - 第一行 */}
+        <div className="flex items-center justify-between px-3 py-2 border-t border-gray-100 dark:border-gray-800">
+          {/* 提交状态 */}
+          <div className="flex items-center gap-1">
+            <svg
+              className={`w-4 h-4 ${submit ? 'text-purple-500' : 'text-gray-400'}`}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+            </svg>
+            <span className="text-xs text-gray-600 dark:text-gray-400">
+              {submit ? t('canSubmit') : t('noSubmit')}
+            </span>
+          </div>
 
-            {/* 按钮区域 - 减少顶部间距 */}
-            <div className="mt-auto pt-0.5 px-3">
-              <a
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-block',
-                  padding: '6px 12px',
-                  backgroundColor: '#1677ff',
-                  color: 'white',
-                  borderRadius: '6px',
-                  fontWeight: '500',
-                  fontSize: '12px',
-                  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                  textDecoration: 'none'
-                }}
-              >
-                {t('visitWebsite')}
-              </a>
-            </div>
+          {/* 价格信息部分保持不变 */}
+          <div className="flex items-center">
+            {showPrice ? (
+              <div className="flex items-center gap-1">
+                {salePrice !== -1 && (
+                  <span className="text-sm font-medium text-purple-500">
+                    ${salePrice}
+                  </span>
+                )}
+                <span className={`text-sm ${salePrice !== -1 ? 'line-through text-gray-400' : 'text-gray-700 dark:text-gray-300'}`}>
+                  ${price}
+                </span>
+              </div>
+            ) : (
+              <span className="text-sm text-gray-400"></span>
+            )}
           </div>
         </div>
+
+        {/* 数据展示区域 - 第二行 */}
+        <div className="flex items-center justify-between px-3 py-2">
+          {/* 流量 */}
+          <div className="flex items-center gap-1">
+            <svg
+              className="w-4 h-4 text-blue-500"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg>
+            <span className="text-sm text-gray-600 dark:text-gray-400">{formatNumber(traffic)}</span>
+          </div>
+
+          {/* 收藏数 */}
+          <div className="flex items-center gap-1">
+            <svg
+              className={`w-4 h-4 ${like > 0 ? 'text-red-500' : 'text-gray-400'}`}
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+            {like > 0 && <span className="text-sm text-gray-600 dark:text-gray-400">{formatNumber(like)}</span>}
+          </div>
+
+          {/* 评分 */}
+          <div className="flex items-center gap-1">
+            <svg
+              className={`w-4 h-4 ${star > 0 ? 'text-yellow-400' : 'text-gray-400'}`}
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+            {star > 0 && <span className="text-sm text-gray-600 dark:text-gray-400">{star}</span>}
+          </div>
+        </div>
+
       </div>
     </div>
   );

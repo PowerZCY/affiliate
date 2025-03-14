@@ -23,6 +23,8 @@
     "openMenu": "打开菜单"
   },
   "toolCard": {
+    "canSubmit": "自主提交",
+    "noSubmit": "不可提交",
     "visit": "访问",
     "visitWebsite": "查看详情"
   },
