@@ -1,8 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
-import { ExternalLink } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 import { appConfig } from '@/lib/appConfig';
@@ -10,15 +8,16 @@ import { Tool } from '@/lib/data';
 
 export type ToolCardProps = Tool;
 
+// TODO
 export function JetBrainsToolCard({
   name,
   description,
-  url,
-  tags = [],
-  iconUrl,
   category,
-  hot,
-  homeImg
+  url,
+  homeImg,
+  iconUrl,
+  tags = [],
+  hot
 }: ToolCardProps) {
   // 使用国际化翻译
   const t = useTranslations('toolCard');
@@ -31,11 +30,16 @@ export function JetBrainsToolCard({
   const [originalImageError, setOriginalImageError] = useState(false);
   // 添加默认图片错误状态
   const [defaultImageError, setDefaultImageError] = useState(false);
-  // 获取当前主题
+  // 添加标签悬浮状态
+  const [isTagsHovered, setIsTagsHovered] = useState(false);
   const { resolvedTheme } = useTheme();
 
-  // 限制 tags 只显示前 3 个
-  const displayTags = tags.slice(0, 3);
+  // 修改标签显示逻辑，将分类标签也加入到显示标签中，并去重
+  const allTags = category 
+    ? Array.from(new Set([category, ...tags]))
+    : Array.from(new Set(tags));
+  // 移除 showAllTags 相关代码，只保留固定显示 2 个标签的逻辑
+  const displayTags = allTags.slice(0, 2);
 
   // 限制 description 的长度，超过 80 个字符则截断并添加省略号
   const maxDescriptionLength = 80;
@@ -44,15 +48,15 @@ export function JetBrainsToolCard({
     : description;
 
   // 根据主题设置边框颜色
-  const hoverBorderColor = resolvedTheme === 'dark' ? 'rgba(56, 189, 248, 0.8)' : 'rgba(14, 165, 233, 0.8)';
+  const hoverBorderColor = resolvedTheme === 'dark' ? 'rgba(124, 77, 255, 0.8)' : 'rgba(124, 77, 255, 0.8)';
   const hoverShadow = resolvedTheme === 'dark'
-    ? '0 0 0 1px rgba(56, 189, 248, 0.5), 0 4px 12px rgba(56, 189, 248, 0.25)'
-    : '0 0 0 1px rgba(14, 165, 233, 0.5), 0 4px 12px rgba(14, 165, 233, 0.25)';
+    ? '0 0 0 1px rgba(124, 77, 255, 0.5), 0 4px 12px rgba(124, 77, 255, 0.25)'
+    : '0 0 0 1px rgba(124, 77, 255, 0.5), 0 4px 12px rgba(124, 77, 255, 0.25)';
 
   // 是否显示banner图 - 如果配置开启且有图片，或者配置开启但使用默认图片
   const showBanner = appConfig.ui.showToolBanner;
-  const defaultImg = appConfig.blog.images.default;
-  const bannerImageSrc = homeImg ? `/images/${homeImg}` : defaultImg;
+  const defaultImg = appConfig.tool.defaultBanner;
+  const bannerImageSrc = homeImg ? `${appConfig.tool.bannerDir}/${homeImg}` : defaultImg;
 
   // 判断是否使用默认图片
   const isDefaultImage = !homeImg;
@@ -64,8 +68,8 @@ export function JetBrainsToolCard({
 
   // 实际内容
   return (
-    <div className="relative mt-3">
-      {/* Hot标签 - 位于卡片顶部边缘 */}
+    <div className="relative mt-2"> {/* 调整顶部边距 */}
+      {/* Hot标签 */}
       {hot && (
         <div
           className="absolute top-0 left-0 right-0 z-20 flex justify-center"
@@ -74,9 +78,9 @@ export function JetBrainsToolCard({
           }}
         >
           <div
-            className="px-6 py-1.5 rounded-md text-white font-medium text-sm"
+            className="px-4 py-1 rounded-md text-white font-medium text-xs"
             style={{
-              backgroundColor: '#7c4dff', // 紫色背景
+              backgroundColor: '#7c4dff',
               boxShadow: '0 2px 6px rgba(124, 77, 255, 0.4)',
             }}
           >
@@ -104,7 +108,7 @@ export function JetBrainsToolCard({
         <div className="flex flex-col h-full">
           {/* Banner图 - 根据配置显示 */}
           {showBanner && (
-            <div className="relative w-full h-40">
+            <div className="relative w-full h-28">
               {!originalImageError ? (
                 <Image
                   src={bannerImageSrc}
@@ -166,45 +170,36 @@ export function JetBrainsToolCard({
             </div>
           )}
 
-          {/* 内容区域 */}
-          <div className="p-4 flex flex-col flex-grow">
+          {/* 内容区域 - 移除左右内边距，与 banner 对齐 */}
+          <div className="flex flex-col flex-grow pt-3 pb-2"> {/* 移除 px-3，只保留上下内边距 */}
             {/* 头部区域：图标、名称、外部链接 */}
-            <div className="flex items-start justify-between mb-2">
-              <div className="flex items-center gap-3">
+            <div className="flex items-start justify-between mb-1.5 px-3"> {/* 添加水平内边距 */}
+              <div className="flex items-center gap-2">
                 {iconUrl ? (
-                  <div className="h-10 w-10 overflow-hidden rounded-md flex-shrink-0">
+                  <div className="h-8 w-8 overflow-hidden rounded-md flex-shrink-0"> {/* 调整图标大小 */}
                     <Image
                       src={iconUrl}
                       alt={name}
-                      width={40}
-                      height={40}
+                      width={32}
+                      height={32}
                       className="h-full w-full object-cover"
                       loading="eager"
                     />
                   </div>
                 ) : (
-                  <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary flex-shrink-0">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary/10 text-primary flex-shrink-0"> {/* 调整默认图标大小 */}
                     {name.charAt(0)}
                   </div>
                 )}
                 <div className="min-w-0">
-                  <h3 className="text-lg font-semibold truncate">{name}</h3>
+                  <h3 className="text-base font-semibold truncate">{name}</h3> {/* 调整标题字体大小 */}
                 </div>
               </div>
-              <Link
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground flex-shrink-0 ml-2"
-              >
-                <ExternalLink className="h-4 w-4" />
-                <span className="sr-only">{t('visit')} {name}</span>
-              </Link>
             </div>
 
-            {/* 标签区域：固定高度 */}
-            <div className="h-8 mb-2">
-              {displayTags.length > 0 && (
+            {/* 标签区域 */}
+            <div className="h-auto min-h-[1.5rem] mb-1.5 px-3">
+              {allTags.length > 0 && (
                 <div className="flex flex-wrap gap-1">
                   {displayTags.map((tag) => (
                     <span
@@ -214,37 +209,58 @@ export function JetBrainsToolCard({
                       {tag}
                     </span>
                   ))}
-                  {tags.length > 3 && (
-                    <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
-                      +{tags.length - 3}
-                    </span>
-                  )}
-                  {category && (
-                    <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
-                      {category}
-                    </span>
+                  {allTags.length > 2 && (
+                    <div className="relative">
+                      <button
+                        onMouseEnter={() => setIsTagsHovered(true)}
+                        onMouseLeave={() => setIsTagsHovered(false)}
+                        className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200 transition-colors cursor-pointer"
+                      >
+                        +{allTags.length - 2}
+                      </button>
+                      {isTagsHovered && (
+                        <div 
+                          className="absolute left-0 top-full mt-1 z-50 py-2 min-w-max"
+                          onMouseEnter={() => setIsTagsHovered(true)}
+                          onMouseLeave={() => setIsTagsHovered(false)}
+                        >
+                          {allTags.slice(2).map((tag) => (
+                            <div 
+                              key={tag}
+                              className="px-3 py-1"
+                            >
+                              <span className="inline-flex items-center rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-800">
+                                {tag}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   )}
                 </div>
               )}
             </div>
 
-            {/* 描述区域：固定高度，最多2行 */}
-            <p className="text-sm text-muted-foreground h-10 line-clamp-2 mb-auto">{truncatedDescription}</p>
+            {/* 描述区域 - 调整为3行高度 */}
+            <p className="text-xs text-muted-foreground h-12 line-clamp-3 mb-auto px-3">
+              {truncatedDescription}
+            </p>
 
-            {/* 按钮区域：固定在底部 */}
-            <div className="mt-auto pt-2">
+            {/* 按钮区域 - 减少顶部间距 */}
+            <div className="mt-auto pt-0.5 px-3">
               <a
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
                   display: 'inline-block',
-                  padding: '8px 16px',
+                  padding: '6px 12px',
                   backgroundColor: '#1677ff',
                   color: 'white',
                   borderRadius: '6px',
                   fontWeight: '500',
-                  fontSize: '14px',
+                  fontSize: '12px',
                   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
                   textDecoration: 'none'
                 }}
@@ -257,4 +273,4 @@ export function JetBrainsToolCard({
       </div>
     </div>
   );
-} 
+}

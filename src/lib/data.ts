@@ -13,14 +13,22 @@ export interface CategoryMeta {
 }
 
 export interface Tool {
-    name: string;        // 工具名称
-    description: string; // 工具描述
-    url: string;         // 工具链接
-    tags?: string[];     // 标签支持
+    id: string;          // 产品ID
+    name: string;        // 产品名称
+    description: string; // 描述
+    category?: string;   // 类别标识
+    url: string;         // 主页链接
+    homeImg?: string;    // banner图片
     iconUrl?: string;    // 工具图标
-    category?: string;   // 分类标识
+    tags?: string[];     // 标签支持
+    submit?: boolean;    // 是否支持提交
+    showPrice?: boolean; // 是否显示价格
+    price?: number;      // 价格
+    salePrice?: number;  // 促销价格
     hot?: string;        // 冠名标题
-    homeImg?: string;    // 首页图片
+    star?: number;       // 星级reduce
+    traffic?: number;    // 流量级别
+    like?: number;       // 点赞数
 }
 
 // 用于缓存数据的类型定义
@@ -97,13 +105,21 @@ export function getToolList(srcName: string, locale: string): Tool[] {
 
         // 映射并验证每个分类对象
         return data.map(item => ({
+            id: item.id || '',
             name: item.name || '',
             description: item.description || '',
             url: item.url || '',
-            tags: Array.isArray(item.tags) ? item.tags : [],
+            homeImg: item.homeImg || '',
             iconUrl: item.iconUrl || '',
+            tags: Array.isArray(item.tags) ? item.tags : [],
+            submit: item.submit || false,
+            showPrice: item.showPrice || false,
+            price: item.price || -1,
+            salePrice: item.salePrice || -1,
             hot: item.hot || '',
-            homeImg: item.homeImg || ''
+            star: item.star || -1,
+            traffic: item.traffic || 0,
+            like: item.like || 0
         }));
     };
 

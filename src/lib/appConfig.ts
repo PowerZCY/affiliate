@@ -49,7 +49,10 @@ export const appConfig = {
       return 2;
     },
   },
-
+  tool: {
+    bannerDir: '/images/banner',
+    defaultBanner: '/images/default.webp'
+  },
   // 界面配置
   ui: {
     // 是否显示工具卡片的banner图

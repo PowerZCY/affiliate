@@ -129,7 +129,7 @@ export function CategoryGrid({
 
         // 去除重复项
         const uniqueTools = allCachedTools.filter((tool, index, self) =>
-          index === self.findIndex(t => t.name === tool.name)
+          index === self.findIndex(t => t.id === tool.id)
         );
 
         console.log(`[Tools] Successfully merged ${uniqueTools.length} unique tools from cache`);
@@ -354,26 +354,11 @@ export function CategoryGrid({
             <p className="mt-2">{t('loading')}</p>
           </div>
         ) : displayTools.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {displayTools.map((tool, index) => (
               <JetBrainsToolCard
                 key={`${tool.name}-${index}`}
-                id={tool.id}
-                name={tool.name}
-                description={tool.description}
-                category={tool.category}
-                url={tool.url}
-                homeImg={tool.homeImg}
-                iconUrl={tool.iconUrl}
-                tags={tool.tags}
-                submit={tool.submit}
-                showPrice={tool.showPrice}
-                price={tool.price}
-                salePrice={tool.salePrice}
-                hot={tool.hot}
-                star={tool.star}
-                traffic={tool.traffic}
-                like={tool.like}
+                {...tool}
               />
             ))}
           </div>
@@ -400,4 +385,4 @@ export function CategoryGrid({
       )}
     </div>
   );
-} 
+}

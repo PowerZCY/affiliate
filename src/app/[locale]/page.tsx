@@ -137,7 +137,7 @@ export default function Home() {
 
       {/* 分类区域 - 减少上下内边距 */}
       <section className="py-6">
-        <div className="container">
+        <div className="container max-w-6xl mx-auto"> {/* 添加最大宽度和居中 */}
           {isLoading ? (
             <div className="text-center py-12">
               <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>

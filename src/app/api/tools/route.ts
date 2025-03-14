@@ -31,10 +31,17 @@ export async function GET(request: NextRequest) {
       }
     }
     
-    // 去除重复项
-    const uniqueTools = allTools.filter((tool, index, self) => 
-      index === self.findIndex(t => t.name === tool.name)
-    );
+    // 去除重复项并排序（优先按 traffic 降序，相同时按 id 升序）
+    const uniqueTools = allTools
+      .filter((tool, index, self) => 
+        index === self.findIndex(t => t.id === tool.id)
+      )
+      .sort((a, b) => {
+        // 先按 traffic 降序
+        const trafficDiff = (b.traffic || 0) - (a.traffic || 0);
+        // traffic 相同时按 id 升序
+        return trafficDiff !== 0 ? trafficDiff : Number(a.id) - Number(b.id);
+      });
     
     return NextResponse.json({ tools: uniqueTools });
   } catch (error) {
@@ -44,4 +51,4 @@ export async function GET(request: NextRequest) {
       { status: 500 }
     );
   }
-} 
+}
