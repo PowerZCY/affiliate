@@ -13,11 +13,12 @@ export function Footer() {
   const locale = getValidLocale(currentLocale)
   const t = useTranslations('footer');
   const t1 = useTranslations('menu');
+  const t2 = useTranslations('home');
   const size = 30;
-  
+
   // 获取一级菜单项（没有子菜单的项目）
   const topLevelMenuItems = appConfig.menu.filter(item => !item.children || item.children.length === 0)
-  
+
   return (
     <footer className="bg-secondary text-secondary-foreground border-t">
       <div className="container py-12 md:py-16">
@@ -28,9 +29,9 @@ export function Footer() {
                 src={IconImage}
                 width={size}
                 height={size}
-                alt="AI·Affiliate"
+                alt={t2('title')}
               />
-              <span className="font-bold text-lg">AI·Affiliate</span>
+              <span className="font-bold text-lg">{t2('title')}</span>
             </Link>
           </div>
 
@@ -45,9 +46,9 @@ export function Footer() {
               {/* 添加配置的一级菜单项 */}
               {topLevelMenuItems.map((item: MenuItem) => (
                 <li key={item.key}>
-                  <Link 
-                    href={item.href} 
-                    locale={locale} 
+                  <Link
+                    href={item.href}
+                    locale={locale}
                     target={item.external ? '_blank' : undefined}
                     rel={item.external ? 'noopener noreferrer' : undefined}
                     className="text-sm hover:underline"
@@ -93,7 +94,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          Copyright &copy; {new Date().getFullYear()} AI·Affiliate {t('copyright')}
+          Copyright &copy; {new Date().getFullYear()} {t2('title')} {t('copyright')}
         </div>
       </div>
     </footer>

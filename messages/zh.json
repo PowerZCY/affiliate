@@ -6,8 +6,11 @@
     "changeAction": "是的，切换"
   },
   "home": {
-    "h2": "热门AI导航平台",
-    "description": "积极拥抱AI，探索AI无限可能",
+    "title": "AI 工具导航",
+    "h1": "100+ AI 工具目录",
+    "h2": "开源&热门AI工具导航",
+    "description": "关注最新AI工具，提升搜索引擎优化，支持自助提交",
+    "keywords": "AI工具, AI导航站, AI编程工具, 智能体",
     "loading": "加载中..."
   },
   "menu": {

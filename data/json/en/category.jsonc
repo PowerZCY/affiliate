@@ -1,38 +1,14 @@
 [
   {
-    "name": "Analytics",
-    "src": "analytics.jsonc",
-    "link": "analytics",
-    "description": "Tools for tracking and analyzing website data."
+    "name": "AI Agent",
+    "src": "agent.jsonc",
+    "link": "agent",
+    "description": "AI agents to complete tasks autonomously"
   },
   {
-    "name": "Database",
-    "src": "database.jsonc",
-    "link": "database",
-    "description": "Services for storing and managing data."
-  },
-  {
-    "name": "Frontend Frameworks",
-    "src": "frontend-frameworks.jsonc",
-    "link": "frontend-frameworks",
-    "description": "Libraries for building user interfaces."
-  },
-  {
-    "name": "Payment",
-    "src": "payment.jsonc",
-    "link": "payment",
-    "description": "Platforms for processing online payments."
-  },
-  {
-    "name": "Promotion",
-    "src": "promotion.jsonc",
-    "link": "promotion",
-    "description": "Tools for promoting products and content."
-  },
-  {
-    "name": "SEO",
-    "src": "seo.jsonc",
-    "link": "seo",
-    "description": "Tools for improving search engine visibility."
+    "name": "AI Tool",
+    "src": "tool.jsonc",
+    "link": "tool",
+    "description": "AI Tools for productivity and efficiency"
   }
 ]

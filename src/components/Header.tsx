@@ -17,6 +17,7 @@ export function Header() {
   // 使用 appConfig 中的辅助函数获取有效的语言设置
   const locale = getValidLocale(currentLocale);
   const t1 = useTranslations('menu')
+  const t = useTranslations('home')
   const size = 30;
 
   const toggleMenu = () => {
@@ -32,9 +33,9 @@ export function Header() {
       <div className="container flex h-14 items-center">
         {/* Logo 和网站名称 */}
         <div className="mr-4 flex">
-          <Link 
-            href="/" 
-            locale={locale} 
+          <Link
+            href="/"
+            locale={locale}
             replace={true}
             className="mr-6 flex items-center space-x-2 hover:opacity-80 transition-opacity"
           >
@@ -42,18 +43,18 @@ export function Header() {
               src={IconImage}
               width={size}
               height={size}
-              alt="AI·Affiliate"
+              alt={t('title')}
               className="cursor-pointer"
             />
-            <span className="font-bold text-xl cursor-pointer">AI·Affiliate</span>
+            <span className="font-bold text-xl cursor-pointer">{t('title')}</span>
           </Link>
         </div>
 
         {/* 桌面导航菜单 - 只在大屏幕上显示 */}
         <div className="hidden md:flex md:flex-1">
-          <NavigationMenu 
-            items={appConfig.menu} 
-            locale={locale} 
+          <NavigationMenu
+            items={appConfig.menu}
+            locale={locale}
           />
         </div>
 
@@ -97,13 +98,13 @@ export function Header() {
       {isMenuOpen && (
         <div className="md:hidden border-t">
           <div className="container py-4">
-            <NavigationMenu 
-              items={appConfig.menu} 
-              locale={locale} 
+            <NavigationMenu
+              items={appConfig.menu}
+              locale={locale}
               mobile={true}
               onItemClick={closeMenu}
             />
-            
+
             {/* 移动端按钮组 */}
             <div className="mt-4 flex items-center divide-x divide-border border-t pt-4">
               <div className="px-2">

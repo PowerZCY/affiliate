@@ -1,38 +1,14 @@
 [
   {
-    "name": "分析",
-    "src": "analytics.jsonc",
-    "link": "analytics",
-    "description": "用于跟踪和分析网站数据的工具。"
+    "name": "AI智能体",
+    "src": "agent.jsonc",
+    "link": "agent",
+    "description": "AI自主完成任务"
   },
   {
-    "name": "数据库",
-    "src": "database.jsonc",
-    "link": "database",
-    "description": "用于存储和管理数据的服务。"
-  },
-  {
-    "name": "前端框架",
-    "src": "frontend-frameworks.jsonc",
-    "link": "frontend-frameworks",
-    "description": "用于构建用户界面的库。"
-  },
-  {
-    "name": "支付",
-    "src": "payment.jsonc",
-    "link": "payment",
-    "description": "用于处理在线支付的平台。"
-  },
-  {
-    "name": "推广",
-    "src": "promotion.jsonc",
-    "link": "promotion",
-    "description": "用于推广产品和内容的工具。"
-  },
-  {
-    "name": "搜索引擎优化",
-    "src": "seo.jsonc",
-    "link": "seo",
-    "description": "用于提高搜索引擎可见性的工具。"
+    "name": "AI工具",
+    "src": "tool.jsonc",
+    "link": "tool",
+    "description": "AI赋能提效工具"
   }
 ]

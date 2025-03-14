@@ -358,14 +358,22 @@ export function CategoryGrid({
             {displayTools.map((tool, index) => (
               <JetBrainsToolCard
                 key={`${tool.name}-${index}`}
+                id={tool.id}
                 name={tool.name}
                 description={tool.description}
-                url={tool.url}
-                tags={tool.tags}
-                iconUrl={tool.iconUrl}
                 category={tool.category}
-                hot={tool.hot}
+                url={tool.url}
                 homeImg={tool.homeImg}
+                iconUrl={tool.iconUrl}
+                tags={tool.tags}
+                submit={tool.submit}
+                showPrice={tool.showPrice}
+                price={tool.price}
+                salePrice={tool.salePrice}
+                hot={tool.hot}
+                star={tool.star}
+                traffic={tool.traffic}
+                like={tool.like}
               />
             ))}
           </div>

@@ -6,8 +6,11 @@
     "changeAction": "Yes, switch"
   },
   "home": {
-    "h2": "Open-Source & Hot AI Navigator",
-    "description": "Embrace AI, explore the infinite possibilities of AI",
+    "title": "AI Directory List",
+    "h1": "100+ AI Directory",
+    "h2": "Open-Source & Hot AI Navigation",
+    "description": "Track the latest AI tools and boost your SEO by submitting your AI tools",
+    "keywords": "AI Directory, AI Navigation, AI Program, Agent",
     "loading": "Loading..."
   },
   "menu": {
