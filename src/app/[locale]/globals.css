@@ -38,7 +38,8 @@
     --ring: 215 100% 50%;
 
     --radius: 0.375rem;
-    -nav-background: 0 0% 100%;
+    --nav-background: 0 0% 100%;
+    background: hsl(0 0% 100%);
     --nav-foreground: 222 14% 18%;
   }
 
@@ -169,30 +170,7 @@
     padding-bottom: 3rem;
   }
 
-  /* 工具卡片区域背景样式 - 垂直拼接背景图 */
-  .tools-bg-gradient {
-    position: relative;
-    background-image: url('/hero-bg.png');
-    background-size: 100% auto;
-    background-position: center top;
-    background-repeat: repeat-y; /* 关键属性：垂直方向重复背景图 */
-  }
-
-  .tools-bg-gradient::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg,
-        hsl(var(--background)/0.75) 0%,
-        hsl(var(--background)/0.65) 100%);
-    z-index: 1;
-  }
-
-  /* 确保内容在遮罩层之上 */
-  .tools-bg-gradient>* {
-    position: relative;
-    z-index: 2;
-  }
+  
 
   .hero-text-gradient {
     background: linear-gradient(to right,

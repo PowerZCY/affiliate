@@ -112,7 +112,8 @@ export function JetBrainsToolCard({
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                   style={isDefaultImage ? { opacity: '0.7' } : {}}
-                  priority
+                  priority={false}
+                  loading="lazy"
                   onError={(e) => {
                     console.error(`Failed to load original image: ${bannerImageSrc}`);
                     setOriginalImageError(true);
@@ -137,7 +138,8 @@ export function JetBrainsToolCard({
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                   style={{ opacity: '0.7' }}
-                  priority
+                  priority={false}
+                  loading="lazy"
                   onError={(e) => {
                     console.error('Failed to load default image');
                     setDefaultImageError(true);

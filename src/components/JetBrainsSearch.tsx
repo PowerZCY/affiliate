@@ -65,7 +65,7 @@ export function JetBrainsSearch({
   };
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full max-w-3xl mx-auto"> {/* 增加最大宽度并居中 */}
       <form
         onSubmit={handleSubmit}
         className="relative flex w-full items-center"
@@ -75,12 +75,11 @@ export function JetBrainsSearch({
           <Input
             type="search"
             placeholder={t('inputPlaceholder')}
-            className="pl-10 pr-20 h-12 rounded-full border-2 focus-visible:ring-primary"
+            className="pl-10 pr-28 h-12 rounded-full border-2 focus-visible:ring-primary"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={(_e) => {
-              // 延迟失去焦点的处理，以便用户可以点击建议项
               setTimeout(() => setIsFocused(false), 200);
             }}
             onKeyDown={(e) => {
@@ -92,7 +91,7 @@ export function JetBrainsSearch({
         </div>
         <Button
           type="submit"
-          className="absolute right-1 top-1/2 -translate-y-1/2 h-10 rounded-full"
+          className="absolute right-1.5 top-1/2 -translate-y-1/2 h-10 w-24 rounded-full flex items-center justify-center"
           disabled={isSearching}
         >
           {isSearching ? (
@@ -103,7 +102,7 @@ export function JetBrainsSearch({
         </Button>
       </form>
 
-      {/* 搜索建议下拉框 - 当输入框获得焦点时显示 */}
+      {/* 搜索建议下拉框也需要适配新的宽度 */}
       {isFocused && !isSearching && (
         <div className="absolute w-full mt-1">
           <Command className="rounded-lg border shadow-md">

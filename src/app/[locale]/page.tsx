@@ -18,7 +18,7 @@ const cacheUtils = {
       return null;
     }
   },
-  
+
   setCache: (key: string, data: CacheData) => {
     if (typeof window === 'undefined') return;
     try {
@@ -41,7 +41,7 @@ export default function Home() {
     // 客户端获取分类数据
     const fetchCategories = async () => {
       const cacheKey = `categories-${locale}`;
-      
+
       // 如果正在获取数据，直接返回
       if (isFetching.current) {
         console.log(`[Categories] Skip duplicate request - fetch in progress for locale: ${locale}`);
@@ -56,7 +56,7 @@ export default function Home() {
         setIsLoading(false);
         return;
       }
-      
+
       console.log(`[Categories] Start fetching categories for locale: ${locale}`);
       setIsLoading(true);
       isFetching.current = true;
@@ -107,6 +107,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col">
       {/* Hero Section，俏标题·引人入胜 - 增加内容间距 */}
       <section className="relative overflow-hidden">
+        {/* 这里的样式制定了背景图片 */}
         <div className="hero-gradient">
           <div className="container relative z-10 py-8 md:py-12">
             <div className="max-w-4xl mx-auto text-center space-y-6">
