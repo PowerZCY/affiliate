@@ -35,6 +35,7 @@ export function Header() {
           <Link 
             href="/" 
             locale={locale} 
+            replace={true}
             className="mr-6 flex items-center space-x-2 hover:opacity-80 transition-opacity"
           >
             <Image

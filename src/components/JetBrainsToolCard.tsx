@@ -51,7 +51,8 @@ export function JetBrainsToolCard({
 
   // 是否显示banner图 - 如果配置开启且有图片，或者配置开启但使用默认图片
   const showBanner = appConfig.ui.showToolBanner;
-  const bannerImageSrc = homeImg ? `/img/${homeImg}` : '/img/default.png';
+  const defaultImg = appConfig.blog.images.default;
+  const bannerImageSrc = homeImg ? `/images/${homeImg}` : defaultImg;
 
   // 判断是否使用默认图片
   const isDefaultImage = !homeImg;
@@ -119,7 +120,7 @@ export function JetBrainsToolCard({
                     setOriginalImageError(true);
                     if (!isDefaultImage) {
                       // 如果不是默认图片，则尝试加载默认图片
-                      e.currentTarget.src = '/img/default.png';
+                      e.currentTarget.src = defaultImg;
                       e.currentTarget.onerror = (_e2) => {
                         console.error('Failed to load default image');
                         setDefaultImageError(true);
@@ -132,7 +133,7 @@ export function JetBrainsToolCard({
                 />
               ) : !defaultImageError ? (
                 <Image
-                  src="/img/default.png"
+                  src={defaultImg}
                   alt="Default banner"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
