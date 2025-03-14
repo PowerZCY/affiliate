@@ -58,8 +58,6 @@ export function JetBrainsSearch({
     setTimeout(() => {
       if (onSearch) {
         onSearch(suggestion);
-      } else {
-        window.location.href = `/tools/${encodeURIComponent(suggestion)}`;
       }
     }, 0);
   };
@@ -115,10 +113,6 @@ export function JetBrainsSearch({
                 <CommandItem onSelect={() => handleSuggestionSelect('SEO')}>
                   <GlobeIcon className="mr-2 h-4 w-4" />
                   <span>SEO</span>
-                </CommandItem>
-                <CommandItem disabled>
-                  <DotsHorizontalIcon className="mr-2 h-4 w-4" />
-                  <span>{t('more')}</span>
                 </CommandItem>
               </CommandGroup>
             </CommandList>
