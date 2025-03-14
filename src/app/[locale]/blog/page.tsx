@@ -96,7 +96,7 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
       {/* 特色文章 - 全宽展示 */}
       {featuredPost && (
         <Link
-          href={`/blog/${featuredPost.slug}`}
+          href={`/${locale}/blog/${featuredPost.slug}`}
           className="block mb-12 group"
           prefetch={false}
         >
@@ -216,7 +216,7 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
                 </div>
 
                 <Link
-                  href={`/blog/${post.slug}`}
+                  href={`/${locale}/blog/${post.slug}`}
                   className="flex flex-col"
                   prefetch={false}
                 >
@@ -279,7 +279,7 @@ export default function BlogPage({ params: { locale } }: { params: { locale: str
               {recentPosts.map((post: BlogPost) => (
                 <Link
                   key={post.id}
-                  href={`/blog/${post.slug}`}
+                  href={`/${locale}/blog/${post.slug}`}
                   className="flex gap-3 group"
                   prefetch={false}  // 这里也添加
                 >
