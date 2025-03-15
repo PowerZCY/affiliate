@@ -7,16 +7,16 @@ import { appConfig } from '@/lib/appConfig';
 import { Tool } from '@/lib/data';
 
 // 格式化数字显示（K、M单位）
-// function formatNumber(num: number): string {
-//   if (num <= 0) return '0';
-//   if (num >= 1000000) {
-//     return `${Math.floor(num / 1000000)}M+`;
-//   }
-//   if (num >= 1000) {
-//     return `${Math.floor(num / 1000)}K+`;
-//   }
-//   return num.toString();
-// }
+function formatNumber(num: number): string {
+  if (num <= 0) return '0';
+  if (num >= 1000000) {
+    return `${Math.floor(num / 1000000)}M+`;
+  }
+  if (num >= 1000) {
+    return `${Math.floor(num / 1000)}K+`;
+  }
+  return num.toString();
+}
 
 export type ToolCardProps = Tool;
 
@@ -33,7 +33,10 @@ export function JetBrainsToolCard({
   submit,
   showPrice,
   price,
-  salePrice
+  salePrice,
+  star,
+  traffic,
+  like
 }: ToolCardProps) {
   // 使用国际化翻译
   const t = useTranslations('toolCard');
@@ -72,6 +75,8 @@ export function JetBrainsToolCard({
 
   // 是否显示banner图 - 如果配置开启且有图片，或者配置开启但使用默认图片
   const showBanner = appConfig.ui.showToolBanner;
+  const showStatistics = appConfig.ui.showStatistics;
+
   const defaultImg = appConfig.tool.defaultBanner;
   const bannerImageSrc = homeImg ? `${appConfig.tool.bannerDir}/${homeImg}` : defaultImg;
 
@@ -222,21 +227,21 @@ export function JetBrainsToolCard({
             {/* 标签区域 */}
             <div className="h-auto min-h-[1.5rem] mb-1.5 px-3">
               {allTags.length > 0 && (
-                <div className="flex flex-wrap gap-1">
+                <div className="flex items-center flex-row flex-nowrap gap-1">
                   {displayTags.map((tag) => (
                     <span
                       key={tag}
-                      className="inline-flex items-center rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-800"
+                      className="inline-flex items-center rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-800 whitespace-nowrap"
                     >
                       {tag}
                     </span>
                   ))}
                   {allTags.length > 2 && (
-                    <div className="relative">
+                    <div className="relative inline-flex flex-shrink-0">
                       <button
                         onMouseEnter={() => setIsTagsHovered(true)}
                         onMouseLeave={() => setIsTagsHovered(false)}
-                        className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200 transition-colors cursor-pointer"
+                        className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200 transition-colors cursor-pointer whitespace-nowrap"
                       >
                         +{allTags.length - 2}
                       </button>
@@ -294,11 +299,11 @@ export function JetBrainsToolCard({
               <div className="flex items-center gap-1">
                 {salePrice !== -1 && (
                   <span className="text-sm font-medium text-purple-500">
-                    ${salePrice}
+                    ${salePrice ? salePrice.toFixed(2) : '0.00'}
                   </span>
                 )}
                 <span className={`text-sm ${salePrice !== -1 ? 'line-through text-gray-400' : 'text-gray-700 dark:text-gray-300'}`}>
-                  ${price}
+                  ${price ? price.toFixed(2) : '0.00'}
                 </span>
               </div>
             ) : (
@@ -307,6 +312,48 @@ export function JetBrainsToolCard({
           </div>
         </div>
 
+        {/* 数据展示区域 - 第二行 */}
+        {showStatistics && (
+          <div className="flex items-center justify-between px-3 py-2">
+            {/* 流量 */}
+            <div className="flex items-center gap-1">
+              <svg
+                className="w-4 h-4 text-blue-500"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+              <span className="text-sm text-gray-600 dark:text-gray-400">{formatNumber(traffic)}</span>
+            </div>
+
+            {/* 收藏数 */}
+            <div className="flex items-center gap-1">
+              <svg
+                className={`w-4 h-4 ${like > 0 ? 'text-red-500' : 'text-gray-400'}`}
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              </svg>
+              {like > 0 && <span className="text-sm text-gray-600 dark:text-gray-400">{formatNumber(like)}</span>}
+            </div>
+
+            {/* 评分 */}
+            <div className="flex items-center gap-1">
+              <svg
+                className={`w-4 h-4 ${star > 0 ? 'text-yellow-400' : 'text-gray-400'}`}
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+              {star > 0 && <span className="text-sm text-gray-600 dark:text-gray-400">{star.toFixed(1)}</span>}
+            </div>
+          </div>
+        )}
 
       </div>
     </div>

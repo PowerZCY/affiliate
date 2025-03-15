@@ -6,15 +6,17 @@
     "url": "https://www.toolify.ai/",
     "homeImg": "2.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Apple"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 99,
     "salePrice": 0,
     "hot": "",
-    "star": 0,
+    "star": 3.4,
     "traffic": 2100000,
-    "like": 0
+    "like": 487
   },
   {
     "id": "3",
@@ -23,15 +25,18 @@
     "url": "https://www.usbot.net/",
     "homeImg": "3.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "HugFace",
+      "Apple"
+    ],
     "submit": false,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2.1,
     "traffic": 3400,
-    "like": 0
+    "like": 7
   },
   {
     "id": "4",
@@ -40,15 +45,18 @@
     "url": "https://aitoolsdirectory.com/",
     "homeImg": "4.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "IG",
+      "Claude"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2.3,
     "traffic": 220000,
-    "like": 0
+    "like": 14
   },
   {
     "id": "5",
@@ -57,15 +65,19 @@
     "url": "https://www.aixploria.com/",
     "homeImg": "5.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Facebook",
+      "Claude",
+      "DeepSeek"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 79,
-    "salePrice": 0,
+    "salePrice": 62.58,
     "hot": "",
-    "star": 0,
+    "star": 2.7,
     "traffic": 975000,
-    "like": 0
+    "like": 109
   },
   {
     "id": "6",
@@ -74,15 +86,17 @@
     "url": "https://tooldirectory.ai/",
     "homeImg": "6.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Bytedance"
+    ],
     "submit": true,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 4.9,
     "traffic": 32000,
-    "like": 0
+    "like": 48
   },
   {
     "id": "7",
@@ -91,15 +105,17 @@
     "url": "https://www.insidr.ai/ai-tools/",
     "homeImg": "7.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "HugFace"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2.7,
     "traffic": 100000,
-    "like": 0
+    "like": 12
   },
   {
     "id": "13",
@@ -108,15 +124,19 @@
     "url": "https://aihubs.ai/",
     "homeImg": "13.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Bytedance",
+      "DeepSeek",
+      "IG"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2,
     "traffic": 12000,
-    "like": 0
+    "like": 14
   },
   {
     "id": "14",
@@ -125,15 +145,17 @@
     "url": "https://aipediahub.com/",
     "homeImg": "14.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Facebook"
+    ],
     "submit": true,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2.3,
     "traffic": 9000,
-    "like": 0
+    "like": 10
   },
   {
     "id": "15",
@@ -142,15 +164,17 @@
     "url": "https://airespo.com/",
     "homeImg": "15.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Bytedance"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 3.1,
     "traffic": 20000,
-    "like": 0
+    "like": 67
   },
   {
     "id": "16",
@@ -159,15 +183,18 @@
     "url": "https://aiscout.net/",
     "homeImg": "16.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "DeepSeek",
+      "JetBrains"
+    ],
     "submit": true,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 4.6,
     "traffic": 35000,
-    "like": 0
+    "like": 48
   },
   {
     "id": "17",
@@ -176,15 +203,19 @@
     "url": "https://aitoolsarena.com/",
     "homeImg": "17.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Facebook",
+      "HugFace",
+      "Apple"
+    ],
     "submit": false,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2.9,
     "traffic": 40000,
-    "like": 0
+    "like": 44
   },
   {
     "id": "18",
@@ -193,15 +224,19 @@
     "url": "https://ai-tools.directory/",
     "homeImg": "18.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Google",
+      "JetBrains",
+      "Apple"
+    ],
     "submit": false,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 4.1,
     "traffic": 1000,
-    "like": 0
+    "like": 50
   },
   {
     "id": "19",
@@ -210,15 +245,17 @@
     "url": "https://aitoolguru.com/",
     "homeImg": "19.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "DeepSeek"
+    ],
     "submit": true,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2.9,
     "traffic": 83000,
-    "like": 0
+    "like": 122
   },
   {
     "id": "20",
@@ -227,15 +264,19 @@
     "url": "https://aitoolsmarketer.com/",
     "homeImg": "20.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "DeepSeek",
+      "Ebay",
+      "Apple"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2,
     "traffic": 1000,
-    "like": 0
+    "like": 1
   },
   {
     "id": "21",
@@ -244,15 +285,18 @@
     "url": "https://aitoptools.com/",
     "homeImg": "21.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Claude",
+      "Ebay"
+    ],
     "submit": true,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 3.2,
     "traffic": 150000,
-    "like": 0
+    "like": 85
   },
   {
     "id": "23",
@@ -261,15 +305,19 @@
     "url": "https://aitools.inc/",
     "homeImg": "23.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Claude",
+      "JetBrains",
+      "Facebook"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 3.7,
     "traffic": 64000,
-    "like": 0
+    "like": 77
   },
   {
     "id": "25",
@@ -278,15 +326,17 @@
     "url": "https://alltheaitools.com/",
     "homeImg": "25.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Ebay"
+    ],
     "submit": true,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2.5,
     "traffic": 1000,
-    "like": 0
+    "like": 16
   },
   {
     "id": "33",
@@ -295,15 +345,17 @@
     "url": "https://www.basedtools.ai/",
     "homeImg": "33.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Claude"
+    ],
     "submit": true,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2,
     "traffic": 20000,
-    "like": 0
+    "like": 19
   },
   {
     "id": "34",
@@ -312,15 +364,19 @@
     "url": "https://www.beyondaitools.com/",
     "homeImg": "34.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "JetBrains",
+      "IG",
+      "HugFace"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 19,
-    "salePrice": 0,
+    "salePrice": 4.18,
     "hot": "",
-    "star": 0,
+    "star": 3.2,
     "traffic": 12000,
-    "like": 0
+    "like": 41
   },
   {
     "id": "35",
@@ -329,15 +385,19 @@
     "url": "https://www.dynamite-ai.com/",
     "homeImg": "35.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Facebook",
+      "Claude",
+      "Google"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 1.4,
     "traffic": 500,
-    "like": 0
+    "like": 10
   },
   {
     "id": "36",
@@ -346,15 +406,19 @@
     "url": "https://eliteai.tools/",
     "homeImg": "36.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Claude",
+      "Ebay",
+      "DeepSeek"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 10,
-    "salePrice": 0,
+    "salePrice": 5.4,
     "hot": "",
-    "star": 0,
+    "star": 1.3,
     "traffic": 140000,
-    "like": 0
+    "like": 177
   },
   {
     "id": "37",
@@ -363,15 +427,19 @@
     "url": "https://www.expify.ai/",
     "homeImg": "37.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Facebook",
+      "Bytedance",
+      "JetBrains"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2.4,
     "traffic": 500,
-    "like": 0
+    "like": 2
   },
   {
     "id": "42",
@@ -380,15 +448,18 @@
     "url": "https://www.futuretools.io/",
     "homeImg": "42.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Claude",
+      "Google"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2.5,
     "traffic": 600000,
-    "like": 0
+    "like": 582
   },
   {
     "id": "43",
@@ -397,15 +468,17 @@
     "url": "https://www.grabon.in/indulge/ai-tools/",
     "homeImg": "43.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Claude"
+    ],
     "submit": false,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2.6,
     "traffic": 3800000,
-    "like": 0
+    "like": 2220
   },
   {
     "id": "45",
@@ -414,15 +487,19 @@
     "url": "https://havnai.com/",
     "homeImg": "45.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "JetBrains",
+      "Google",
+      "IG"
+    ],
     "submit": true,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 5,
     "traffic": 500,
-    "like": 0
+    "like": 5
   },
   {
     "id": "49",
@@ -431,15 +508,19 @@
     "url": "https://stackviv.ai/",
     "homeImg": "49.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Facebook",
+      "Google",
+      "DeepSeek"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 3.2,
     "traffic": 13000,
-    "like": 0
+    "like": 6
   },
   {
     "id": "50",
@@ -448,15 +529,17 @@
     "url": "https://searchaidirectory.com/",
     "homeImg": "50.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Claude"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 1.1,
     "traffic": 500,
-    "like": 0
+    "like": 7
   },
   {
     "id": "51",
@@ -465,15 +548,18 @@
     "url": "https://showmebest.ai/",
     "homeImg": "51.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Apple",
+      "Ebay"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2.6,
     "traffic": 500,
-    "like": 0
+    "like": 9
   },
   {
     "id": "60",
@@ -482,15 +568,17 @@
     "url": "https://www.aitoolhunt.com/",
     "homeImg": "60.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Bytedance"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 25,
     "salePrice": 0,
     "hot": "",
-    "star": 0,
+    "star": 1.2,
     "traffic": 340000,
-    "like": 0
+    "like": 3
   },
   {
     "id": "61",
@@ -499,15 +587,18 @@
     "url": "https://easywithai.com/free-ai-tools/",
     "homeImg": "61.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Ebay",
+      "Apple"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 125,
-    "salePrice": 0,
+    "salePrice": 58.2,
     "hot": "",
-    "star": 0,
+    "star": 1.4,
     "traffic": 1300000,
-    "like": 0
+    "like": 1288
   },
   {
     "id": "62",
@@ -516,15 +607,17 @@
     "url": "https://aitools.neilpatel.com/",
     "homeImg": "62.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Facebook"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 1.4,
     "traffic": 22000,
-    "like": 0
+    "like": 39
   },
   {
     "id": "63",
@@ -533,15 +626,17 @@
     "url": "https://dang.ai/",
     "homeImg": "63.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "HugFace"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2.6,
     "traffic": 100000,
-    "like": 0
+    "like": 66
   },
   {
     "id": "65",
@@ -550,15 +645,17 @@
     "url": "https://supertools.therundown.ai/",
     "homeImg": "65.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Facebook"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 3.5,
     "traffic": 260000,
-    "like": 0
+    "like": 191
   },
   {
     "id": "66",
@@ -567,15 +664,18 @@
     "url": "https://dokeyai.com/",
     "homeImg": "66.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Facebook",
+      "JetBrains"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 4,
     "traffic": 5000,
-    "like": 0
+    "like": 54
   },
   {
     "id": "67",
@@ -584,15 +684,17 @@
     "url": "https://www.stork.ai/",
     "homeImg": "67.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Claude"
+    ],
     "submit": true,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 1.8,
     "traffic": 70000,
-    "like": 0
+    "like": 57
   },
   {
     "id": "68",
@@ -601,15 +703,19 @@
     "url": "https://www.aitoolnet.com/",
     "homeImg": "68.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Facebook",
+      "Google",
+      "Ebay"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 10,
-    "salePrice": 0,
+    "salePrice": 7.97,
     "hot": "",
-    "star": 0,
+    "star": 3.5,
     "traffic": 80000,
-    "like": 0
+    "like": 18
   },
   {
     "id": "71",
@@ -618,15 +724,17 @@
     "url": "https://toolnest.ai/",
     "homeImg": "71.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Ebay"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 7,
-    "salePrice": 0,
+    "salePrice": 1.2,
     "hot": "",
-    "star": 0,
+    "star": 1.7,
     "traffic": 1000,
-    "like": 0
+    "like": 6
   },
   {
     "id": "72",
@@ -635,15 +743,17 @@
     "url": "https://findmyaitool.com/",
     "homeImg": "72.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "HugFace"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 80,
-    "salePrice": 0,
+    "salePrice": 12.49,
     "hot": "",
-    "star": 0,
+    "star": 4,
     "traffic": 170000,
-    "like": 0
+    "like": 49
   },
   {
     "id": "73",
@@ -652,15 +762,19 @@
     "url": "https://aitoolsmasters.com/",
     "homeImg": "73.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Claude",
+      "Google",
+      "DeepSeek"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2.7,
     "traffic": 500,
-    "like": 0
+    "like": 7
   },
   {
     "id": "74",
@@ -669,15 +783,19 @@
     "url": "https://aiwith.me/",
     "homeImg": "74.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "HugFace",
+      "Bytedance",
+      "Ebay"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 17,
-    "salePrice": 0,
+    "salePrice": 4.13,
     "hot": "",
-    "star": 0,
+    "star": 4.6,
     "traffic": 10000,
-    "like": 0
+    "like": 4
   },
   {
     "id": "75",
@@ -686,15 +804,18 @@
     "url": "https://www.theailibrary.co/",
     "homeImg": "75.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Bytedance",
+      "HugFace"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 4.8,
     "traffic": 7700,
-    "like": 0
+    "like": 28
   },
   {
     "id": "80",
@@ -703,15 +824,19 @@
     "url": "https://whattheai.tech/",
     "homeImg": "80.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Google",
+      "HugFace",
+      "DeepSeek"
+    ],
     "submit": true,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 4.6,
     "traffic": 15800,
-    "like": 0
+    "like": 56
   },
   {
     "id": "81",
@@ -720,15 +845,19 @@
     "url": "https://1000.tools/",
     "homeImg": "81.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "IG",
+      "Apple",
+      "Facebook"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 6,
-    "salePrice": 0,
+    "salePrice": 0.67,
     "hot": "",
-    "star": 0,
+    "star": 4.5,
     "traffic": 15000,
-    "like": 0
+    "like": 57
   },
   {
     "id": "82",
@@ -737,15 +866,19 @@
     "url": "https://www.digitalsamaritan.co/",
     "homeImg": "82.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "JetBrains",
+      "IG",
+      "Google"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 49,
-    "salePrice": 0,
+    "salePrice": 45.54,
     "hot": "",
-    "star": 0,
+    "star": 1.6,
     "traffic": 19000,
-    "like": 0
+    "like": 45
   },
   {
     "id": "83",
@@ -754,15 +887,18 @@
     "url": "https://tipseason.com/",
     "homeImg": "83.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "JetBrains",
+      "DeepSeek"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 3.1,
     "traffic": 30000,
-    "like": 0
+    "like": 16
   },
   {
     "id": "84",
@@ -771,15 +907,17 @@
     "url": "https://ailib.ru/",
     "homeImg": "84.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "JetBrains"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 1.6,
     "traffic": 112000,
-    "like": 0
+    "like": 41
   },
   {
     "id": "85",
@@ -788,15 +926,17 @@
     "url": "https://www.aimonstr.com/",
     "homeImg": "85.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Google"
+    ],
     "submit": true,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 3.8,
     "traffic": 500,
-    "like": 0
+    "like": 8
   },
   {
     "id": "86",
@@ -805,15 +945,18 @@
     "url": "https://aivalley.ai/",
     "homeImg": "86.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Apple",
+      "HugFace"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 4.7,
     "traffic": 97000,
-    "like": 0
+    "like": 119
   },
   {
     "id": "87",
@@ -822,15 +965,18 @@
     "url": "https://www.funfun.tools/",
     "homeImg": "87.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "DeepSeek",
+      "JetBrains"
+    ],
     "submit": true,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 2.8,
     "traffic": 125000,
-    "like": 0
+    "like": 106
   },
   {
     "id": "88",
@@ -839,15 +985,17 @@
     "url": "https://www.aiheron.com/",
     "homeImg": "88.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Facebook"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 1.6,
     "traffic": 2200,
-    "like": 0
+    "like": 1
   },
   {
     "id": "89",
@@ -856,15 +1004,17 @@
     "url": "https://aitoolboard.com/",
     "homeImg": "89.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Ebay"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 75,
-    "salePrice": 0,
+    "salePrice": 14.73,
     "hot": "",
-    "star": 0,
+    "star": 4.4,
     "traffic": 6400,
-    "like": 0
+    "like": 1
   },
   {
     "id": "90",
@@ -873,15 +1023,17 @@
     "url": "https://aidude.info/",
     "homeImg": "90.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Claude"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 200,
-    "salePrice": 0,
+    "salePrice": 172.18,
     "hot": "",
-    "star": 0,
+    "star": 4.4,
     "traffic": 340,
-    "like": 0
+    "like": 2
   },
   {
     "id": "91",
@@ -890,15 +1042,17 @@
     "url": "https://aigo.tools/",
     "homeImg": "91.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "HugFace"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 12,
-    "salePrice": 0,
+    "salePrice": 2.08,
     "hot": "",
-    "star": 0,
+    "star": 1.1,
     "traffic": 6400,
-    "like": 0
+    "like": 9
   },
   {
     "id": "92",
@@ -907,15 +1061,18 @@
     "url": "https://ai-search.io/",
     "homeImg": "92.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Google",
+      "JetBrains"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 299,
-    "salePrice": 0,
+    "salePrice": 190.16,
     "hot": "",
-    "star": 0,
+    "star": 2.5,
     "traffic": 60000,
-    "like": 0
+    "like": 17
   },
   {
     "id": "93",
@@ -924,15 +1081,17 @@
     "url": "https://aitrendz.xyz/",
     "homeImg": "93.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Claude"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 15,
-    "salePrice": 0,
+    "salePrice": 6.16,
     "hot": "",
-    "star": 0,
+    "star": 3.7,
     "traffic": 6300,
-    "like": 0
+    "like": 37
   },
   {
     "id": "94",
@@ -941,15 +1100,17 @@
     "url": "https://seofai.com/",
     "homeImg": "94.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Claude"
+    ],
     "submit": true,
     "showPrice": true,
     "price": 29,
-    "salePrice": 0,
+    "salePrice": 13.46,
     "hot": "",
-    "star": 0,
+    "star": 1.5,
     "traffic": 214000,
-    "like": 0
+    "like": 59
   },
   {
     "id": "95",
@@ -958,15 +1119,19 @@
     "url": "https://www.tools-ai.online/",
     "homeImg": "95.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Bytedance",
+      "HugFace",
+      "Facebook"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 4,
     "traffic": 80000,
-    "like": 0
+    "like": 90
   },
   {
     "id": "96",
@@ -975,15 +1140,19 @@
     "url": "https://ai-hunter.io/",
     "homeImg": "96.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Google",
+      "Bytedance",
+      "JetBrains"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 3.2,
     "traffic": 18000,
-    "like": 0
+    "like": 25
   },
   {
     "id": "98",
@@ -992,13 +1161,15 @@
     "url": "https://nextpedia.io/",
     "homeImg": "98.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "IG"
+    ],
     "submit": false,
     "showPrice": false,
-    "price": 0,
-    "salePrice": 0,
+    "price": -1,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 1.2,
     "traffic": 481,
     "like": 0
   },
@@ -1009,15 +1180,17 @@
     "url": "https://saasbaba.com/",
     "homeImg": "99.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Claude"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 4.9,
     "traffic": 4200,
-    "like": 0
+    "like": 21
   },
   {
     "id": "100",
@@ -1026,14 +1199,18 @@
     "url": "https://aiwikitools.com/",
     "homeImg": "100.webp",
     "iconUrl": "",
-    "tags": [],
+    "tags": [
+      "Bytedance",
+      "Apple",
+      "DeepSeek"
+    ],
     "submit": true,
     "showPrice": false,
     "price": 0,
-    "salePrice": 0,
+    "salePrice": -1,
     "hot": "",
-    "star": 0,
+    "star": 1.8,
     "traffic": 3200,
-    "like": 0
+    "like": 3
   }
 ]

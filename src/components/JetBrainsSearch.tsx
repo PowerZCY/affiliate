@@ -12,7 +12,6 @@ import {
   CommandList,
 } from "@/components/ui/command"
 import {
-  DotsHorizontalIcon,
   GlobeIcon,
   LightningBoltIcon
 } from "@radix-ui/react-icons"

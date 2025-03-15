@@ -57,8 +57,7 @@ export const appConfig = {
   ui: {
     // 是否显示工具卡片的banner图
     showToolBanner: process.env.NEXT_PUBLIC_SHOW_TOOL_BANNER !== 'false',
-    // 每页显示的工具数量
-    toolsPerPage: 12,
+    showStatistics: process.env.NEXT_PUBLIC_SHOW_STATISTICS !== 'false',
   },
 
   // 分类配置数据
