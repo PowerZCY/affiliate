@@ -37,7 +37,7 @@ const translations: Record<string, Record<string, any>> = {}
 // 注意翻译文件的目录位置，推荐项目根目录
 appConfig.i18n.locales.forEach(locale => {
   try {
-    const filePath = path.join(process.cwd(), `messages/${locale}.json`)
+    const filePath = path.join(process.cwd(), `${appConfig.i18n.messageRoot}/${locale}.json`)
     translations[locale] = JSON.parse(fs.readFileSync(filePath, 'utf8'))
   } catch (error) {
     logError(`无法读取语言文件 ${locale}: ${error}`)
@@ -101,7 +101,7 @@ function extractTranslationsInfo(content: string, filePath: string): Translation
     const namespace = match[1] || match[2]
     if (namespace) {
       foundNamespaces.add(namespace)
-      
+
       // 尝试找到赋值语句，如 const t = await getTranslations(...)
       // 查找前面最近的 const 声明
       const linesBefore = content.substring(0, match.index).split('\n');
@@ -121,7 +121,7 @@ function extractTranslationsInfo(content: string, filePath: string): Translation
   while ((match = useTranslationsPattern.exec(content)) !== null) {
     const namespace = match[1]
     foundNamespaces.add(namespace)
-    
+
     // 尝试找到赋值语句，如 const t = useTranslations(...)
     // 查找包含 useTranslations 的行
     const currentLine = content.substring(0, match.index).split('\n').pop() || '';

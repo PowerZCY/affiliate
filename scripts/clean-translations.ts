@@ -38,8 +38,9 @@ const translations: Record<string, Record<string, any>> = {}
 // 动态加载所有语言的翻译文件
 appConfig.i18n.locales.forEach(locale => {
   try {
-    const filePath = path.join(process.cwd(), `messages/${locale}.json`)
+    const filePath = path.join(process.cwd(), `${appConfig.i18n.messageRoot}/${locale}.json`)
     translations[locale] = JSON.parse(fs.readFileSync(filePath, 'utf8'))
+    console.log(`成功读取语言文件 ${filePath}`)
   } catch (error) {
     logError(`无法读取语言文件 ${locale}: ${error}`)
   }
@@ -120,26 +121,26 @@ function extractTranslationsInfo(content: string, filePath: string): Translation
   // 匹配 t('key') 或 t("key")，并检查 t 是否与已知命名空间关联
   // 修改 t 函数调用的匹配模式
   const tPatterns = [
-  // 普通字符串键: t('key') 或 t("key")
-  /(\w+)\(\s*['"]([^'"]+)['"]\s*\)/g,
-  
-  // 模板字符串键: t(`tags.${id}`) 或 t(`section.${key}`)
-  /(\w+)\(\s*`([^`]+)`\s*\)/g,
-  
-  // 变量形式的键: t(item.key) 或 t(item.id)
-  /(\w+)\(\s*(\w+)\.(\w+)\s*\)/g
+    // 普通字符串键: t('key') 或 t("key")
+    /(\w+)\(\s*['"]([^'"]+)['"]\s*\)/g,
+
+    // 模板字符串键: t(`tags.${id}`) 或 t(`section.${key}`)
+    /(\w+)\(\s*`([^`]+)`\s*\)/g,
+
+    // 变量形式的键: t(item.key) 或 t(item.id)
+    /(\w+)\(\s*(\w+)\.(\w+)\s*\)/g
   ];
-  
+
   for (const pattern of tPatterns) {
     let match;
     while ((match = pattern.exec(content)) !== null) {
       const funcName = match[1];
-  
+
       // 如果函数名与已知命名空间变量关联
       if (result.namespaces.has(funcName)) {
         const namespace = result.namespaces.get(funcName);
         if (!namespace) continue;
-  
+
         if (pattern.source.includes('`')) {
           // 处理模板字符串
           const templateStr = match[2];
@@ -171,11 +172,11 @@ function extractTranslationsInfo(content: string, filePath: string): Translation
           // 处理变量形式键 t(item.key)
           const varName = match[2];
           const propName = match[3];
-          
+
           // 从文件内容中查找该变量的可能值
           const varPattern = new RegExp(`${varName}\\s*=\\s*{[^}]*key:\\s*['"]([^'"]+)['"]`);
           const varMatch = content.match(varPattern);
-          
+
           if (varMatch) {
             // 如果找到了变量定义，添加实际的键
             result.keys.push(`${namespace}.${varMatch[1]}`);
@@ -189,7 +190,7 @@ function extractTranslationsInfo(content: string, filePath: string): Translation
               });
             }
           }
-          
+
           log(`  [变量键] ${filePath}: ${namespace}.${varName}.${propName}`);
         } else {
           // 处理普通字符串键

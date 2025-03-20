@@ -20,6 +20,7 @@ export const appConfig = {
       expirationDays: 30,
       storagePrefix: 'AI-Affiliate'
     },
+    messageRoot: 'messages',
     localeCurrencies: {
       /* This only works with Stripe for now. For LemonSqueezy, we need to set the currency in the LemonSqueezy dashboard and there can only be one. */
       en: "USD",
