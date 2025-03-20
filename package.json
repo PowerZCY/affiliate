@@ -9,6 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --fix . && next lint",
+    "init-csv-data": "tsx scripts/csv-to-json.ts",
     "check-translations": "ts-node --project tsconfig.node.json scripts/check-translations.ts",
     "clean-translations": "ts-node --project tsconfig.node.json scripts/clean-translations.ts",
     "remove-translations": "ts-node --project tsconfig.node.json scripts/clean-translations.ts --remove"

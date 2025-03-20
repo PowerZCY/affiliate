@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable unused-imports/no-unused-vars */
 import { parse } from 'csv-parse';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -160,14 +161,14 @@ fs.createReadStream(csvPath)
             traffic: row.traffic ? Number(row.traffic) : 500,
             like: row.like ? Number(row.like) : 0,
         };
-        const mockData = mock(tool)
+        // const mockData = mock(tool)
         // 为每种语言创建工具对象
         supportedLocales.forEach(locale => {
             // 将工具添加到相应的分类和语言中
             if (!toolsByCategoryAndLocale[locale][category]) {
                 toolsByCategoryAndLocale[locale][category] = [];
             }
-            toolsByCategoryAndLocale[locale][category].push(mockData);
+            toolsByCategoryAndLocale[locale][category].push(tool);
         });
     })
     .on('end', () => {

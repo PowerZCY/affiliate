@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, Twitter, Linkedin } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Separator } from '@/components/blog/separator';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';

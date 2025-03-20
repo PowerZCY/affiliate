@@ -76,10 +76,10 @@ export const appConfig = {
 
   // 菜单配置
   menu: [
-    {
-      key: 'journey',
-      href: '/blog',
-    },
+    // {
+    //   key: 'journey',
+    //   href: '/blog',
+    // },
     // {
     //   key: 'docs',
     //   href: '/docs',
