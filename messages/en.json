@@ -61,6 +61,8 @@
       "roadOverSea": "Road Over Sea",
       "insights": "Insights"
     },
+    "prevPost": "Previous Post",
+    "nextPost": "Next Post",
     "allPosts": "All Posts",
     "development": "Development",
     "design": "Design",

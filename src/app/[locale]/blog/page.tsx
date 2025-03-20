@@ -9,19 +9,18 @@
 
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
-import { useTranslations } from 'next-intl';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Clock, Search, ChevronUp } from 'lucide-react';
-import { useSearchParams } from 'next/navigation';
 import blogData from '@/../../public/md/blog-config.json';
-import type { BlogPost, BlogData } from '@/types/blog-data';
-import Fuse from 'fuse.js';
+import { Badge } from '@/components/ui/badge';
 import { appConfig } from '@/lib/appConfig';
 import styles from '@/styles/CategoryPage.module.css';
+import type { BlogData, BlogPost } from '@/types/blog-data';
+import Fuse from 'fuse.js';
+import { Clock, Search } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useMemo, useState } from 'react';
 
 const typedBlogData = blogData as BlogData;
 

@@ -5,10 +5,11 @@ import { MarkdownRenderer, TableOfContents } from '@/components/MarkdownRenderer
 import { BlogHeader } from '@/components/blog/BlogHeader';
 import { BlogFooter } from '@/components/blog/BlogFooter';
 import { BlogSidebar } from '@/components/blog/BlogSidebar';
+import { appConfig } from '@/lib/appConfig';
 
 interface BlogPostClientProps {
   slug: string;
-  locale: string;
+  locale: (typeof appConfig.i18n.locales)[number];
   content: string;
 }
 
@@ -29,7 +30,7 @@ export default function BlogPostClient({ slug, locale, content }: BlogPostClient
                 />
               </div>
 
-              <BlogFooter />
+              <BlogFooter slug={slug} locale={locale} />
             </article>
           </main>
         </div>
@@ -38,4 +39,4 @@ export default function BlogPostClient({ slug, locale, content }: BlogPostClient
       <BlogSidebar toc={toc} />
     </div>
   );
-} 
+}

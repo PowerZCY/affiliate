@@ -49,7 +49,9 @@ async function validateMarkdownFile(filePath: string, locale: string) {
     publishedAt: data.publishedAt,
     readTime: `${readTime} min`,
     imageUrl,
-    featured: data.featured || false
+    featured: data.featured || false,
+    preSlug: '',  // 稍后在外部设置
+    nextSlug: ''   // 稍后在外部设置
   };
 }
 
@@ -230,8 +232,41 @@ async function generateBlogData() {
     );
 
     const tags = Array.from(new Set(posts.flatMap(post => post.tags)));
+
+    // 计算标签重要性得分
+    const getTagScore = (tags: string[]): number => {
+      return tags.reduce((score, tag) => {
+        const tagIndex = appConfig.blog.tags.indexOf(tag);
+        // 标签越靠前，分数越高；未找到的标签返回最低分
+        return score + (tagIndex >= 0 ? (appConfig.blog.tags.length - tagIndex) : 0);
+      }, 0);
+    };
+
+    // 按照标签重要性和发布日期降序排序
+    const sortedPosts = posts.sort((a, b) => {
+      // 先比较标签得分
+      const scoreA = getTagScore(a.tags);
+      const scoreB = getTagScore(b.tags);
+      
+      if (scoreB !== scoreA) {
+        return scoreB - scoreA; // 标签得分高的排在前面
+      }
+      
+      // 标签得分相同时，按发布日期降序
+      return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+    });
+
+    // 添加 preSlug 和 nextSlug 字段，形成双链表结构
+    for (let i = 0; i < sortedPosts.length; i++) {
+      // 前一篇文章的 slug (如果存在)
+      sortedPosts[i].preSlug = i > 0 ? sortedPosts[i - 1].slug : '';
+
+      // 后一篇文章的 slug (如果存在)
+      sortedPosts[i].nextSlug = i < sortedPosts.length - 1 ? sortedPosts[i + 1].slug : '';
+    }
+
     blogData[locale] = {
-      posts: posts.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()),
+      posts: sortedPosts,
       tags
     };
   }

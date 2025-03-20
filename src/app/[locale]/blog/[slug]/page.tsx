@@ -3,8 +3,9 @@ import path from 'path';
 import matter from 'gray-matter';
 import { notFound } from 'next/navigation';
 import BlogPostClient from './BlogPostClient';
+import { appConfig } from '@/lib/appConfig';
 
-async function getBlogPost(slug: string, locale: string) {
+async function getBlogPost(slug: string, locale: (typeof appConfig.i18n.locales)[number]) {
   try {
     const filePath = path.join(process.cwd(), 'public', 'md', locale, `${slug}.md`);
     const content = await fs.readFile(filePath, 'utf8');
@@ -20,11 +21,12 @@ async function getBlogPost(slug: string, locale: string) {
 export default async function BlogPost({
   params: { slug, locale }
 }: {
-  params: { slug: string; locale: string }
+  params: {
+    slug: string;
+    locale: (typeof appConfig.i18n.locales)[number]
+  }
 }) {
-  // 解码 URL 编码的 slug
   const decodedSlug = decodeURIComponent(slug);
-  // console.log(`[${slug}]-->>>${decodedSlug}`);
   const content = await getBlogPost(decodedSlug, locale);
 
   if (!content) {

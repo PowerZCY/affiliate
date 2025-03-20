@@ -14,6 +14,8 @@ export interface BlogPost {
   readTime: string;
   imageUrl: string;
   featured: boolean;
+  preSlug: string;
+  nextSlug: string;
 }
 
 export interface BlogData {

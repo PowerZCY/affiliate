@@ -17,7 +17,9 @@
         "publishedAt": "2024-03-13",
         "readTime": "4 min",
         "imageUrl": "/images/default.webp",
-        "featured": true
+        "featured": true,
+        "preSlug": "",
+        "nextSlug": ""
       }
     ],
     "tags": [
@@ -27,6 +29,26 @@
   },
   "zh": {
     "posts": [
+      {
+        "id": "4",
+        "title": "Httpie接口循环调用使用指南",
+        "slug": "Httpie使用指南",
+        "excerpt": "接口调用神器，远超postman的丝滑体验",
+        "tags": [
+          "tutorials",
+          "makeMoney"
+        ],
+        "author": {
+          "name": "帝八哥",
+          "avatar": "/images/default.webp"
+        },
+        "publishedAt": "2020-04-13",
+        "readTime": "3 min",
+        "imageUrl": "/images/default.webp",
+        "featured": false,
+        "preSlug": "",
+        "nextSlug": "markdown-module"
+      },
       {
         "id": "7",
         "title": "基于 Markdown 的配置化博客实现方案",
@@ -43,41 +65,9 @@
         "publishedAt": "2024-03-13",
         "readTime": "3 min",
         "imageUrl": "/images/default.webp",
-        "featured": true
-      },
-      {
-        "id": "1",
-        "title": "IDEA-SpringBoot智能插件使用指南",
-        "slug": "D8gerAutoCode插件使用指南",
-        "excerpt": "一键智能编码",
-        "tags": [
-          "tutorials"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2020-09-05",
-        "readTime": "3 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
-      },
-      {
-        "id": "2",
-        "title": "EasyHttp使用指南",
-        "slug": "EasyHttp使用指南",
-        "excerpt": "并发测试工具，一条命令即可进行并发接口调用",
-        "tags": [
-          "tutorials"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2020-05-15",
-        "readTime": "2 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
+        "featured": true,
+        "preSlug": "Httpie使用指南",
+        "nextSlug": "MacOS软件初始化"
       },
       {
         "id": "5",
@@ -95,42 +85,9 @@
         "publishedAt": "2020-04-25",
         "readTime": "6 min",
         "imageUrl": "/images/default.webp",
-        "featured": false
-      },
-      {
-        "id": "6",
-        "title": "Sentinel限流方案",
-        "slug": "Sentinel限流指南",
-        "excerpt": "Spring/SpringMVC/SpringBoot 丝滑接入Sentinel限流方案",
-        "tags": [
-          "tutorials"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2020-04-25",
-        "readTime": "4 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
-      },
-      {
-        "id": "4",
-        "title": "Httpie接口循环调用使用指南",
-        "slug": "Httpie使用指南",
-        "excerpt": "接口调用神器，远超postman的丝滑体验",
-        "tags": [
-          "tutorials",
-          "makeMoney"
-        ],
-        "author": {
-          "name": "帝八哥",
-          "avatar": "/images/default.webp"
-        },
-        "publishedAt": "2020-04-13",
-        "readTime": "3 min",
-        "imageUrl": "/images/default.webp",
-        "featured": false
+        "featured": false,
+        "preSlug": "markdown-module",
+        "nextSlug": "枚举处理规范"
       },
       {
         "id": "8",
@@ -148,7 +105,9 @@
         "publishedAt": "2019-09-01",
         "readTime": "7 min",
         "imageUrl": "/images/default.webp",
-        "featured": false
+        "featured": false,
+        "preSlug": "MacOS软件初始化",
+        "nextSlug": "Git指令整理"
       },
       {
         "id": "3",
@@ -166,7 +125,66 @@
         "publishedAt": "2017-02-15",
         "readTime": "4 min",
         "imageUrl": "/images/default.webp",
-        "featured": false
+        "featured": false,
+        "preSlug": "枚举处理规范",
+        "nextSlug": "D8gerAutoCode插件使用指南"
+      },
+      {
+        "id": "1",
+        "title": "IDEA-SpringBoot智能插件使用指南",
+        "slug": "D8gerAutoCode插件使用指南",
+        "excerpt": "一键智能编码",
+        "tags": [
+          "tutorials"
+        ],
+        "author": {
+          "name": "帝八哥",
+          "avatar": "/images/default.webp"
+        },
+        "publishedAt": "2020-09-05",
+        "readTime": "3 min",
+        "imageUrl": "/images/default.webp",
+        "featured": false,
+        "preSlug": "Git指令整理",
+        "nextSlug": "EasyHttp使用指南"
+      },
+      {
+        "id": "2",
+        "title": "EasyHttp使用指南",
+        "slug": "EasyHttp使用指南",
+        "excerpt": "并发测试工具，一条命令即可进行并发接口调用",
+        "tags": [
+          "tutorials"
+        ],
+        "author": {
+          "name": "帝八哥",
+          "avatar": "/images/default.webp"
+        },
+        "publishedAt": "2020-05-15",
+        "readTime": "2 min",
+        "imageUrl": "/images/default.webp",
+        "featured": false,
+        "preSlug": "D8gerAutoCode插件使用指南",
+        "nextSlug": "Sentinel限流指南"
+      },
+      {
+        "id": "6",
+        "title": "Sentinel限流方案",
+        "slug": "Sentinel限流指南",
+        "excerpt": "Spring/SpringMVC/SpringBoot 丝滑接入Sentinel限流方案",
+        "tags": [
+          "tutorials"
+        ],
+        "author": {
+          "name": "帝八哥",
+          "avatar": "/images/default.webp"
+        },
+        "publishedAt": "2020-04-25",
+        "readTime": "4 min",
+        "imageUrl": "/images/default.webp",
+        "featured": false,
+        "preSlug": "EasyHttp使用指南",
+        "nextSlug": ""
       }
     ],
     "tags": [

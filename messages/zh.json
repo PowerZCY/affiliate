@@ -61,6 +61,8 @@
       "roadOverSea": "出海之路",
       "insights": "真知灼见"
     },
+    "prevPost": "上一篇",
+    "nextPost": "下一篇",
     "allPosts": "所有文章",
     "development": "开发",
     "design": "设计",

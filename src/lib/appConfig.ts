@@ -34,11 +34,11 @@ export const appConfig = {
     config: 'public/md/blog-config.json',
     // 标签定义: 决定了翻译文件字段
     tags: [
-      'productUpdates',
-      'tutorials',
       'makeMoney',
       'roadOverSea',
-      'insights'
+      'productUpdates',
+      'insights',
+      'tutorials'
     ],
     // 图片资源路径
     images: {
