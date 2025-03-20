@@ -7,17 +7,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: '', // home
       lastModified: new Date(),
       changeFrequency: 'daily',
-      priority: 0.7,
+      priority: 1.0,
     }
   ];
 
-  const sitemapData = sitemapRoutes.flatMap((route) => {
-    const routeUrl = route.url === '' ? '' : `/${route.url}`;
-    return {
+  // 为每个支持的语言生成对应的路由
+  const localeRoutes = sitemapRoutes.flatMap(route => {
+    return appConfig.i18n.locales.map(locale => ({
       ...route,
-      url: `${appConfig.baseUrl}${routeUrl}`,
-    };
+      url: locale === appConfig.i18n.defaultLocale
+        ? route.url
+        : `${locale}/${route.url}`,
+    }));
   });
+
+  // 生成完整的 URL
+  const sitemapData = localeRoutes.map(route => ({
+    ...route,
+    url: `${appConfig.baseUrl}/${route.url}`,
+  }));
 
   return sitemapData;
 }

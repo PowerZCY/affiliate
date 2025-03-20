@@ -1,0 +1,258 @@
+---
+id: "httpie-module"
+title: "Httpie接口循环调用使用指南"
+slug: "httpie-module"
+excerpt: "接口调用神器，远超postman的丝滑体验"
+tags: ["tutorials", "makeMoney"]
+author:
+  name: "帝八哥"
+  avatar: "/images/default.webp"
+publishedAt: "2020-04-13"
+imageUrl: "/images/default.webp"
+featured: false
+---
+
+## Httpie-接口循环调用神器
+- 背景
+- 安装
+- 基础命令
+- 接口循环调用
+
+### 背景
+[Httpie](https://httpie.org/doc), 是使用Python封装的命令行工具集, 相比于shell中的`curl`, 提供更加明晰的请求与响应解析, 来张图感受下
+
+>  \$ **`https www.baidu.com`**  
+
+以https方式请求百度的主页, 打印出了***请求头***, ***响应体***
+
+### 安装
+[详细安装指南](https://httpie.org/)
+![](http://file.debuggerpowerzcy.top/power/Httpie-1.png)
+本教程以mac brew安装为例
+> \$ **`brew install httpie`**
+
+配置https命令, 更改shell配置
+在**`~`**目录下编辑**.bashrc**或者**.zshrc**
+
+> \$ **`vim .zshrc`**
+
+设置https命令, 忽略SSL证书校验
+> \$ **`alias https='http --verify=no --default-scheme="https"'`**
+
+更新配置使之生效
+> \$ **`source .zshrc`**
+
+使用示例
+
+> \$ **`http www.baidu.com`**
+
+百度主页是一个html页面, 参数`-h`指定只显示请求头
+
+> \$ **`https www.baidu.com -h`**
+
+### 基本命令(以https为例)
+https 接口地址(不需要https://) -v \| -h \| -b \| -d
+参数意义如下:
+
+```bash
+"-v": "显示请求详细信息",
+"-h": "显示请求头",
+"-b": "显示请求Body",
+"-d": "响应结果保存至TXT"
+```
+
+### 接口循环调用
+- 核心思路: 用**python脚本**或者~~shell脚本~~处理参数拼接好命令, 再执行shell命令
+- 封装后调用方式: **python xxx.python -v \| -h \| -b \| -d**
+
+### 示例
+```plaintext
+- 假设现在要删除100个用户
+- 登录地址为https://www.debuggerpowerzcy.top/login
+- 删除用户地址为https://www.debuggerpowerzcy.top/deleteAccount
+```
+- 登录接口模板ssoLogin.json文件, 格式如下
+    
+```json
+{
+    "url": "https://www.debuggerpowerzcy.top/login",
+    "method": "POST",
+    "headers" : [
+        "Content-Type:application/json",
+        "请求头字段名:请求头字段值"
+    ],
+    "body": [
+    "手机号字段=手机号值",
+    "其他数字字段:=数字字段(注意分隔符为:=)",
+    "密码字段=密码值(字符串分隔符为=)"
+    ]
+}
+```
+
+- 删除用户接口模板excuteUrl.json文件, 格式如下
+
+```json
+{
+    "url": "https://www.debuggerpowerzcy.top/deleteAccount",
+    "method": "POST",
+    "headers" : [
+        "Content-Type:application/json",
+        "请求头字段名:请求头字段值"
+    ],
+    "body": [
+    "userId=NONE(NONE为python脚本进行替换的关键字)"
+    ]
+}
+```
+
+- 将100用户ID写入ID.csv文件, 换行分隔
+```csv
+1
+2
+3
+...
+100
+```
+
+- 示例python脚本, batchHandler.py, 其中auto_login()解析Cookie需要自适应修改
+    
+```python
+#!/usr/bin/env python  
+
+# -*- coding: utf-8 -*-  
+
+import json
+import ssl
+import sys
+import subprocess
+import time
+import pandas as pd
+
+import requests
+
+# 屏蔽HTTPS证书校验, 忽略安全警告  
+
+requests.packages.urllib3.disable_warnings()
+context = ssl._create_unverified_context()
+joiner = ' '
+id_key = 'NONE'
+# 登陆一次后是否服复用cookie  
+
+hot_reload = True
+cmd = "http"
+no_ca = "--verify=no"
+httpie_allow_view = {
+    "-v": "显示请求详细信息",
+    "-h": "显示请求头",
+    "-b": "显示请求Body",
+    "-d": "响应结果保存至TXT",
+    "": "默认"
+}
+httpie_view = None
+try:
+    if len(sys.argv) > 1:
+        if httpie_allow_view.get(sys.argv[1]) is not None:
+            httpie_view = sys.argv[1]
+        else:
+            print("输入参数有误, 仅支持如下参数: -v显示请求详细信息|-h显示请求头|-b显示请求Body|-d响应结果保存至TXT")
+except Exception as e:
+    print(e)
+
+
+def httpie_cmd(id):
+    """
+    执行excuteUrl.json接口
+    :param id
+    :return:
+    """
+    with open("./excuteUrl.json", 'r') as request_data:
+        request_json = json.load(request_data)
+    url = request_json['url']
+    method = request_json['method']
+    request_headers = load_request_headers(request_json['headers'], hot_reload)
+    headers = joiner.join(request_headers)
+    body = joiner.join(request_json['body'])
+    body = body.replace(id_key, str(id))
+    httpie_params = [cmd, no_ca]
+    if httpie_view is not None:
+        httpie_params.append(httpie_view)
+    httpie_params.extend([method, url, headers, body])
+    httpie = joiner.join(httpie_params)
+    print(httpie)
+    print("当前ID: ", id)
+    # 延时执行  
+
+    time.sleep(0.05)
+    subprocess.call(httpie, shell=True)
+
+
+def load_request_headers(headers, hot_reload):
+    """
+    加载请求header
+    :param headers:
+    :param hot_reload: 是否热加载, 复用已有Cookie
+    :return:
+    """
+    if hot_reload:
+        with open("./cookie.txt", "r") as f:
+            cookie = ''.join(f.readlines())
+    else:
+        cookie = auto_login()
+    headers.append(cookie)
+    return headers
+
+
+def load_data():
+    """
+    读取数据文件, 每行为一条数据
+    :return:
+    """
+    data = pd.read_csv("./ID.csv", header=-1)
+    data.columns = ['id']
+    return data['id']
+
+
+def auto_login():
+    """
+    自动登录, 获取登录Cookie, 写入文件, 在控制台打印
+    """
+    with open("./ssoLogin.json", 'r') as sso_login_request_data:
+        request_json = json.load(sso_login_request_data)
+    url = request_json['url']
+    method = request_json['method']
+    request_headers = {}
+    for item in request_json['headers']:
+        split = item.replace('=', '').split(':')
+        request_headers[split[0]] = split[1]
+    request_body = {}
+    for item in request_json['body']:
+        split = item.replace(':', '').split('=')
+        request_body[split[0]] = split[1]
+
+    request_headers = {"Content-Type": "application/json", "HT-app": "6"}
+    response = requests.request(method, url, headers=request_headers, json=request_body, timeout=3, verify=False)
+    response_headers = response.headers
+    cookie = "'Cookie:" + response_headers.get("set-Cookie") + "'"
+    with open("./cookie.txt", "w") as f:
+        f.write(cookie)
+    # JSON标准格式 
+
+    response_body = json.dumps(response.json(), ensure_ascii=False, indent=4)
+    print(response_body)
+    return cookie
+
+
+def main():
+    # 首先登陆一次  
+
+    auto_login()
+    for id in load_data():
+        httpie_cmd(id)
+
+
+if __name__ == '__main__':
+main()
+
+```
+
+> \$ python batchHandler.py -v \| -h \| -b \| -d

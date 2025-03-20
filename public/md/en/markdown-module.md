@@ -12,13 +12,13 @@ imageUrl: "/images/default.webp"
 featured: true
 ---
 
-# Space-Brain Markdown Blog Implementation Guide
+# Markdown Blog Implementation Guide
 
 ## 1. System Architecture
 
 ### 1.1 Directory Structure
 ```plaintext
-space-brain/
+project-XXX/
 ├── public/
 │   └── md/
 │       ├── blog-config.json                     # Core metadata configuration file, auto-generated

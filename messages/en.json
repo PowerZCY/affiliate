@@ -51,6 +51,7 @@
     "readTime": "Read Time",
     "loadMore": "Load More",
     "searchPlaceholder": "Search articles...",
+    "noResults": "No matching results found",
     "recentPosts": "Recent Posts",
     "tags": {
       "productUpdates": "Product Updates",
@@ -65,7 +66,7 @@
     "tutorials": "Tutorials",
     "company": "Company",
     "hero": {
-      "title": "Space Brain Blog",
+      "title": "AI Explore Blog",
       "subtitle": "Insights, tutorials, and news from our team"
     },
     "readArticle": "Read Article",

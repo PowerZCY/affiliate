@@ -35,9 +35,10 @@ export async function generateMetadata({
     description: t('description'),
     keywords: t('keywords'),
     alternates: {
-      canonical: appConfig.baseUrl, languages: {
-        "en-US": `${appConfig.baseUrl}/en/`,
-        "zh-CN": `${appConfig.baseUrl}/zh/`,
+      canonical: `${appConfig.baseUrl}/${locale}`,
+      languages: {
+        "en-US": `${appConfig.baseUrl}/en`,
+        "zh-CN": `${appConfig.baseUrl}/zh`,
       }
     },
     icons: [

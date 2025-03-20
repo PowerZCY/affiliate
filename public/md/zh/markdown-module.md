@@ -2,7 +2,7 @@
 id: "markdown-module"
 title: "基于 Markdown 的配置化博客实现方案"
 slug: "markdown-module"
-excerpt: "详细介绍 Space-Brain 项目中基于 Markdown 的博客系统实现方案，包括文件结构、处理流程和相关配置。"
+excerpt: "详细介绍项目中基于 Markdown 的博客系统实现方案，包括文件结构、处理流程和相关配置。"
 tags: ["tutorials", "insights"]
 author:
   name: "帝八哥"
@@ -12,13 +12,13 @@ imageUrl: "/images/default.webp"
 featured: true
 ---
 
-# Space-Brain Markdown 博客实现方案
+# Markdown 博客实现方案
 
 ## 1. 系统架构
 
 ### 1.1 目录结构
 ```plaintext
-space-brain/
+project-XXX/
 ├── public/
 │   └── md/
 │       ├── blog-config.json                     # 核心元数据配置文件, 自动生成

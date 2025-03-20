@@ -51,6 +51,7 @@
     "readTime": "阅读时长",
     "loadMore": "加载更多",
     "searchPlaceholder": "搜索文章...",
+    "noResults": "暂无匹配的结果",
     "recentPosts": "最近文章",
     "tags": {
       "productUpdates": "产品更新",
@@ -65,7 +66,7 @@
     "tutorials": "教程",
     "company": "公司",
     "hero": {
-      "title": "Space Brain 博客",
+      "title": "AI 探索博客",
       "subtitle": "来自我们团队的见解、教程和新闻"
     },
     "readArticle": "阅读文章",
