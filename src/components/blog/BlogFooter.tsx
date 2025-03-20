@@ -39,7 +39,8 @@ export function BlogFooter({ slug, locale }: BlogFooterProps) {
         <div className="flex items-center justify-between">
           <div className="w-1/3" />
 
-          {/* 中间的分享按钮 */}
+
+          {/* 中间的分享按钮
           <div className="w-1/3 flex justify-center items-center gap-2">
             <Button
               variant="outline"
@@ -57,14 +58,20 @@ export function BlogFooter({ slug, locale }: BlogFooterProps) {
               <Linkedin className="h-4 w-4" />
               LinkedIn
             </Button>
-          </div>
+          </div> 
+          */}
 
           {/* 右侧的导航按钮 */}
           <div className="w-1/3 flex justify-end gap-2">
             <Button
               variant="ghost"
               size="sm"
-              className="flex items-center gap-1 text-muted-foreground hover:text-foreground hover:bg-primary/90"
+              className="flex items-center gap-1 text-white/90 hover:text-white
+                bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700
+                hover:from-purple-400 hover:via-purple-500 hover:to-indigo-600
+                transition-all duration-300 backdrop-blur-sm shadow-lg
+                disabled:from-purple-500/50 disabled:via-purple-600/50 disabled:to-indigo-700/50
+                disabled:text-white/50"
               onClick={() => prevPost && handleNavigation(prevPost.slug)}
               disabled={!prevPost}
               title={prevPost?.title}
@@ -76,7 +83,12 @@ export function BlogFooter({ slug, locale }: BlogFooterProps) {
             <Button
               variant="ghost"
               size="sm"
-              className="flex items-center gap-1 text-muted-foreground hover:text-foreground hover:bg-primary/90"
+              className="flex items-center gap-1 text-white/90 hover:text-white
+                bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700
+                hover:from-purple-400 hover:via-purple-500 hover:to-indigo-600
+                transition-all duration-300 backdrop-blur-sm shadow-lg
+                disabled:from-purple-500/50 disabled:via-purple-600/50 disabled:to-indigo-700/50
+                disabled:text-white/50"
               onClick={() => nextPost && handleNavigation(nextPost.slug)}
               disabled={!nextPost}
               title={nextPost?.title}
