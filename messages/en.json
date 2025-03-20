@@ -15,23 +15,16 @@
   },
   "menu": {
     "journey": "Journey",
-    "docs": "Docs",
-    "gettingStarted": "Getting Started",
-    "guides": "Guides",
-    "apiReference": "API Reference",
     "closeMenu": "Close Menu",
     "openMenu": "Open Menu"
   },
   "toolCard": {
     "canSubmit": "Can submit",
-    "noSubmit": "Not support",
-    "visit": "Visit",
-    "visitWebsite": "View Details"
+    "noSubmit": "Not support"
   },
   "search": {
     "inputPlaceholder": "Search tools by name / tags...",
     "heading": "Suggestions",
-    "more": "More",
     "button": "Search"
   },
   "categoryGrid": {
@@ -45,11 +38,10 @@
     "noSearchResults": "No matching results found"
   },
   "blog": {
-    "title": "Blog",
-    "subtitle": "Latest news, updates, and insights",
-    "readMore": "Read More",
     "readTime": "Read Time",
     "loading": "Loading...",
+    "goToTop": "Go to top",
+    "reset": "Reset Filters",
     "loadMore": "Load More",
     "searchPlaceholder": "Search articles...",
     "noResults": "No matching results found",
@@ -64,20 +56,9 @@
     "prevPost": "Previous Post",
     "nextPost": "Next Post",
     "allPosts": "All Posts",
-    "development": "Development",
-    "design": "Design",
-    "tutorials": "Tutorials",
-    "company": "Company",
     "hero": {
       "title": "AI Explore Blog",
       "subtitle": "Insights, tutorials, and news from our team"
-    },
-    "readArticle": "Read Article",
-    "subscribe": {
-      "title": "Stay Updated",
-      "description": "Subscribe to our newsletter to receive the latest updates and articles.",
-      "placeholder": "Enter your email",
-      "button": "Subscribe"
     }
   },
   "footer": {

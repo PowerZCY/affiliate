@@ -87,7 +87,7 @@ function extractTranslationsInfo(content: string, filePath: string): Translation
     const namespace = match[1] || match[2]
     if (namespace) {
       foundNamespaces.add(namespace)
-      
+
       // 尝试找到赋值语句，如 const t = await getTranslations(...)
       // 查找前面最近的 const 声明
       const linesBefore = content.substring(0, match.index).split('\n');
@@ -107,7 +107,7 @@ function extractTranslationsInfo(content: string, filePath: string): Translation
   while ((match = useTranslationsPattern.exec(content)) !== null) {
     const namespace = match[1]
     foundNamespaces.add(namespace)
-    
+
     // 尝试找到赋值语句，如 const t = useTranslations(...)
     // 查找包含 useTranslations 的行
     const currentLine = content.substring(0, match.index).split('\n').pop() || '';
@@ -118,20 +118,86 @@ function extractTranslationsInfo(content: string, filePath: string): Translation
   }
 
   // 匹配 t('key') 或 t("key")，并检查 t 是否与已知命名空间关联
-  const tPattern = /(\w+)\(\s*['"]([^'"]+)['"]\s*\)/g
-  while ((match = tPattern.exec(content)) !== null) {
-    const funcName = match[1]
-    const key = match[2]
+  // 修改 t 函数调用的匹配模式
+  const tPatterns = [
+  // 普通字符串键: t('key') 或 t("key")
+  /(\w+)\(\s*['"]([^'"]+)['"]\s*\)/g,
+  
+  // 模板字符串键: t(`tags.${id}`) 或 t(`section.${key}`)
+  /(\w+)\(\s*`([^`]+)`\s*\)/g,
+  
+  // 变量形式的键: t(item.key) 或 t(item.id)
+  /(\w+)\(\s*(\w+)\.(\w+)\s*\)/g
+  ];
+  
+  for (const pattern of tPatterns) {
+    let match;
+    while ((match = pattern.exec(content)) !== null) {
+      const funcName = match[1];
+  
+      // 如果函数名与已知命名空间变量关联
+      if (result.namespaces.has(funcName)) {
+        const namespace = result.namespaces.get(funcName);
+        if (!namespace) continue;
+  
+        if (pattern.source.includes('`')) {
+          // 处理模板字符串
+          const templateStr = match[2];
+          // 提取静态部分（变量前面的部分）
+          const staticPart = templateStr.split(/\${(?:id|key)}/)[0].trim();
+          if (staticPart && !staticPart.includes('/')) {
+            // 对于 tags.${id} 这样的形式，记录整个 tags 命名空间
+            const segments = staticPart.split('.');
+            if (segments.length > 0) {
+              // 记录基础路径
+              result.keys.push(`${namespace}.${segments[0]}`);
+              // 如果是多层级的，也记录完整路径
+              if (segments.length > 1) {
+                result.keys.push(`${namespace}.${segments.join('.')}`);
+              }
 
-    // 过滤掉明显不是翻译函数的调用
-    if (key.includes('/') || key === '') continue
-
-    // 如果函数名与已知命名空间变量关联
-    if (result.namespaces.has(funcName)) {
-      const namespace = result.namespaces.get(funcName)
-      if (namespace) {
-        const fullKey = `${namespace}.${key}`
-        result.keys.push(fullKey)
+              // 特殊处理 tags 命名空间
+              if (segments[0] === 'tags') {
+                // 添加所有已知的 tag 键
+                ['productUpdates', 'tutorials', 'makeMoney', 'roadOverSea', 'insights'].forEach(tag => {
+                  result.keys.push(`${namespace}.tags.${tag}`);
+                });
+              }
+            }
+            // 记录动态键使用情况
+            log(`  [动态键-模板] ${filePath}: ${namespace}.${templateStr}`);
+          }
+        } else if (pattern.source.includes('\\w+\\.\\w+')) {
+          // 处理变量形式键 t(item.key)
+          const varName = match[2];
+          const propName = match[3];
+          
+          // 从文件内容中查找该变量的可能值
+          const varPattern = new RegExp(`${varName}\\s*=\\s*{[^}]*key:\\s*['"]([^'"]+)['"]`);
+          const varMatch = content.match(varPattern);
+          
+          if (varMatch) {
+            // 如果找到了变量定义，添加实际的键
+            result.keys.push(`${namespace}.${varMatch[1]}`);
+          } else {
+            // 如果没找到具体定义，尝试从上下文推断
+            // 检查是否在 MenuItem 类型的数组或对象中使用
+            if (content.includes('MenuItem[]') || content.includes('MenuItem}')) {
+              // 添加所有可能的菜单键
+              ['journey'].forEach(menuKey => {
+                result.keys.push(`${namespace}.${menuKey}`);
+              });
+            }
+          }
+          
+          log(`  [变量键] ${filePath}: ${namespace}.${varName}.${propName}`);
+        } else {
+          // 处理普通字符串键
+          const key = match[2];
+          if (!key.includes('/') && key !== '') {
+            result.keys.push(`${namespace}.${key}`);
+          }
+        }
       }
     }
   }
@@ -165,11 +231,11 @@ function extractTranslationsInfo(content: string, filePath: string): Translation
 function removeKeyFromTranslations(key: string, translations: Record<string, any>): boolean {
   const parts = key.split('.')
   const lastPart = parts.pop()
-  
+
   if (!lastPart) return false
-  
+
   let current = translations
-  
+
   // 导航到最后一级的父对象
   for (const part of parts) {
     if (current[part] === undefined || typeof current[part] !== 'object') {
@@ -177,13 +243,13 @@ function removeKeyFromTranslations(key: string, translations: Record<string, any
     }
     current = current[part]
   }
-  
+
   // 删除键
   if (current[lastPart] !== undefined) {
     delete current[lastPart]
     return true
   }
-  
+
   return false
 }
 
@@ -254,39 +320,39 @@ async function cleanTranslations(): Promise<number> {
   const unusedKeys: Record<string, string[]> = {}
   const removedKeys: Record<string, string[]> = {}
   const unusedNamespaces: Record<string, string[]> = {}
-  
+
   appConfig.i18n.locales.forEach(locale => {
     unusedKeys[locale] = []
     removedKeys[locale] = []
     unusedNamespaces[locale] = []
-    
+
     // 获取翻译文件中的所有键
     const allTranslationKeys = getAllKeys(translations[locale])
-    
+
     // 获取翻译文件中的所有命名空间
     const allNamespaces = getTopLevelKeys(translations[locale])
-    
+
     // 找出未使用的命名空间
     allNamespaces.forEach(namespace => {
       if (!foundNamespaces.has(namespace)) {
         unusedNamespaces[locale].push(namespace)
       }
     })
-    
+
     // 找出未使用的键
     allTranslationKeys.forEach(key => {
       if (!foundTranslationKeys.has(key)) {
         unusedKeys[locale].push(key)
       }
     })
-    
+
     log(`\n在 ${locale} 翻译文件中找到 ${unusedKeys[locale].length} 个未使用的键`)
     log(`在 ${locale} 翻译文件中找到 ${unusedNamespaces[locale].length} 个未使用的命名空间`)
   })
-  
+
   if (shouldRemove) {
     log('\n开始删除未使用的翻译键...')
-    
+
     // 删除每个语言文件中未使用的键
     appConfig.i18n.locales.forEach(locale => {
       unusedKeys[locale].forEach(key => {
@@ -294,7 +360,7 @@ async function cleanTranslations(): Promise<number> {
           removedKeys[locale].push(key)
         }
       })
-      
+
       // 删除未使用的命名空间
       unusedNamespaces[locale].forEach(namespace => {
         if (translations[locale][namespace] !== undefined) {
@@ -302,14 +368,14 @@ async function cleanTranslations(): Promise<number> {
           log(`从 ${locale} 翻译文件中删除了未使用的命名空间: ${namespace}`)
         }
       })
-      
+
       // 清理空对象
       translations[locale] = cleanEmptyObjects(translations[locale])
-      
+
       // 保存更新后的翻译文件
       const filePath = path.join(process.cwd(), `messages/${locale}.json`)
       fs.writeFileSync(filePath, JSON.stringify(translations[locale], null, 2), 'utf8')
-      
+
       log(`从 ${locale} 翻译文件中删除了 ${removedKeys[locale].length} 个未使用的键`)
     })
   } else {
@@ -318,7 +384,7 @@ async function cleanTranslations(): Promise<number> {
 
   // 生成报告
   log('\n=== 未使用的翻译键报告 ===\n')
-  
+
   appConfig.i18n.locales.forEach(locale => {
     if (unusedNamespaces[locale].length > 0) {
       log(`🔍 ${locale} 翻译文件中未使用的命名空间:`)
@@ -326,20 +392,20 @@ async function cleanTranslations(): Promise<number> {
     } else {
       log(`✅ ${locale} 翻译文件中没有未使用的命名空间`)
     }
-    
+
     if (unusedKeys[locale].length > 0) {
       log(`\n🔍 ${locale} 翻译文件中未使用的键:`)
       unusedKeys[locale].forEach(key => log(`  - ${key}`))
     } else {
       log(`\n✅ ${locale} 翻译文件中没有未使用的键`)
     }
-    
+
     if (shouldRemove && removedKeys[locale].length > 0) {
       log(`\n🗑️ 从 ${locale} 翻译文件中删除的键:`)
       removedKeys[locale].forEach(key => log(`  - ${key}`))
     }
   })
-  
+
   log('\n=== 报告结束 ===\n')
 
   // 在所有操作完成后，一次性写入日志文件
@@ -349,8 +415,8 @@ async function cleanTranslations(): Promise<number> {
   log(`检查完成，日志已保存到 ${logFilePath}`)
 
   // 如果有任何未使用的键或命名空间，返回非零状态码
-  return (Object.values(unusedKeys).some(keys => keys.length > 0) || 
-          Object.values(unusedNamespaces).some(namespaces => namespaces.length > 0)) ? 1 : 0
+  return (Object.values(unusedKeys).some(keys => keys.length > 0) ||
+    Object.values(unusedNamespaces).some(namespaces => namespaces.length > 0)) ? 1 : 0
 }
 
 // 运行清理
@@ -364,4 +430,4 @@ cleanTranslations().then(exitCode => {
 }).catch(error => {
   console.error('清理翻译时发生错误:', error)
   process.exit(1)
-}) 
+})
