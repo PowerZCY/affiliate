@@ -16,7 +16,7 @@
 
 .categoryGrid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* 修改为4列，使每个分类按钮更宽 */
   gap: 0.75rem;
   margin-bottom: 1.5rem;
   perspective: 1000px;
@@ -24,10 +24,11 @@
 
 .categoryButton {
   position: relative;
-  padding: 1rem 0.75rem;
+  padding: 1rem 1.25rem; /* 增加水平内边距 */
+  min-width: 120px; /* 添加最小宽度 */
   border: none;
   border-radius: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem; /* 稍微增大字体 */
   font-weight: 500;
   color: white;
   background: #3a1c71;
@@ -190,7 +191,7 @@
 
 @media (max-width: 1024px) {
   .categoryGrid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* 中等屏幕显示3列 */
   }
   .resetButton {
     right: -8px;
@@ -200,13 +201,18 @@
 
 @media (max-width: 768px) {
   .categoryGrid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 小屏幕显示2列 */
   }
 }
 
 @media (max-width: 480px) {
   .categoryGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr); /* 超小屏幕显示1列 */
+  }
+  
+  .categoryButton {
+    min-width: 100%; /* 在超小屏幕上占满整行 */
+    padding: 0.75rem 1rem; /* 调整内边距 */
   }
 }
 
@@ -255,4 +261,4 @@
     width: 40px;
     height: 40px;
   }
-} 
+}

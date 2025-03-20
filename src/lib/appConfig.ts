@@ -48,6 +48,9 @@ export const appConfig = {
     getTagDisplayCount: (_locale: string) => {
       return 2;
     },
+    pageConfig: {
+      size: 2
+    }
   },
   tool: {
     bannerDir: '/images/banner',
