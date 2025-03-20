@@ -1,10 +1,10 @@
 'use client';
-import React, { useState } from 'react';
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
-import { useTheme } from 'next-themes';
 import { appConfig } from '@/lib/appConfig';
 import { Tool } from '@/lib/data';
+import { useTranslations } from 'next-intl';
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
+import { useState } from 'react';
 
 // 格式化数字显示（K、M单位）
 function formatNumber(num: number): string {
@@ -311,6 +311,49 @@ export function JetBrainsToolCard({
             )}
           </div>
         </div>
+
+        {/* 数据展示区域 - 第二行 */}
+        {showStatistics && (
+          <div className="flex items-center justify-between px-3 py-2">
+            {/* 流量 */}
+            <div className="flex items-center gap-1">
+              <svg
+                className="w-4 h-4 text-blue-500"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+              <span className="text-sm text-gray-600 dark:text-gray-400">{formatNumber(traffic)}</span>
+            </div>
+
+            {/* 收藏数 */}
+            <div className="flex items-center gap-1">
+              <svg
+                className={`w-4 h-4 ${like > 0 ? 'text-red-500' : 'text-gray-400'}`}
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              </svg>
+              {like > 0 && <span className="text-sm text-gray-600 dark:text-gray-400">{formatNumber(like)}</span>}
+            </div>
+
+            {/* 评分 */}
+            <div className="flex items-center gap-1">
+              <svg
+                className={`w-4 h-4 ${star > 0 ? 'text-yellow-400' : 'text-gray-400'}`}
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+              {star > 0 && <span className="text-sm text-gray-600 dark:text-gray-400">{star.toFixed(1)}</span>}
+            </div>
+          </div>
+        )}
 
       </div>
     </div>

@@ -1,6 +1,6 @@
 export const appConfig = {
   // 基础配置
-  baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
+  baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'https://aidirectorylist.com',
 
   // 国际化配置
   i18n: {
@@ -61,6 +61,7 @@ export const appConfig = {
   ui: {
     // 是否显示工具卡片的banner图
     showToolBanner: process.env.NEXT_PUBLIC_SHOW_TOOL_BANNER !== 'false',
+    // 是否显示工具卡片的统计信息
     showStatistics: process.env.NEXT_PUBLIC_SHOW_STATISTICS !== 'false',
   },
 

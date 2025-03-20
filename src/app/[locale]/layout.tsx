@@ -1,18 +1,15 @@
-import { GoogleAnalyticsScript } from "@/components/analytics/GoogleAnalyticsScript";
-import { PlausibleAnalyticsScript } from "@/components/analytics/PlausibleAnalyticsScript";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import LanguageDetector from '@/components/LanguageDetector';
+import { appConfig } from "@/lib/appConfig";
 import { cn } from "@/lib/utils";
 import '@radix-ui/themes/styles.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { ThemeProvider } from "next-themes";
 import { DM_Sans, Inter } from "next/font/google";
-import Script from 'next/script';
 import React from 'react';
 import './globals.css';
-import { appConfig } from "@/lib/appConfig";
 
 // 全局字体设置
 const inter = Inter({ subsets: ['latin'] })
@@ -34,11 +31,12 @@ export async function generateMetadata({
     title: t('title'),
     description: t('description'),
     keywords: t('keywords'),
+    metadataBase: new URL(appConfig.baseUrl),
     alternates: {
       canonical: `${appConfig.baseUrl}/${locale}`,
       languages: {
-        "en-US": `${appConfig.baseUrl}/en`,
-        "zh-CN": `${appConfig.baseUrl}/zh`,
+        "en": `${appConfig.baseUrl}/en`,
+        "zh": `${appConfig.baseUrl}/zh`,
       }
     },
     icons: [
@@ -76,17 +74,6 @@ export default async function RootLayout({
               {children}
               <Footer />
               {/* 布局结构 */}
-              {/* 网站统计和广告脚本 */}
-              {process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID && (
-                <Script
-                  async
-                  src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID}`}
-                  strategy="afterInteractive"
-                  crossOrigin="anonymous"
-                />
-              )}
-              <GoogleAnalyticsScript />
-              <PlausibleAnalyticsScript />
             </ThemeProvider>
           </NextIntlClientProvider>
         </body>
