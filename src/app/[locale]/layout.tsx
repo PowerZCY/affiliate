@@ -1,6 +1,7 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import LanguageDetector from '@/components/LanguageDetector';
+import { GoogleAnalyticsScript } from "@/components/script/GoogleAnalyticsScript";
 import { appConfig } from "@/lib/appConfig";
 import { cn } from "@/lib/utils";
 import '@radix-ui/themes/styles.css';
@@ -74,6 +75,7 @@ export default async function RootLayout({
               {children}
               <Footer />
               {/* 布局结构 */}
+              <GoogleAnalyticsScript />
             </ThemeProvider>
           </NextIntlClientProvider>
         </body>
