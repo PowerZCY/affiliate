@@ -29,8 +29,8 @@ const nextConfig = {
   optimizeFonts: true,
 
   webpack: (config, { isServer, dev }) => {
-    // 只在非生产构建时生成统计文件
-    if (dev || isServer) {
+    // 只在生产构建时生成统计文件
+    if (!dev || !isServer) {
       config.plugins.push(
         new StatsWriterPlugin({
           filename: './stats.json',
