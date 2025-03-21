@@ -79,11 +79,11 @@ function sortByName<T extends { name: string }>(list: T[]): T[] {
 }
 
 function fetchDefaultMetaPath(locale: string): string {
-    return path.join(process.cwd(), appConfig.metaConfig.category.dirName, appConfig.metaConfig.category.secondDirName, locale, appConfig.metaConfig.category.coreName);
+    return path.join(process.cwd(), appConfig.metaConfig.category.dirName, appConfig.metaConfig.category.secondDirName, appConfig.metaConfig.category.thirdDirName, locale, appConfig.metaConfig.category.coreName);
 }
 
 function fetchToolMetaPath(locale: string, srcName: string): string {
-    return path.join(process.cwd(), appConfig.metaConfig.category.dirName, appConfig.metaConfig.category.secondDirName, locale, appConfig.metaConfig.category.toolDirName, srcName);
+    return path.join(process.cwd(), appConfig.metaConfig.category.dirName, appConfig.metaConfig.category.secondDirName, appConfig.metaConfig.category.thirdDirName, locale, appConfig.metaConfig.category.toolDirName, srcName);
 }
 
 // 根据link获取指定分类元数据

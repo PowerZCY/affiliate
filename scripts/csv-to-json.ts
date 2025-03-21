@@ -118,6 +118,7 @@ console.log(`🔧 Mock data config: mockData=${mockData}`);
 
 // 为每种语言创建输出目录
 supportedLocales.forEach(locale => {
+    // 数据处理放在tmp目录下, 以支持增量数据处理
     const localeOutputDir = path.join(process.cwd(), 'data', 'json', 'tmp', locale, 'tools');
     if (!fs.existsSync(localeOutputDir)) {
         fs.mkdirSync(localeOutputDir, { recursive: true });

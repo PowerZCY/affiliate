@@ -5,7 +5,7 @@ import { appConfig } from '../src/lib/appConfig';
 import { BlogData } from '../src/types/blog-data';
 
 // 检查是否需要执行博客数据生成
-if (!appConfig.blog.autoRefreshOnStart) {
+if (!process.env.AUTO_REFRESH_BLOG_ON_START) {
   console.log('❌ Blog data generation skipped: Auto refresh is disabled');
   process.exit(0);
 }
