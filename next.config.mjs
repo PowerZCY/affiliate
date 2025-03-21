@@ -12,6 +12,11 @@ const nextConfig = {
     // 明确指定需要包含的文件
     outputFileTracingIncludes: {
       // 这里可以明确指定需要被包含的文件路径
+      '*': [
+        'data/**/*',
+        'public/**/*',
+        'messages/**/*',
+      ]
     },
     // 排除不需要的文件
     outputFileTracingExcludes: {
