@@ -7,8 +7,5 @@
         "excludeFiles": ".next/cache/**"
       }
     }
-  ],
-  "buildCache": {
-    "enabled": false
-  }
+  ]
 } 
