@@ -7,6 +7,8 @@
     "dev": "next dev",
     "generate-blog-data": "ts-node --project tsconfig.node.json scripts/generate-blog-data.ts",
     "build": "next build",
+    "build:analyze": "cross-env ANALYZE=true next build",
+    "analyze": "tsx scripts/analyze-stats.ts",
     "start": "next start",
     "lint": "eslint --fix . && next lint",
     "init-csv-data": "tsx scripts/csv-to-json.ts false",
@@ -35,8 +37,6 @@
     "framer-motion": "^12.5.0",
     "fuse.js": "^7.1.0",
     "gray-matter": "^4.0.3",
-    "https-proxy-agent": "^7.0.6",
-    "jsdom": "^26.0.0",
     "jsonc-parser": "^3.3.1",
     "jsonwebtoken": "^9.0.2",
     "katex": "^0.16.21",
@@ -76,6 +76,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
     "csv-parse": "^5.6.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.5",
@@ -84,11 +85,15 @@
     "fs-extra": "^11.3.0",
     "glob": "^11.0.1",
     "globals": "^15.9.0",
+    "https-proxy-agent": "^7.0.6",
+    "jsdom": "^26.0.0",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.10",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.3",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^8.1.0"
+    "typescript-eslint": "^8.1.0",
+    "webpack-bundle-analyzer": "^4.10.2",
+    "webpack-stats-plugin": "^1.1.3"
   }
 }

@@ -2,13 +2,13 @@
 /* eslint-disable unused-imports/no-unused-vars */
 import { parse } from 'csv-parse';
 import * as fs from 'fs';
-import * as path from 'path';
-import fetch from 'node-fetch';
-import { JSDOM, VirtualConsole } from 'jsdom';
-import pLimit from 'p-limit';
-import { Tool } from '../src/lib/data';
-import { appConfig } from '../src/lib/appConfig';
 import { HttpsProxyAgent } from 'https-proxy-agent';
+import { JSDOM, VirtualConsole } from 'jsdom';
+import fetch from 'node-fetch';
+import pLimit from 'p-limit';
+import * as path from 'path';
+import { appConfig } from '../src/lib/appConfig';
+import { Tool } from '../src/lib/data';
 
 interface CsvDataTool extends Tool {
     originDescription?: string;

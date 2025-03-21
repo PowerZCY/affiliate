@@ -1,11 +1,9 @@
 import createNextIntlPlugin from 'next-intl/plugin';
-const withNextIntl = createNextIntlPlugin(
-    // Specify a custom path here
-    './src/i18n.ts'
-  );
+import { StatsWriterPlugin } from 'webpack-stats-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
-// const withNextIntl = createNextIntlPlugin();
- 
+const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -29,6 +27,42 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   optimizeFonts: true,
+
+  webpack: (config, { isServer, dev }) => {
+    // 只在非生产构建时生成统计文件
+    if (dev || isServer) {
+      config.plugins.push(
+        new StatsWriterPlugin({
+          filename: './stats.json',
+          stats: {
+            assets: true,
+            chunks: true,
+            modules: true
+          }
+        })
+      );
+
+      // 分析模式：生成静态报告并输出总结
+      if (process.env.ANALYZE === 'true') {
+        config.plugins.push(
+          new BundleAnalyzerPlugin({
+            analyzerMode: 'static',
+            reportFilename: './.next/analyze/report.html',
+            generateStatsFile: true,
+            statsFilename: './.next/analyze/stats.json',
+            reportTitle: 'Bundle Size Analysis',
+            defaultSizes: 'parsed',
+            openAnalyzer: false,
+            analyzerHost: '127.0.0.1',
+            logLevel: 'info'
+          })
+        );
+      }
+    }
+    return config;
+  }
 };
- 
-export default withNextIntl(nextConfig);
+
+// 组合配置增强器
+const config = withNextIntl(nextConfig);
+export default config;
