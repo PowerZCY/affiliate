@@ -128,14 +128,19 @@ export function JetBrainsToolCard({
       >
         {/* Banner图区域 */}
         {showBanner && (
-          <div className="relative w-full h-28">
+          <div className="relative w-full h-28 rounded-lg overflow-hidden border-2"
+            style={{
+              borderColor: resolvedTheme === 'dark' 
+                ? 'rgba(37, 185, 137, 0.3)' 
+                : 'rgba(37, 185, 137, 0.2)'
+            }}>
             {!originalImageError ? (
               <Image
                 src={bannerImageSrc}
                 alt={`${name} banner`}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover"
+                className="object-cover transition-all duration-300 group-hover:brightness-105"
                 style={isDefaultImage ? { opacity: '0.7' } : {}}
                 priority={false}
                 loading="lazy"
@@ -161,7 +166,7 @@ export function JetBrainsToolCard({
                 alt="Default banner"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover"
+                className="object-cover transition-all duration-300 group-hover:brightness-105"
                 style={{ opacity: '0.7' }}
                 priority={false}
                 loading="lazy"
@@ -179,7 +184,7 @@ export function JetBrainsToolCard({
             {/* 只对默认图片添加蒙版层 */}
             {(isDefaultImage || originalImageError) && !defaultImageError && (
               <div
-                className="absolute inset-0 z-10"
+                className="absolute inset-0 z-10 transition-opacity duration-300 group-hover:opacity-90"
                 style={{
                   backgroundColor: overlayColor,
                   backdropFilter: 'blur(1px)',
