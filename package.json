@@ -6,7 +6,7 @@
     "predev": "pnpm run lint && pnpm run generate-blog-data",
     "dev": "next dev",
     "generate-blog-data": "ts-node --project tsconfig.node.json scripts/generate-blog-data.ts",
-    "build": "next build && rm -rf .next/cache",
+    "build": "next build",
     "build:analyze": "cross-env ANALYZE=true next build",
     "analyze": "tsx scripts/analyze-stats.ts",
     "start": "next start",
@@ -16,7 +16,7 @@
     "check-translations": "ts-node --project tsconfig.node.json scripts/check-translations.ts",
     "clean-translations": "ts-node --project tsconfig.node.json scripts/clean-translations.ts",
     "remove-translations": "ts-node --project tsconfig.node.json scripts/clean-translations.ts --remove",
-    "vercel-build": "next build && rm -rf .next/cache"
+    "vercel-build": "next build && rm -rf .next/cache/webpack"
   },
   "dependencies": {
     "@octokit/rest": "^21.0.1",
