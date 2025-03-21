@@ -51,7 +51,8 @@ export const appConfig = {
     },
     pageConfig: {
       size: 2
-    }
+    },
+    autoRefreshOnStart: process.env.NEXT_PUBLIC_AUTO_REFRESH_BLOG_ON_START === 'true',
   },
   tool: {
     bannerDir: '/images/banner',

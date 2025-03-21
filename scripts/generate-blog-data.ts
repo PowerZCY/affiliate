@@ -4,6 +4,24 @@ import matter from 'gray-matter';
 import { appConfig } from '../src/lib/appConfig';
 import { BlogData } from '../src/types/blog-data';
 
+// 检查是否需要执行博客数据生成
+if (!appConfig.blog.autoRefreshOnStart) {
+  console.log('❌ Blog data generation skipped: Auto refresh is disabled');
+  process.exit(0);
+}
+
+// 检查菜单配置
+if (appConfig.menu.length === 0) {
+  console.log('❌ Blog data generation skipped: Menu configuration is empty');
+  process.exit(0);
+}
+
+const hasBlogMenu = appConfig.menu.some(item => item.href === '/blog');
+if (!hasBlogMenu) {
+  console.log('❌ Blog data generation skipped: No blog menu item found');
+  process.exit(0);
+}
+
 // 添加日志写入函数
 async function appendLog(message: string) {
   const logPath = path.join(process.cwd(), 'scripts', 'mdmeta-check.log');
