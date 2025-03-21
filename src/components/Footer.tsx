@@ -61,22 +61,6 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">{t('legal')}</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/privacy" locale={locale} className="text-sm hover:underline">
-                  {t('privacy')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" locale={locale} className="text-sm hover:underline">
-                  {t('termsOfService')}
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
             <h3 className="font-semibold mb-4">{t('connect')}</h3>
             <ul className="space-y-2">
               <li>
