@@ -1,0 +1,12 @@
+{
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next",
+      "config": {
+        "skipAutoInstall": false,
+        "buildCommand": "next build && rm -rf .next/cache"
+      }
+    }
+  ]
+} 
