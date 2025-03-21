@@ -4,7 +4,7 @@ import { parse } from 'csv-parse';
 import * as fs from 'fs';
 import * as path from 'path';
 import fetch from 'node-fetch';
-import { JSDOM } from 'jsdom';
+import { JSDOM, VirtualConsole } from 'jsdom';
 import pLimit from 'p-limit';
 import { Tool } from '../src/lib/data';
 import { appConfig } from '../src/lib/appConfig';
@@ -112,10 +112,13 @@ const dataProcessor = {
 // 获取支持的语言列表
 const supportedLocales = appConfig.i18n.locales;
 console.log(`🌐 Locales: ${supportedLocales.join(', ')}`);
+// 获取命令行参数
+const mockData = process.argv[2] === 'true';
+console.log(`🔧 Mock data config: mockData=${mockData}`);
 
 // 为每种语言创建输出目录
 supportedLocales.forEach(locale => {
-    const localeOutputDir = path.join(process.cwd(), 'data', 'json', locale, 'tools');
+    const localeOutputDir = path.join(process.cwd(), 'data', 'json', 'tmp', locale, 'tools');
     if (!fs.existsSync(localeOutputDir)) {
         fs.mkdirSync(localeOutputDir, { recursive: true });
         console.log(`📁 Create Dir: ${localeOutputDir}`);
@@ -146,7 +149,7 @@ async function fetchWebsiteMetadata(url: string): Promise<string | null> {
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
             },
             timeout: 10000, // 10秒超时
-            agent: process.env.HTTPS_PROXY ? new HttpsProxyAgent(process.env.HTTPS_PROXY) : undefined
+            agent: new HttpsProxyAgent("https://127.0.0.1:29290")
         });
 
         // 检查响应状态
@@ -161,10 +164,13 @@ async function fetchWebsiteMetadata(url: string): Promise<string | null> {
         }
 
         const html = await response.text();
+        const virtualConsole = new VirtualConsole();
+        virtualConsole.on('error', () => { /* ignore errors */ });
+
         // 配置 JSDOM 选项来禁用控制台输出
         const dom = new JSDOM(html, {
             runScripts: 'outside-only',
-            virtualConsole: new (require('jsdom').VirtualConsole)()
+            virtualConsole
         });
 
         const document = dom.window.document;
@@ -269,8 +275,8 @@ fs.createReadStream(csvPath)
             like: row.like ? Number(row.like) : 0,
             signed: row.signed === 'TRUE',
         };
+        const toolDataByEnv = mockData ? mock(tool) : tool;
 
-        const toolDataByEnv = appConfig.tool.mockData ? mock(tool) : tool;
         // 为每种语言创建工具对象
         supportedLocales.forEach(locale => {
             // 将工具添加到相应的分类和语言中
@@ -282,7 +288,7 @@ fs.createReadStream(csvPath)
     })
     .on('end', async () => {
         try {
-            if (appConfig.tool.mockData) {
+            if (mockData) {
                 console.log('Begin spider...');
                 // 使用 Map 来存储唯一的工具，以 id 为键
                 const uniqueTools = new Map<string, CsvDataTool>();
@@ -310,6 +316,7 @@ fs.createReadStream(csvPath)
                 Object.entries(toolsByCategoryAndLocale[locale]).forEach(([category, tools]) => {
                     // 确保目录存在
                     const outputPath = path.join(localeOutputDir, `${category}.jsonc`);
+
                     tools.sort((a, b) => Number(a.id) - Number(b.id));
                     fs.writeFileSync(outputPath, JSON.stringify(tools, null, 2));
                     console.log(`✅ Create ${locale}/${category}.jsonc，include ${tools.length} tools`);
@@ -319,6 +326,6 @@ fs.createReadStream(csvPath)
             console.log('🎉 All locales data have been processed!');
         } catch (error: any) {
             const errorMessage = error.code || error.message || 'unknown error';
-            console.error('Fetch target website failed: ', errorMessage);
+            console.error('Target Data File process failed: ', errorMessage);
         }
     });
