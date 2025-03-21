@@ -55,7 +55,8 @@ export const appConfig = {
   },
   tool: {
     bannerDir: '/images/banner',
-    defaultBanner: '/images/default.webp'
+    defaultBanner: '/images/default.webp',
+    mockData: process.env.NEXT_PUBLIC_MOCK_TOOL_DATA !== 'false',
   },
   // 界面配置
   ui: {
