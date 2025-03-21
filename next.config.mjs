@@ -31,6 +31,11 @@ const nextConfig = {
   webpack: (config, { isServer, dev }) => {
     // 只在生产构建时生成统计文件
     if (!dev || !isServer) {
+      config.optimization = {
+        ...config.optimization,
+        usedExports: true,    // 启用 tree-shaking
+        minimize: true,       // 启用压缩
+      };
       config.plugins.push(
         new StatsWriterPlugin({
           filename: './stats.json',
@@ -53,7 +58,6 @@ const nextConfig = {
             reportTitle: 'Bundle Size Analysis',
             defaultSizes: 'parsed',
             openAnalyzer: false,
-            analyzerHost: '127.0.0.1',
             logLevel: 'info'
           })
         );
