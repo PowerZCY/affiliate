@@ -16,7 +16,7 @@
     "check-translations": "ts-node --project tsconfig.node.json scripts/check-translations.ts",
     "clean-translations": "ts-node --project tsconfig.node.json scripts/clean-translations.ts",
     "remove-translations": "ts-node --project tsconfig.node.json scripts/clean-translations.ts --remove",
-    "vercel-build": "next build"
+    "vercel-build": "next build  --no-cache"
   },
   "dependencies": {
     "@octokit/rest": "^21.0.1",

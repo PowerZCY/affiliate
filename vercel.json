@@ -4,8 +4,11 @@
       "src": "package.json",
       "use": "@vercel/next",
       "config": {
-        "excludeFiles": ".next/cache/webpack/**"
+        "excludeFiles": ".next/cache/**"
       }
     }
-  ]
+  ],
+  "buildCache": {
+    "enabled": false
+  }
 } 
