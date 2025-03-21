@@ -6,6 +6,23 @@ const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // 控制文件跟踪，排除不必要的文件
+  output: 'standalone', // 使用standalone输出模式优化
+  experimental: {
+    // 明确指定需要包含的文件
+    outputFileTracingIncludes: {
+      // 这里可以明确指定需要被包含的文件路径
+    },
+    // 排除不需要的文件
+    outputFileTracingExcludes: {
+      '*': [
+        'node_modules/@next/swc-*/**/*',
+        'node_modules/webpack/**/*',
+        '.git/**/*',
+        '.next/cache/**/*'
+      ]
+    },
+  },
   images: {
     // 允许加载图片的host
     remotePatterns: [
