@@ -7,8 +7,6 @@
     "dev": "next dev",
     "generate-blog-data": "ts-node --project tsconfig.node.json scripts/generate-blog-data.ts",
     "build": "next build",
-    "build:analyze": "cross-env ANALYZE=true next build",
-    "analyze": "tsx scripts/analyze-stats.ts",
     "start": "next start",
     "lint": "eslint --fix . && next lint",
     "init-csv-data": "tsx scripts/csv-to-json.ts false",
@@ -93,13 +91,6 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.19.3",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^8.1.0",
-    "webpack-bundle-analyzer": "^4.10.2",
-    "webpack-stats-plugin": "^1.1.3"
-  },
-  "sideEffects": [
-    "*.css",
-    "*.scss",
-    "*.less"
-  ]
+    "typescript-eslint": "^8.1.0"
+  }
 }
