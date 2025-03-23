@@ -1,31 +1,22 @@
+import { MetadataRoute } from 'next'
 import { appConfig } from "@/lib/appConfig";
-import type { MetadataRoute } from 'next';
+
+// 强制静态生成
+export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const sitemapRoutes: MetadataRoute.Sitemap = [
-    {
-      url: '', // home
+  const baseUrl = appConfig.baseUrl
+  const locales = appConfig.i18n.locales
+
+  const routes = [
+    // 主页面（各语言版本）
+    ...locales.map(locale => ({
+      url: `${baseUrl}/${locale}`,
       lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1.0,
-    }
-  ];
+      changeFrequency: 'weekly' as const,
+      priority: 1.0
+    }))
+  ]
 
-  // 为每个支持的语言生成对应的路由
-  const localeRoutes = sitemapRoutes.flatMap(route => {
-    return appConfig.i18n.locales.map(locale => ({
-      ...route,
-      url: locale === appConfig.i18n.defaultLocale
-        ? route.url
-        : `${locale}/${route.url}`,
-    }));
-  });
-
-  // 生成完整的 URL
-  const sitemapData = localeRoutes.map(route => ({
-    ...route,
-    url: `${appConfig.baseUrl}/${route.url}`,
-  }));
-
-  return sitemapData;
+  return routes
 }
