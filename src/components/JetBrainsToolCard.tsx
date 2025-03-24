@@ -27,7 +27,6 @@ export function JetBrainsToolCard({
   category,
   url,
   homeImg,
-  iconUrl,
   tags = [],
   hot,
   submit,
@@ -130,8 +129,8 @@ export function JetBrainsToolCard({
         {showBanner && (
           <div className="relative w-full h-28 rounded-lg overflow-hidden border-2"
             style={{
-              borderColor: resolvedTheme === 'dark' 
-                ? 'rgba(37, 185, 137, 0.3)' 
+              borderColor: resolvedTheme === 'dark'
+                ? 'rgba(37, 185, 137, 0.3)'
                 : 'rgba(37, 185, 137, 0.2)'
             }}>
             {!originalImageError ? (
