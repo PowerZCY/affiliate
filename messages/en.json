@@ -6,10 +6,12 @@
     "changeAction": "Yes, switch"
   },
   "home": {
-    "title": "AI Directories",
+    "title": "AI Directory List",
+    "webTitle": "AI Directory List - Explore 100+ AI Tool Directories & Boost SEO",
     "h1": "100+ AI Directories",
     "h2": "Open-Source & Hot AI Navigation",
     "description": "Track the latest AI tools and boost your SEO by submitting your AI tools",
+    "webDescription": "Discover over 100 AI directory websites in one place to find the best AI tools for your needs. Submit your own AI tool to enhance visibility and improve SEO.",
     "keywords": "AI Directory, AI Navigation, AI Program, Agent",
     "loading": "Loading..."
   },

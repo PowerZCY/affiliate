@@ -6,10 +6,12 @@
     "changeAction": "是的，切换"
   },
   "home": {
-    "title": "AI 工具导航",
-    "h1": "100+ AI 工具目录",
-    "h2": "开源&热门AI工具导航",
+    "title": "AI导航站",
+    "webTitle": "AI导航站列表 - 浏览100+AI导航站，提升SEO",
+    "h1": "100+ AI导航站",
+    "h2": "开源&热门AI导航站",
     "description": "关注最新AI工具，提升搜索引擎优化，支持自助提交",
+    "webDescription": "探索超过100个AI导航站，轻松发现优质AI工具。提交您的AI工具，提升曝光率并优化SEO效果。",
     "keywords": "AI工具, AI导航站, AI编程工具, 智能体",
     "loading": "加载中..."
   },

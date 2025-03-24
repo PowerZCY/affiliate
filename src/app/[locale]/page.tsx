@@ -111,7 +111,7 @@ export default function Home() {
         <div className="hero-gradient">
           <div className="container relative z-10 py-8 md:py-12">
             <div className="max-w-4xl mx-auto text-center space-y-6">
-              <h1 className="hero-text-gradient text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+              <h1 className="hero-text-gradient text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight">
                 {t('h1')}
               </h1>
               <h2 className="text-xl md:text-2xl text-muted-foreground font-normal mt-6">
