@@ -207,22 +207,6 @@ export function JetBrainsToolCard({
             {/* 头部区域：图标、名称、外部链接 */}
             <div className="flex items-start justify-between mb-1.5 px-3"> {/* 添加水平内边距 */}
               <div className="flex items-center gap-2">
-                {iconUrl ? (
-                  <div className="h-8 w-8 overflow-hidden rounded-md flex-shrink-0"> {/* 调整图标大小 */}
-                    <Image
-                      src={iconUrl}
-                      alt={name}
-                      width={32}
-                      height={32}
-                      className="h-full w-full object-cover"
-                      loading="eager"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary/10 text-primary flex-shrink-0"> {/* 调整默认图标大小 */}
-                    {name.charAt(0)}
-                  </div>
-                )}
                 <div className="min-w-0">
                   <h3 className="text-base font-semibold truncate">{name}</h3> {/* 调整标题字体大小 */}
                 </div>
