@@ -1,10 +1,11 @@
 'use client'
 
-import { JetBrainsSearch } from '@/components/JetBrainsSearch';
 import { CategoryGrid } from '@/components/CategoryGrid';
-import { useState, useEffect, useRef } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
-import { CategoryMeta, CacheData } from '@/lib/data';
+import { JetBrainsSearch } from '@/components/JetBrainsSearch';
+import { CacheData, CategoryMeta } from '@/lib/data';
+import { useLocale, useTranslations } from 'next-intl';
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 // 缓存相关的工具函数
 const cacheUtils = {
@@ -105,32 +106,43 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col">
-      {/* Hero Section，俏标题·引人入胜 - 增加内容间距 */}
-      <section className="relative overflow-hidden">
-        {/* 这里的样式制定了背景图片 */}
-        <div className="hero-gradient">
-          <div className="container relative z-10 py-8 md:py-12">
-            <div className="max-w-4xl mx-auto text-center space-y-6">
-              <h1 className="hero-text-gradient text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                {t('h1')}
+      {/* Hero Section */}
+      <section className="hero-gradient">
+        <div className="container relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            {/* 左侧文本内容 */}
+            <div className="space-y-6 text-left">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+                <span className="animate-text-gradient bg-gradient-to-r from-[#A78BFA] via-[#818CF8] to-[#F472B6] bg-clip-text text-transparent bg-300% selection:bg-transparent">
+                  {t('h1')}
+                </span>
               </h1>
-              <h2 className="text-xl md:text-2xl text-muted-foreground font-normal mt-6">
+              <h2 className="text-xl md:text-2xl text-muted-foreground font-normal">
                 {t('h2')}
               </h2>
-              {/* 搜索框容器 - 增加最大宽度 */}
-              <div className="max-w-3xl mx-auto mt-8 relative z-20">
-                <JetBrainsSearch onSearch={handleSearch} initialKeyword={searchKeyword} />
-              </div>
-
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mt-6">
+              <p className="text-base md:text-lg text-muted-foreground">
                 {t('description')}
               </p>
-            </div>
-          </div>
 
-          {/* 背景装饰 */}
-          <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-background/5 backdrop-blur-3xl" />
+              {/* 搜索框 */}
+              <div className="mt-6">
+                <JetBrainsSearch onSearch={handleSearch} initialKeyword={searchKeyword} />
+              </div>
+            </div>
+
+            {/* 右侧图片 */}
+            <div className="relative">
+              <div className="overflow-hidden">
+                <Image
+                  src="/hero-bg.webp"
+                  alt={t('h1')}
+                  width={600}
+                  height={400}
+                  className="w-full h-auto object-cover"
+                  priority
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>

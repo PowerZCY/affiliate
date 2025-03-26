@@ -145,10 +145,7 @@
   /* Hero 区域特殊样式 */
   .hero-gradient {
     position: relative;
-    background-image: url('/hero-bg.webp');
-    background-size: 100% auto;
-    background-position: center 40%;
-    background-repeat: no-repeat;
+    background: hsl(var(--background));
   }
 
   .hero-gradient::before {
@@ -156,8 +153,8 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg,
-        hsl(var(--background)/0.50) 0%,
-        hsl(var(--background)/0.30) 100%);
+        hsl(var(--background)) 0%,
+        hsl(var(--background)/0.95) 100%);
     z-index: 1;
   }
 
@@ -167,22 +164,19 @@
     z-index: 2;
   }
 
-  /* 调整容器高度确保能显示完整背景，增加空间以容纳更大的间距 */
+  /* 调整容器高度确保能显示完整背景 */
   .hero-gradient>.container {
-    /* position: relative; */
-    min-height: 50vh; /* 从45vh增加到50vh，提供更多空间 */
+    min-height: auto;
     display: flex;
     align-items: center;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
-
-  
 
   .hero-text-gradient {
     background: linear-gradient(to right,
-        hsl(var(--foreground)) 0%,
-        hsl(var(--primary)) 100%);
+        hsl(265 89% 70%) 0%,
+        hsl(338 82% 75%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -190,6 +184,23 @@
 }
 
 @layer utilities {
+  .bg-300\% {
+    background-size: 300% 300%;
+  }
+
+  .animate-text-gradient {
+    animation: text-gradient 8s linear infinite;
+  }
+
+  @keyframes text-gradient {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
   .animate-transition {
     @apply transition-all duration-300 ease-in-out;
   }
