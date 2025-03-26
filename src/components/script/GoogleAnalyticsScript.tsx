@@ -3,40 +3,49 @@
 
 import Script from "next/script";
 
-const googleAnalyticsId = process.env.GOOGLE_ANALYTICS_ID!;
+const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID!;
 
 export function GoogleAnalyticsScript() {
   return (
-    <Script
-      async
-      src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
-      onLoad={() => {
-        if (typeof window === "undefined") {
-          return;
-        }
-
-        (window as any).dataLayer = (window as any).dataLayer || [];
-
-        function gtag(...args: any[]) {
-          (window as any).dataLayer.push(args);
-        }
-        gtag("js", new Date());
-        gtag("config", googleAnalyticsId);
-      }}
-    />
+    <>
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
+      />
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${googleAnalyticsId}');
+          `,
+        }}
+      />
+    </>
   );
 }
 
 export function useGoogleAnalytics() {
   const trackEvent = (event: string, data?: Record<string, unknown>) => {
-    if (typeof window === "undefined" || !(window as any).gta) {
+    if (typeof window === "undefined" || !window.gtag) {
       return;
     }
 
-    (window as any).gta("event", event, data);
+    window.gtag("event", event, data);
   };
 
   return {
     trackEvent,
   };
+}
+
+// 为 window 添加 gtag 类型定义
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+  }
 }

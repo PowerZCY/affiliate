@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
-import { appConfig } from "./lib/appConfig";
+import { appConfig } from "@/lib/appConfig";
 
 /* 
 - 检查 URL 是否包含语言前缀

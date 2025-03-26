@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { getRequestConfig } from 'next-intl/server';
-import { appConfig } from "./lib/appConfig";
+import { appConfig } from "@/lib/appConfig";
 
 // Can be imported from a shared config
 const locales = appConfig.i18n.locales;
