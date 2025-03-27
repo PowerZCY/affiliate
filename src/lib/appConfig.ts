@@ -70,6 +70,12 @@ export const appConfig = {
       es: "USD",
     },
   },
+  hero: {
+    image: {
+      dark: '/h001.webp',
+      light: '/h000.webp'
+    },
+  },
   // 博客配置
   blog: {
     // 博客相关路径

@@ -6,6 +6,8 @@ import { CacheData, CategoryMeta } from '@/lib/data';
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import { appConfig } from '@/lib/appConfig';
+import { useTheme } from 'next-themes';
 
 // 缓存相关的工具函数
 const cacheUtils = {
@@ -37,6 +39,7 @@ export default function Home() {
   const locale = useLocale();
   const t = useTranslations('home');
   const isFetching = useRef(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     // 客户端获取分类数据
@@ -134,7 +137,7 @@ export default function Home() {
             <div className="relative">
               <div className="overflow-hidden">
                 <Image
-                  src="/hero-bg.webp"
+                  src={theme === 'dark' ? appConfig.hero.image.dark : appConfig.hero.image.light}
                   alt={t('h1')}
                   width={600}
                   height={400}
