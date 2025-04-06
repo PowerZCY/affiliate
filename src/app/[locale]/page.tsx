@@ -5,9 +5,6 @@ import { JetBrainsSearch } from '@/components/JetBrainsSearch';
 import { CacheData, CategoryMeta } from '@/lib/data';
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
-import { appConfig } from '@/lib/appConfig';
-import { useTheme } from 'next-themes';
 
 // 缓存相关的工具函数
 const cacheUtils = {
@@ -39,7 +36,6 @@ export default function Home() {
   const locale = useLocale();
   const t = useTranslations('home');
   const isFetching = useRef(false);
-  const { theme } = useTheme();
 
   useEffect(() => {
     // 客户端获取分类数据
@@ -111,10 +107,10 @@ export default function Home() {
     <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
       <section className="hero-gradient">
-        <div className="container relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            {/* 左侧文本内容 */}
-            <div className="space-y-6 text-left">
+        <div className="container relative z-10 flex items-center justify-center min-h-[70vh]">
+          <div className="max-w-4xl mx-auto">
+            {/* 文本内容 */}
+            <div className="space-y-6 text-center">
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight">
                 <span className="animate-text-gradient bg-gradient-to-r from-[#A78BFA] via-[#818CF8] to-[#F472B6] bg-clip-text text-transparent bg-300% selection:bg-transparent">
                   {t('h1')}
@@ -128,22 +124,8 @@ export default function Home() {
               </p>
 
               {/* 搜索框 */}
-              <div className="mt-6">
+              <div className="mt-6 max-w-2xl mx-auto">
                 <JetBrainsSearch onSearch={handleSearch} initialKeyword={searchKeyword} />
-              </div>
-            </div>
-
-            {/* 右侧图片 */}
-            <div className="relative">
-              <div className="overflow-hidden">
-                <Image
-                  src={theme === 'dark' ? appConfig.hero.image.dark : appConfig.hero.image.light}
-                  alt={t('h1')}
-                  width={600}
-                  height={400}
-                  className="w-full h-auto object-cover"
-                  priority
-                />
               </div>
             </div>
           </div>
@@ -152,7 +134,7 @@ export default function Home() {
 
       {/* 分类区域 - 减少上下内边距 */}
       <section className="py-6">
-        <div className="container max-w-6xl mx-auto"> {/* 添加最大宽度和居中 */}
+        <div className="container max-w-6xl mx-auto">
           {isLoading ? (
             <div className="text-center py-12">
               <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
