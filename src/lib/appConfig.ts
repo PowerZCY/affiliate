@@ -1,60 +1,14 @@
-// 菜单项类型定义
-export type MenuItem = {
-  key: string;        // 唯一标识，也用作国际化翻译键
-  href: string;       // 链接地址
-  children?: MenuItem[]; // 子菜单项
-  external?: boolean; // 是否为外部链接
-};
-
-// 开发环境菜单配置
-const devMenu: MenuItem[] = [
-  {
-    key: 'journey',
-    href: '/blog',
-  },
-  // {
-  //   key: 'docs',
-  //   href: '/docs',
-  //   children: [
-  //     {
-  //       key: 'gettingStarted',
-  //       href: '/docs/getting-started',
-  //     },
-  //     {
-  //       key: 'guides',
-  //       href: '/docs/guides',
-  //     },
-  //     {
-  //       key: 'apiReference',
-  //       href: '/docs/api',
-  //     },
-  //   ],
-  // }
-];
-
-// 生产环境菜单配置
-const prodMenu: MenuItem[] = [
-  // {
-  //   key: 'journey',
-  //   href: '/blog',
-  // }
-];
-
 export const appConfig = {
   // 基础配置
   baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'https://aidirectorylist.com',
 
   // 国际化配置
   i18n: {
-    // locales: ["en", "de", "es"] as const,
     locales: ["en", "zh"] as const,
     defaultLocale: "en" as const,
     localeLabels: {
       en: "English",
       zh: "简体中文",
-      // es: "Español",
-      // de: "Deutsch",
-      // fr: "asdf",
     },
     detector: {
       storageKey: 'language-preference-status',
@@ -75,31 +29,6 @@ export const appConfig = {
       dark: '/h001.webp',
       light: '/h000.webp'
     },
-  },
-  // 博客配置
-  blog: {
-    // 博客相关路径
-    dir: 'public/md',
-    config: 'public/md/blog-config.json',
-    // 标签定义: 决定了翻译文件字段
-    tags: [
-      'makeMoney',
-      'roadOverSea',
-      'productUpdates',
-      'insights',
-      'tutorials'
-    ],
-    // 图片资源路径
-    images: {
-      default: '/images/default.webp',
-      defaultAvatar: '/images/avatars/default.webp'
-    },
-    getTagDisplayCount: (_locale: string) => {
-      return 2;
-    },
-    pageConfig: {
-      size: 2
-    }
   },
   tool: {
     bannerDir: '/images/banner',
@@ -124,9 +53,6 @@ export const appConfig = {
       coreName: 'category.jsonc'
     }
   },
-
-  // 菜单配置
-  menu: process.env.NODE_ENV !== 'production' ? devMenu : prodMenu,
 };
 
 // 辅助函数：检查是否为支持的语言

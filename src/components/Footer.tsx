@@ -6,18 +6,14 @@ import { Github } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import Image from "next/image";
 import IconImage from "../../public/favicon.svg";
-import { appConfig, getValidLocale, MenuItem } from '@/lib/appConfig'
+import { getValidLocale } from '@/lib/appConfig'
 
 export function Footer() {
   const currentLocale = useLocale()
   const locale = getValidLocale(currentLocale)
   const t = useTranslations('footer');
-  const t1 = useTranslations('menu');
   const t2 = useTranslations('home');
   const size = 30;
-
-  // 获取一级菜单项（没有子菜单的项目）
-  const topLevelMenuItems = appConfig.menu.filter(item => !item.children || item.children.length === 0)
 
   return (
     <footer className="bg-secondary text-secondary-foreground border-t">
@@ -43,20 +39,6 @@ export function Footer() {
                   {t('home')}
                 </Link>
               </li>
-              {/* 添加配置的一级菜单项 */}
-              {topLevelMenuItems.map((item: MenuItem) => (
-                <li key={item.key}>
-                  <Link
-                    href={item.href}
-                    locale={locale}
-                    target={item.external ? '_blank' : undefined}
-                    rel={item.external ? 'noopener noreferrer' : undefined}
-                    className="text-sm hover:underline"
-                  >
-                    {t1(item.key, { fallback: item.key })}
-                  </Link>
-                </li>
-              ))}
             </ul>
           </div>
 

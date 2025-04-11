@@ -15,11 +15,6 @@
     "keywords": "AI Directory, AI Navigation, AI Program, Agent",
     "loading": "Loading..."
   },
-  "menu": {
-    "journey": "Journey",
-    "closeMenu": "Close Menu",
-    "openMenu": "Open Menu"
-  },
   "toolCard": {
     "canSubmit": "Can submit",
     "noSubmit": "Not support"

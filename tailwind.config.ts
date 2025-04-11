@@ -1,6 +1,5 @@
 import type { Config } from "tailwindcss"
 import animate from "tailwindcss-animate";
-import typography from "@tailwindcss/typography";
 
 export const lightVariables = {
   colors: {
@@ -161,7 +160,7 @@ const config = {
       DEFAULT: darkVariables,
     },
   },
-  plugins: [animate, typography],
+  plugins: [animate],
 } satisfies Config
 
 export default config
