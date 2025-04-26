@@ -7,6 +7,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import Image from "next/image";
 import IconImage from "../../public/favicon.svg";
 import { getValidLocale } from '@/lib/appConfig'
+import MicrosoftClarity from '@/components/script/MicrosoftClarity';
 
 export function Footer() {
   const currentLocale = useLocale()
@@ -63,6 +64,7 @@ export function Footer() {
           Copyright &copy; {new Date().getFullYear()} {t2('title')} {t('copyright')}
         </div>
       </div>
+      <MicrosoftClarity />
     </footer>
   );
 }
