@@ -3,17 +3,21 @@ import { Header } from "@/components/Header";
 import LanguageDetector from '@/components/LanguageDetector';
 import { GoogleAnalyticsScript } from "@/components/script/GoogleAnalyticsScript";
 import { appConfig } from "@/lib/appConfig";
-import { cn } from "@/lib/utils";
 import '@radix-ui/themes/styles.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { ThemeProvider } from "next-themes";
-import { DM_Sans, Inter } from "next/font/google";
+import { Montserrat, DM_Sans } from "next/font/google";
 import React from 'react';
 import './globals.css';
+import { cn } from '@/lib/utils';
 
+const montserrat = Montserrat({
+  weight: ['400'], // 400 是 Regular
+  subsets: ['latin'],
+  display: 'swap',
+})
 // 全局字体设置
-const inter = Inter({ subsets: ['latin'] })
 const sansFont = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -64,8 +68,7 @@ export default async function RootLayout({
     <>
       <html lang={locale} suppressHydrationWarning>
         <head />
-        <body className={cn(inter.className, sansFont.variable,
-        )}>
+        <body className={cn(montserrat.className, sansFont.variable, )}>
           <NextIntlClientProvider messages={messages}>
             {/* 国际化支持 */}
             <ThemeProvider attribute="class">
