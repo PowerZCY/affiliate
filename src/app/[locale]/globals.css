@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 
+ * 英文和数字字符使用Montserrat字体
+ * 中文使用华文楷体
+ */
+ body {
+  font-family: 'Montserrat', "STKaiti", "华文楷体", "Kaiti SC", "KaiTi", "楷体", "PingFang SC", "Microsoft YaHei", Arial, sans-serif !important;
+}
 @layer base {
   :root {
     /* JetBrains 浅色主题 */
