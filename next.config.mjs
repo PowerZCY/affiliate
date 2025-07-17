@@ -5,12 +5,14 @@ const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
-  outputFileTracingExcludes: {
-    '*': [
-      '.pnpm-store/**',
-      'node_modules/.pnpm/**',
-      '.next/cache/**',
-    ],
+  experimental: {
+    outputFileTracingExcludes: {
+      '*': [
+        '.pnpm-store/**',
+        'node_modules/.pnpm/**',
+        '.next/cache/**',
+      ],
+    },
   },
   images: {
     remotePatterns: [
