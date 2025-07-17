@@ -1,7 +1,7 @@
 {
   "functions": {
-    "api/**": {
-      "excludeFiles": "{.pnpm-store,.next,node_modules}/**"
+    "src/app/api/**": {
+      "excludeFiles": "{ .pnpm-store, .next, node_modules }/**"
     }
   }
 }
