@@ -1,0 +1,77 @@
+# 防止部署包超过额定大小: 250M
+
+# 版本控制系统
+.git
+.git/**
+.github
+.github/**
+
+# pnpm 包管理器文件
+.pnpm-store
+.pnpm-store/**
+**/.pnpm-store
+**/.pnpm-store/**
+.pnpm-debug.log*
+pnpm-debug.log*
+
+# Node.js 依赖
+node_modules
+node_modules/**
+**/node_modules
+**/node_modules/**
+
+# Next.js 构建产物和缓存
+.next/cache
+.next/cache/**
+.next/trace
+.next/trace/**
+.next/server
+.next/server/**
+.next/static/chunks/webpack*
+
+# 开发工具和IDE配置
+.vscode
+.vscode/**
+.cursor
+.cursor/**
+.idea
+.idea/**
+
+# 系统和临时文件
+.DS_Store
+**/.DS_Store
+*.log
+*.log.*
+logs
+logs/**
+
+# 环境配置文件
+.env*
+!.env.example
+
+# 测试和覆盖率文件
+coverage
+coverage/**
+.nyc_output
+.nyc_output/**
+*.lcov
+
+# 临时和缓存文件
+*.tmp
+*.temp
+.temp
+.temp/**
+.tmp
+.tmp/**
+.cache
+.cache/**
+
+# 开发相关目录
+docs
+docs/**
+scripts
+scripts/**
+
+# 大型静态资源
+# public/images/banner
+# public/images/banner/**
