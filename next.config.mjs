@@ -4,8 +4,8 @@ const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   images: {
-    // 允许加载图片的host
     remotePatterns: [
       {
         protocol: 'https',
@@ -20,11 +20,21 @@ const nextConfig = {
         hostname: 'llmgpuhelper.com',
       },
     ],
-    // 允许加载svg图片
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   optimizeFonts: true,
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      };
+    }
+    return config;
+  },
 };
 
 export default withNextIntl(nextConfig);
