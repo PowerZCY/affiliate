@@ -1,7 +1,16 @@
 {
   "functions": {
     "src/app/api/**": {
-      "excludeFiles": "{ .pnpm-store, .next, node_modules }/**"
+      "excludeFiles": [
+        ".pnpm-store/**",
+        ".git/**",
+        "node_modules/.pnpm/**",
+        ".next/trace/**",
+        "public/images/banner/**",
+        "**/.DS_Store",
+        "**/coverage/**",
+        "**/*.log"
+      ]
     }
   }
 }

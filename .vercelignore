@@ -1,0 +1,24 @@
+# Package manager stores
+.pnpm-store/
+node_modules/.pnpm/
+
+# Git directory
+.git/
+
+# Build artifacts
+.next/trace/
+*.log
+
+# Large images that aren't needed for deployment
+public/images/banner/
+
+# Development files
+.DS_Store
+coverage/
+*.test.*
+*.spec.*
+
+# Documentation
+docs/
+README*.md
+CHANGELOG*.md 

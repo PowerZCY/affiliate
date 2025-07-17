@@ -23,7 +23,19 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  optimizeFonts: true
+  optimizeFonts: true,
+  // 优化 bundle 大小
+  experimental: {
+    outputFileTracingExcludes: {
+      '*': [
+        '.pnpm-store/**/*',
+        'node_modules/.pnpm/**/*',
+        '.git/**/*',
+        'public/images/banner/**/*',
+        '.next/trace/**/*'
+      ]
+    }
+  }
 };
 
 export default withNextIntl(nextConfig);
