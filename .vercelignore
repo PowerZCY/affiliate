@@ -7,6 +7,15 @@
 .github/**
 
 # pnpm 包管理器文件
+# 排除 pnpm 缓存（最大的冗余）
+.pnpm-store/**/*
+# 排除 Next.js 追踪文件
+.next/trace
+# 排除大图片目录
+public/images/banner/**/*
+
+# 其他可选排除项
+node_modules/.pnpm/**/*.md
 .pnpm-store
 .pnpm-store/**
 **/.pnpm-store
