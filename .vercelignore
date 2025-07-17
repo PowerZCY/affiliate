@@ -9,9 +9,6 @@ node_modules/.pnpm/
 .next/trace/
 *.log
 
-# Large images that aren't needed for deployment
-public/images/banner/
-
 # Development files
 .DS_Store
 coverage/
