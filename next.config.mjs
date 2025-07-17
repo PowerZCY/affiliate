@@ -28,10 +28,7 @@ const nextConfig = {
     outputFileTracingExcludes: {
       '*': [
         '.pnpm-store/**/*',
-        'node_modules/.pnpm/**/*',
         '.git/**/*',
-        'public/images/banner/**/*',
-        '.next/trace/**/*'
       ]
     }
   }
