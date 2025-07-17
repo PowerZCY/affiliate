@@ -5,15 +5,6 @@ const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
-  experimental: {
-    outputFileTracingExcludes: {
-      '*': [
-        '.pnpm-store/**',
-        'node_modules/.pnpm/**',
-        '.next/cache/**',
-      ],
-    },
-  },
   images: {
     remotePatterns: [
       {
@@ -32,18 +23,7 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  optimizeFonts: true,
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        net: false,
-        tls: false,
-      };
-    }
-    return config;
-  },
+  optimizeFonts: true
 };
 
 export default withNextIntl(nextConfig);
