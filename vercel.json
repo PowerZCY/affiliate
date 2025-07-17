@@ -2,10 +2,9 @@
   "functions": {
     "api/**/*": {
       "excludeFiles": [
-        ".pnpm-store/**/*",
-        "node_modules/.pnpm/**/*.md",
+        ".pnpm-store",
         ".next/trace",
-        "public/images/banner/**/*.{png,jpg,jpeg}"
+        "public/images/banner"
       ]
     }
   }
